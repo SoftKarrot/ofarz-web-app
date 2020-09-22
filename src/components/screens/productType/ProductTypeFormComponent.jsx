@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from "redux-form";
 import { connect } from 'react-redux';
 import { FormGroup, Col, Label, Input, Row, Button } from 'reactstrap';
-import CategoryValidation from '../../../validations/categoryValidation';
+import ProductTypeValidation from '../../../validations/productTypeValidation';
 
 const renderField = ({
     input,
@@ -37,13 +37,13 @@ const renderField = ({
 const mapStateToProps = (state) => {
     return {
         initialValues: {
-            name: state.categoryDetails.name,
-            description: state.categoryDetails.description
+            name: state.productTypeDetails.productType.name,
+            description: state.productTypeDetails.productType.description
         }
     };
 };
 
-class FormComponent extends Component {
+class ProductTypeFormComponent extends Component {
 
     render() {
         return (
@@ -89,10 +89,10 @@ class FormComponent extends Component {
     }
 }
 
-FormComponent = reduxForm({
-    form: "fromCreateCategory",
-    validate: CategoryValidation,
+ProductTypeFormComponent = reduxForm({
+    form: "fromCreateProductType",
+    validate: ProductTypeValidation,
     enableReinitialize: true,
-})(FormComponent);
+})(ProductTypeFormComponent);
 
-export default connect(mapStateToProps, null)(FormComponent);
+export default connect(mapStateToProps, null)(ProductTypeFormComponent);

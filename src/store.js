@@ -1,15 +1,23 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { categoryDeleteReducer, categoryDetailsReducer, categoryListReducer, categoryUpdateReducer, categorySaveReducer } from './reducers/categoryReducers';
 import { reducer as formReducer } from 'redux-form'
+import { categoryDeleteReducer, categoryListReducer, categoryUpdateReducer, categorySaveReducer, categoryDetailsReducer } from './reducers/categoryReducers';
+import { productTypeDeleteReducer, productTypeDetailsReducer, productTypeListReducer, productTypeSaveReducer, productTypeUpdateReducer } from './reducers/productTypeReducers';
 
 const initialState = {};
 const reducer = combineReducers({
-    categoryList: categoryListReducer, 
+    categoryList: categoryListReducer,
     categoryDetails: categoryDetailsReducer,
     categorySave: categorySaveReducer,
     categoryUpdate: categoryUpdateReducer,
     categoryDelete: categoryDeleteReducer,
+
+    productTypeList: productTypeListReducer,
+    productTypeDetails: productTypeDetailsReducer,
+    productTypeSave: productTypeSaveReducer,
+    productTypeUpdate: productTypeUpdateReducer,
+    productTypeDelete: productTypeDeleteReducer,
+
     form: formReducer
 })
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -37,7 +37,6 @@ const updateCategory = (category, categoryId) => async (dispatch) => {
     }
 }
 
-
 const detailsCategory = (categoryId) => async (dispatch) => {
     //debugger
     try {
@@ -49,7 +48,6 @@ const detailsCategory = (categoryId) => async (dispatch) => {
         dispatch({ type: CATEGORY_DETAILS_FAIL, payload: error.message })
     }
 }
-
 
 const deleteCategory = (categoryId) => async (dispatch, getState) => {
     try {

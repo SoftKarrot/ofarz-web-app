@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container } from "reactstrap";
 import BackComponent from "../../components/common/BackComponent";
 import { connect } from "react-redux";
-import FormComponent from "../../components/screens/category/FormComponent";
+import FormComponent from "../../components/screens/category/CategoryFormComponent";
 import { detailsCategory, updateCategory } from "../../actions/categoryActions";
 import swal from "sweetalert";
 
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-class EditCategoryContainer extends Component {
+class CategoryEditContainer extends Component {
 
     componentDidMount() {
         this.props.dispatch(detailsCategory(this.props.match.params.id));
@@ -42,4 +42,4 @@ class EditCategoryContainer extends Component {
     }
 }
 
-export default connect(mapStateToProps, null)(EditCategoryContainer);
+export default connect(mapStateToProps, null)(CategoryEditContainer);

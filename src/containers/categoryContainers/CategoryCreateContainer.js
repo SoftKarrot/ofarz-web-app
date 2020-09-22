@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container } from "reactstrap";
 import BackComponent from "../../components/common/BackComponent";
-import FormComponent from "../../components/screens/category/FormComponent";
+import FormComponent from "../../components/screens/category/CategoryFormComponent";
 import { connect } from "react-redux";
 import { saveCategory } from '../../actions/categoryActions';
 import swal from "sweetalert";
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-class CreatecategoryContainer extends Component {
+class CategoryCreateContainer extends Component {
 
     handleSubmit(data) {
         this.props.dispatch(saveCategory(data));
@@ -45,4 +45,4 @@ class CreatecategoryContainer extends Component {
     }
 }
 
-export default connect(mapStateToProps, null)(CreatecategoryContainer);
+export default connect(mapStateToProps, null)(CategoryCreateContainer);

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import TableComponent from "../../components/screens/category/TableComponent";
+import TableComponent from "../../components/screens/category/CategoryTableComponent";
 import { connect } from "react-redux";
 import { listCategories, deleteCategory } from '../../actions/categoryActions'
 
-class HomeContainer extends Component {
+class CategoryHomeContainer extends Component {
 
     componentDidMount() {
         this.props.dispatch(listCategories());
@@ -20,4 +20,4 @@ class HomeContainer extends Component {
     }
 }
 
-export default connect()(HomeContainer);
+export default connect()(CategoryHomeContainer);

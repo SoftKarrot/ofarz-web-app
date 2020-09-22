@@ -14,14 +14,16 @@ import {
     CATEGORY_SAVE_FAIL,
     CATEGORY_SAVE_REQUEST,
     CATEGORY_SAVE_SUCCESS,
-    
+
     CATEGORY_UPDATE_FAIL,
     CATEGORY_UPDATE_REQUEST,
-    CATEGORY_UPDATE_SUCCESS
+    CATEGORY_UPDATE_SUCCESS,
+    GET_CATEGORY_DETAIL
 } from "../constants/categoryConstants";
 
 let initialState = {
     category: false
+
 }
 
 function categoryListReducer(state = { categories: [] }, action) {
@@ -38,11 +40,9 @@ function categoryListReducer(state = { categories: [] }, action) {
     }
 }
 
-function categoryDetailsReducer(state = { category: {} }, action) {
+function categoryDetailsReducer(state = { category: false }, action) {
 
     switch (action.type) {
-        case CATEGORY_DETAILS_REQUEST:
-            return { loading: true };
         case CATEGORY_DETAILS_SUCCESS:
             return { loading: false, category: action.payload };
         case CATEGORY_DETAILS_FAIL:
@@ -51,6 +51,7 @@ function categoryDetailsReducer(state = { category: {} }, action) {
             return state;
     }
 }
+
 
 function categoryDeleteReducer(state = { category: {} }, action) {
 
@@ -83,8 +84,7 @@ function categorySaveReducer(state = initialState, action) {
 function categoryUpdateReducer(state = initialState, action) {
 
     switch (action.type) {
-        case CATEGORY_UPDATE_REQUEST:
-            return { loading: true };
+
         case CATEGORY_UPDATE_SUCCESS:
             return { loading: false, success: true, category: action.payload };
         case CATEGORY_UPDATE_FAIL:

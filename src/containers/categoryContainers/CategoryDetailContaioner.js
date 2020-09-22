@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { detailsCategory } from "../../actions/categoryActions";
 import CategoryDetails from "../../components/screens/category/CategoryDetailsScreen";
 
-class DetailCategoryContainer extends Component {
+class CategoryDetailContainer extends Component {
     
     componentDidMount() {
         this.props.dispatch(detailsCategory(this.props.match.params.id));
@@ -22,4 +22,4 @@ class DetailCategoryContainer extends Component {
     }
 }
 
-export default connect()(DetailCategoryContainer);
+export default connect()(CategoryDetailContainer);

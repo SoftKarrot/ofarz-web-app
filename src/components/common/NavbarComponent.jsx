@@ -27,6 +27,13 @@ const NavbarComponent = (props) => {
                             <NavItem>
                                 <NavLink href="/">Home</NavLink>
                             </NavItem>
+                            <NavItem>
+                                <NavLink href="/categories">Category</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/producttypes">ProductType</NavLink>
+                            </NavItem>
+                          
                         </Nav>
                         <NavbarText>Admin</NavbarText>
                     </Collapse>
