@@ -6,7 +6,7 @@ const ProductTypeValidation = (values) => {
     }
 
     if (!values.description || values.description === "") {
-        errors.umur = "ProductType description should not empty";
+        errors.description = "ProductType description should not empty";
     }
 
     return errors

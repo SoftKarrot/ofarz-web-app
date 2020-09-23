@@ -25,11 +25,11 @@ const saveProductType = (producType) => async (dispatch) => {
     }
 }
 
-const updateProductType = (producType, productTypeId) => async (dispatch) => {
+const updateProductType = (productType, productTypeId) => async (dispatch) => {
     //debugger
     try {
-        dispatch({ type: PRODUCTTYPE_UPDATE_REQUEST, payload: producType });
-        const { data } = await axios.put('/api/producttypes/' + productTypeId, producType)
+        dispatch({ type: PRODUCTTYPE_UPDATE_REQUEST, payload: productType });
+        const { data } = await axios.put('/api/producttypes/' + productTypeId, productType)
         dispatch({ type: PRODUCTTYPE_UPDATE_SUCCESS, payload: data });
     } catch (error) {
 

@@ -6,7 +6,7 @@ const CategoryValidation = (values) => {
     }
 
     if (!values.description || values.description === "") {
-        errors.umur = "Category description should not empty";
+        errors.description = "Category description should not empty";
     }
 
     return errors
