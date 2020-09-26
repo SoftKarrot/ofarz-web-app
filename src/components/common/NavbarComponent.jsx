@@ -7,27 +7,40 @@ import {
     Nav,
     NavItem,
     NavLink,
-    NavbarText,
     Container,
 } from "reactstrap";
+import { useSelector } from 'react-redux';
+import { appSharerLogout } from "../../actions/Auth/appSharerActions";
+import { useDispatch } from 'react-redux';
 
 const NavbarComponent = (props) => {
+    const dispatch = useDispatch();
+
+    const appSharerSignin = useSelector((state) => state.appSharerSignin);
+    const { appSharerInfo } = appSharerSignin;
+    //debugger
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
 
+    const handleLogout = () => {
+        dispatch(appSharerLogout());
+        props.history.push("/signin");
+    }
+
     return (
         <div>
+
             <Navbar color="light" light expand="md">
                 <Container>
-                    <NavbarBrand href="/">Wahidev Academy</NavbarBrand>
+                    <NavbarBrand href="/">Ofarz</NavbarBrand>
                     <NavbarToggler onClick={toggle} />
                     <Collapse isOpen={isOpen} navbar>
                         <Nav className="mr-auto" navbar>
                             <NavItem>
                                 <NavLink href="/">Home</NavLink>
                             </NavItem>
-                            <NavItem>
+                            <NavItem >
                                 <NavLink href="/categories">Category</NavLink>
                             </NavItem>
                             <NavItem>
@@ -39,10 +52,40 @@ const NavbarComponent = (props) => {
                             <NavItem>
                                 <NavLink href="/productcreate">Create Product</NavLink>
                             </NavItem>
-
                         </Nav>
-                        <NavbarText>Admin</NavbarText>
+
+                        <Nav className="mr-auto" navbar>
+                            {appSharerInfo ? (
+                                <Nav>
+                                    <NavItem>
+                                        <NavLink href="/profile">{appSharerInfo.item1.firstName}</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="/appshareradddownline">AppDownline</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink
+                                            href="/appsharersignin"
+                                            onClick={handleLogout}
+                                        >
+                                            Logout
+                                        </NavLink>
+                                    </NavItem>
+                                </Nav>
+                            ) : (
+                                    <NavItem>
+                                        <NavLink href="/appsharersignin">SignIn</NavLink>
+                                    </NavItem>
+                                )}
+
+
+                            <NavItem>
+                                <NavLink href="/applicationroles">Role</NavLink>
+                            </NavItem>
+                        </Nav>
+
                     </Collapse>
+
                 </Container>
             </Navbar>
         </div>

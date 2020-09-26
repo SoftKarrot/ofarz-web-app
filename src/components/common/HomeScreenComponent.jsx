@@ -4,7 +4,10 @@ class HomeScreen extends Component {
     render() {
         return (
             <>
-                <h1>OfarZ</h1>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                    <h1>OfarZ</h1>
+                </div>
+
             </>
         );
     }
