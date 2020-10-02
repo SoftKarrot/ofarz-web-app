@@ -18,7 +18,6 @@ function MarketEditScreen(props) {
     const [marketCode, setMarketCode] = useState('');
     const [unionOrWardId, setUnion] = useState('');
 
-
     const marketDetails = useSelector((state) => state.marketDetails);
     const { market } = marketDetails;
 
@@ -37,21 +36,17 @@ function MarketEditScreen(props) {
         dispatch(detailsMarket(marketId));
         dispatch(listUnions());
 
-        //console.log("markets", market)
-        if (typeof market != 'undefined' && market == {}) {
-            //console.log("name", market.name)
-            setName(market.name)
-            setMarketCode(market.marketCode)
-            setUnion(market.unionOrWardId)
-        }
-        return () => {
+        setName(market.name)
+        setMarketCode(market.marketCode)
+        setUnion(market.unionOrWardId)
 
+        return () => {
             //
         };
     }, [marketId, successUpdate]);
 
     const submitHandler = (e) => {
-        
+
         dispatch(
             updateMarket({
                 name,
@@ -74,7 +69,6 @@ function MarketEditScreen(props) {
                                 <Input type="text"
                                     name="name"
                                     id="name"
-                                    placeholder={market.name}
                                     size="lg"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
@@ -85,11 +79,10 @@ function MarketEditScreen(props) {
                     <div className="row">
                         <div className="col col-lg-6">
                             <FormGroup>
-                                <Label for="district">District Code</Label>
+                                <Label for="marketCcode">Market Code</Label>
                                 <Input type="text"
-                                    name="district"
-                                    id="district"
-                                    placeholder={market.marketCode}
+                                    name="marketCcode"
+                                    id="marketCcode"
                                     size="lg"
                                     value={marketCode}
                                     onChange={(e) => setMarketCode(e.target.value)}

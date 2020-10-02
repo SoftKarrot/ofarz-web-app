@@ -19,11 +19,6 @@ function AgentProductsScreen(props) {
         };
     }, [productType, category]);
     
-    console.log(products);
-
-
-
-
     return (
         <>
             {loading ? (

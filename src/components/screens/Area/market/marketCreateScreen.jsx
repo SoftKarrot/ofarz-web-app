@@ -81,7 +81,7 @@ function MarketCreateScreen(props) {
                     <div className="row">
                         <div className="col col-lg-6">
                             <FormGroup>
-                                <Label for="union">Union Code</Label>
+                                <Label for="union">Market Code</Label>
                                 <Input type="text"
                                     name="union"
                                     id="union"

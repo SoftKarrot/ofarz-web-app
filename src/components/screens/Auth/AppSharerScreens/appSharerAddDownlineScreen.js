@@ -11,6 +11,7 @@ function AppSharerAddDownlineScreen(props) {
     const [confirmPassword, setConfirmPassword] = useState('');
     const Register = useSelector(state => state.appSharerAddDownline);
     const { loading, userInfo, error } = Register;
+    
     const appSharerSignin = useSelector((state) => state.appSharerSignin);
     const { appSharerInfo } = appSharerSignin;
 

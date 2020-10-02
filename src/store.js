@@ -8,7 +8,7 @@ import { productDeleteReducer, productDetailsReducer, productListByProductTypeCa
 import { appSharerAddDownlineReducer, appSharerSigninReducer, appSharerUpdateReducer } from './reducers/Auth/appSharerReducers';
 import { cartReducer } from './reducers/Regular/cartReducers';
 import { roleDeleteReducer, roleDetailsReducer, roleListReducer, roleSaveReducer, roleUpdateReducer } from './reducers/Auth/applicationRoleReducers';
-import { adminRegistrationReducer, adminSigninReducer, adminUpdateReducer } from './reducers/Auth/adminReducers';
+import { adminProfileDetailsReducer, adminRegistrationReducer, adminSigninReducer, adminUpdatePasswordReducer, adminUpdateReducer } from './reducers/Auth/adminReducers';
 import { moderatorAddReducer, moderatorSigninReducer, moderatorUpdateReducer } from './reducers/Auth/moderatorReducers';
 import { agentAddReducer, agentSigninReducer, agentUpdateReducer } from './reducers/Auth/agentReducers';
 import { shoperRegistrationReducer, shoperSigninReducer, shoperUpdateReducer } from './reducers/Auth/shoperReducers';
@@ -19,7 +19,6 @@ import { upozilaDeleteReducer, upozilaDetailsReducer, upozilaListReducer, upozil
 import { unionDeleteReducer, unionDetailsReducer, unionListReducer, unionSaveReducer, unionUpdateReducer } from './reducers/Area/unionOrWardReducers';
 import { marketDeleteReducer, marketDetailsReducer, marketListReducer, marketSaveReducer, marketUpdateReducer } from './reducers/Area/marketReducers';
 import { countryListReducerad, districtListReducerad, divisionListReducerad, marketListReducerad, unionListReducerad, upozilaListReducerad } from './reducers/Area/addressReducers';
-
 
 const cartItems = Cookie.getJSON('cartItems') || [];
 const appSharerInfo = Cookie.getJSON('appSharerInfo') || null;
@@ -73,14 +72,12 @@ const reducer = combineReducers({
     marketUpdate: marketUpdateReducer,
     marketDelete: marketDeleteReducer,
 
-
     countryListAd: countryListReducerad,
     divisionListAd: divisionListReducerad,
     districtListAd: districtListReducerad,
     upozilaListAd: upozilaListReducerad,
     unionListAd: unionListReducerad,
     marketListAd: marketListReducerad,
-
 
     categoryList: categoryListReducer,
     categoryDetails: categoryDetailsReducer,
@@ -116,6 +113,8 @@ const reducer = combineReducers({
     adminSignin: adminSigninReducer,
     adminRegistration: adminRegistrationReducer,
     adminUpdate: adminUpdateReducer,
+    adminUpdatePassword: adminUpdatePasswordReducer,
+    adminProfileDetails: adminProfileDetailsReducer,
 
     moderatorSignin: moderatorSigninReducer,
     moderatorAdd: moderatorAddReducer,

@@ -16,6 +16,7 @@ function AdminRegistrationScreen(props) {
     const [lastname, setLastName] = useState('');
     const [mobilenumber, setMobilenumber] = useState('');
     const [nid_number, setNid_Number] = useState('');
+    const [email, setEmail] = useState('');
     const [postalcode, setPostalCode] = useState('');
     const [profilePhoto, setProfilePhoto] = useState('');
     const [countryId, setCountry] = useState('');
@@ -30,7 +31,7 @@ function AdminRegistrationScreen(props) {
     const [uploading, setUploading] = useState(false);
 
     const Register = useSelector(state => state.adminRegistration);
-    const { loading, adminInfo, error } = Register;
+    const { loading, userinfo, error } = Register;
 
     const countryList = useSelector(state => state.countryList);
     const { countries } = countryList;
@@ -52,7 +53,7 @@ function AdminRegistrationScreen(props) {
     const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
 
     useEffect(() => {
-        if (adminInfo) {
+        if (userinfo) {
             props.history.push(redirect);
         }
         dispatch(listCountries())
@@ -63,7 +64,7 @@ function AdminRegistrationScreen(props) {
         return () => {
             //
         };
-    }, [adminInfo]);
+    }, [userinfo]);
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -72,6 +73,7 @@ function AdminRegistrationScreen(props) {
             lastname,
             mobilenumber,
             nid_number,
+            email,
             postalcode,
             profilePhoto,
             countryId,
@@ -122,14 +124,18 @@ function AdminRegistrationScreen(props) {
     }
 
     return (
-        <div className="content content-margined">
+        <div className="content content-margined" style={{
+            backgroundColor: 'black',
+
+        }}>
             {countries && divisions && districts && upozilas && unions && (
                 <div className="container">
                     <Form onSubmit={submitHandler}>
                         <div className="row">
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="firstname">First Name</Label>
+                                    <Label for="firstname"
+                                        style={{ color: 'white' }}>First Name</Label>
                                     <Input type="text"
                                         name="firstname"
                                         id="firstname"
@@ -142,7 +148,7 @@ function AdminRegistrationScreen(props) {
                             </div>
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="lastname">Last Name</Label>
+                                    <Label for="lastname" style={{ color: 'white' }}>Last Name</Label>
                                     <Input type="text"
                                         name="price"
                                         id="price"
@@ -158,7 +164,7 @@ function AdminRegistrationScreen(props) {
                         <div className="row">
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="countInStock">Phone Number</Label>
+                                    <Label for="countInStock" style={{ color: 'white' }}>Phone Number</Label>
                                     <Input
                                         type="text"
                                         name="countInStock"
@@ -172,7 +178,7 @@ function AdminRegistrationScreen(props) {
                             </div>
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="countInStock">Nid Number</Label>
+                                    <Label for="countInStock" style={{ color: 'white' }}>Nid Number</Label>
                                     <Input
                                         type="text"
                                         name="productCode"
@@ -188,7 +194,21 @@ function AdminRegistrationScreen(props) {
                         <div className="row">
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="countInStock">Postal Code</Label>
+                                    <Label for="email" style={{ color: 'white' }}>Email</Label>
+                                    <Input
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        placeholder="Enter Email"
+                                        size="lg"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
+                                </FormGroup>
+                            </div>
+                            <div className="col col-lg-6">
+                                <FormGroup>
+                                    <Label for="countInStock" style={{ color: 'white' }}>Postal Code</Label>
                                     <Input
                                         type="text"
                                         name="productCode"
@@ -207,7 +227,7 @@ function AdminRegistrationScreen(props) {
                         <div className="row">
                             <div className="col col-lg-12">
                                 <FormGroup>
-                                    <Label for="image">Phofile Photo Name</Label>
+                                    <Label for="image" style={{ color: 'white' }}>Phofile Photo Name</Label>
                                     <Input type="text"
                                         name="image"
                                         id="image"
@@ -227,7 +247,7 @@ function AdminRegistrationScreen(props) {
                         <div className="row">
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="exampleSelect">Select Country</Label>
+                                    <Label for="exampleSelect" style={{ color: 'white' }}>Select Country</Label>
                                     <Input
                                         type="select"
                                         name="select"
@@ -247,7 +267,7 @@ function AdminRegistrationScreen(props) {
                             </div>
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="exampleSelect">Select Division</Label>
+                                    <Label for="exampleSelect" style={{ color: 'white' }}>Select Division</Label>
                                     <Input
                                         type="select"
                                         name="select"
@@ -268,7 +288,7 @@ function AdminRegistrationScreen(props) {
                         <div className="row">
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="exampleSelect">Select District</Label>
+                                    <Label for="exampleSelect" style={{ color: 'white' }}>Select District</Label>
                                     <Input
                                         type="select"
                                         name="select"
@@ -288,7 +308,7 @@ function AdminRegistrationScreen(props) {
                             </div>
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="exampleSelect">Select Upozila</Label>
+                                    <Label for="exampleSelect" style={{ color: 'white' }}>Select Upozila</Label>
                                     <Input
                                         type="select"
                                         name="select"
@@ -309,7 +329,7 @@ function AdminRegistrationScreen(props) {
                         <div className="row">
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="exampleSelect">Select Union</Label>
+                                    <Label for="exampleSelect" style={{ color: 'white' }}>Select Union</Label>
                                     <Input
                                         type="select"
                                         name="select"
@@ -332,7 +352,7 @@ function AdminRegistrationScreen(props) {
                         <div className="row">
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="firstname">Password</Label>
+                                    <Label for="firstname" style={{ color: 'white' }}>Password</Label>
                                     <Input type="password"
                                         name="firstname"
                                         id="firstname"
@@ -345,7 +365,7 @@ function AdminRegistrationScreen(props) {
                             </div>
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="lastname">Confirm Password</Label>
+                                    <Label for="lastname" style={{ color: 'white' }}>Confirm Password</Label>
                                     <Input type="password"
                                         name="price"
                                         id="price"

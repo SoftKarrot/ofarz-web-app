@@ -28,6 +28,8 @@ import AppSharerAddDownlineScreen from '../screens/Auth/AppSharerScreens/appShar
 
 import AdminSigninScreen from '../screens/Auth/AdminScreens/adminSigninScreen';
 import AdminRegistrationScreen from '../screens/Auth/AdminScreens/adminRegistrationScreen';
+import AdminProfileUpdateScreen from '../screens/Auth/AdminScreens/adminProfileUpdateScreen';
+import AdminChangePasswordScreen from '../screens/Auth/AdminScreens/adminChangePasswordScreen';
 
 import ModeratorSigninScreen from '../screens/Auth/ModeratorScreens/moderatorSigninScreen';
 import ModeratorAddScreen from '../screens/Auth/ModeratorScreens/moderatorAddScreen';
@@ -72,6 +74,7 @@ import MarketDetails from '../screens/Area/market/marketDetailsScreen';
 import MarketEditScreen from '../screens/Area/market/marketEditScreen';
 import ProductsScreen from '../screens/Regular/Product/productsScreen';
 import ProductEditScreen from '../screens/Regular/Product/productEditScreen';
+import AdminProfileScreen from '../screens/Auth/AdminScreens/adminProfileScreen';
 
 
 
@@ -112,6 +115,9 @@ class RouteComponemt extends Component {
 
                 <Route path="/adminsignin" exact component={AdminSigninScreen} />
                 <Route path="/adminregistrations" exact component={AdminRegistrationScreen} />
+                <Route path="/adminprofileupdate" exact component={AdminProfileUpdateScreen} />
+                <Route path="/adminpasswordupdate" exact component={AdminChangePasswordScreen} />
+                <Route path="/adminprofile" exact component={AdminProfileScreen} />
 
                 <Route path="/moderatorsignin" exact component={ModeratorSigninScreen} />
                 <Route path="/moderatoradd" exact component={ModeratorAddScreen} />

@@ -40,7 +40,7 @@ const NavbarComponent = (props) => {
                             <NavItem>
                                 <NavLink href="/">Home</NavLink>
                             </NavItem>
-                            <NavItem >
+                            {/* <NavItem >
                                 <NavLink href="/categories">Category</NavLink>
                             </NavItem>
                             <NavItem>
@@ -51,16 +51,26 @@ const NavbarComponent = (props) => {
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/productcreate">Create Product</NavLink>
-                            </NavItem>
+                            </NavItem> */}
                             <NavItem>
                                 <NavLink href="/agentptype">Agent Product List</NavLink>
                             </NavItem>
-                            {/* <NavItem>
+                            <NavItem>
                                 <NavLink href="/adminregistrations">Admin Registration</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/adminsignin">Admin SignIn</NavLink>
                             </NavItem>
+                            <NavItem>
+                                <NavLink href="/adminprofileupdate">Update Profile</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/adminpasswordupdate">Change Password</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/adminprofile">Admin Profile</NavLink>
+                            </NavItem>
+                            {/*
                             <NavItem>
                                 <NavLink href="/moderatoradd">Add Moderator</NavLink>
                             </NavItem>
