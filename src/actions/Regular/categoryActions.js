@@ -41,7 +41,7 @@ const saveCategory = (category) => async (dispatch) => {
 }
 
 const updateCategory = (category, categoryId) => async (dispatch) => {
-    //debugger
+
     try {
         dispatch({ type: CATEGORY_UPDATE_REQUEST, payload: category });
         const { data } = await axios.put('/api/categories/' + categoryId, category)
@@ -53,7 +53,7 @@ const updateCategory = (category, categoryId) => async (dispatch) => {
 }
 
 const detailsCategory = (categoryId) => async (dispatch) => {
-    //debugger
+
     try {
         dispatch({ type: CATEGORY_DETAILS_REQUEST, payload: categoryId });
         const { data } = await axios.get("/api/categories/" + categoryId)
@@ -65,6 +65,7 @@ const detailsCategory = (categoryId) => async (dispatch) => {
 }
 
 const deleteCategory = (categoryId) => async (dispatch, getState) => {
+
     try {
         dispatch({ type: CATEGORY_DELETE_REQUEST, payload: categoryId });
         const { data } = await axios.delete("/api/categories/" + categoryId)

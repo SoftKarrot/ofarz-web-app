@@ -17,6 +17,7 @@ import {
 } from '../../constants/Regular/productTypeConstants';
 
 const listProducttypes = () => async (dispatch) => {
+ 
     try {
         dispatch({ type: PRODUCTTYPE_LIST_REQUEST });
         const { data } = await axios.get("/api/producttypes");
@@ -41,7 +42,7 @@ const saveProductType = (producType) => async (dispatch) => {
 }
 
 const updateProductType = (productType, productTypeId) => async (dispatch) => {
-    //debugger
+
     try {
         dispatch({ type: PRODUCTTYPE_UPDATE_REQUEST, payload: productType });
         const { data } = await axios.put('/api/producttypes/' + productTypeId, productType)
@@ -53,7 +54,7 @@ const updateProductType = (productType, productTypeId) => async (dispatch) => {
 }
 
 const detailsProductType = (productTypeId) => async (dispatch) => {
-    //debugger
+
     try {
         dispatch({ type: PRODUCTTYPE_DETAILS_REQUEST, payload: productTypeId });
         const { data } = await axios.get("/api/producttypes/" + productTypeId)
@@ -65,7 +66,7 @@ const detailsProductType = (productTypeId) => async (dispatch) => {
 }
 
 const deleteProductType = (productTypeId) => async (dispatch, getState) => {
-    debugger
+
     try {
         dispatch({ type: PRODUCTTYPE_DELETE_REQUEST, payload: productTypeId });
         const { data } = await axios.delete("/api/producttypes/" + productTypeId)

@@ -19,7 +19,8 @@ function ProductHomeScreen(props) {
             //
         };
     }, [category]);
-
+    console.log(products);
+    
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(listProducts(category, searchKeyword, sortOrder));

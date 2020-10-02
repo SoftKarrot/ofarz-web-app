@@ -7,6 +7,9 @@ import {
     PRODUCT_DETAILS_SUCCESS,
 
     PRODUCT_LIST_FAIL,
+    PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_FAIL,
+    PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_REQUEST,
+    PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_SUCCESS,
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS,
 
@@ -31,6 +34,20 @@ function productListReducer(state = { products: [] }, action) {
         case PRODUCT_LIST_SUCCESS:
             return { loading: false, products: action.payload };
         case PRODUCT_LIST_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+
+function productListByProductTypeCategoryReducer(state = { products: [] }, action) {
+
+    switch (action.type) {
+        case PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_REQUEST:
+            return { loading: true };
+        case PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_SUCCESS:
+            return { loading: false, products: action.payload };
+        case PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_FAIL:
             return { loading: false, error: action.payload }
         default:
             return state;
@@ -93,4 +110,4 @@ function productUpdateReducer(state = initialState, action) {
     }
 }
 
-export { productListReducer, productDetailsReducer, productDeleteReducer, productUpdateReducer, productSaveReducer }
+export { productListReducer, productListByProductTypeCategoryReducer, productDetailsReducer, productDeleteReducer, productUpdateReducer, productSaveReducer }

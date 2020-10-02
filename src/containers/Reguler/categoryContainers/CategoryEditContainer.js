@@ -19,6 +19,7 @@ class CategoryEditContainer extends Component {
         this.props.dispatch(detailsCategory(this.props.match.params.id));
     }
     handleSubmit(data) {
+     
         this.props.dispatch(updateCategory(data, this.props.match.params.id));
     }
 
@@ -32,6 +33,7 @@ class CategoryEditContainer extends Component {
                 );
             }
         }
+       
         return (
             <Container>
                 <BackComponent />

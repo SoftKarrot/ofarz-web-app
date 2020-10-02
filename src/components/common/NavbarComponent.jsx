@@ -52,6 +52,33 @@ const NavbarComponent = (props) => {
                             <NavItem>
                                 <NavLink href="/productcreate">Create Product</NavLink>
                             </NavItem>
+                            <NavItem>
+                                <NavLink href="/agentptype">Agent Product List</NavLink>
+                            </NavItem>
+                            {/* <NavItem>
+                                <NavLink href="/adminregistrations">Admin Registration</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/adminsignin">Admin SignIn</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/moderatoradd">Add Moderator</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/moderatorsignin">Moderator SignIn</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/agentadd">Add Agent</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/agentsignin">Agent SignIn</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/shoperregistration">Shoper SignUp</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/shopersignin">Shoper SignIn</NavLink>
+                            </NavItem> */}
                         </Nav>
 
                         <Nav className="mr-auto" navbar>

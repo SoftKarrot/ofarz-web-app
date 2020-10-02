@@ -5,6 +5,7 @@ import { FormGroup, Col, Label, Input, Row, Button } from 'reactstrap';
 import CategoryValidation from '../../../../validations/Regular/categoryValidation';
 
 const renderField = ({
+    
     input,
     type,
     placeholder,
@@ -35,6 +36,7 @@ const renderField = ({
     );
 
 const mapStateToProps = (state) => {
+
     return {
         initialValues: {
             name: state.categoryDetails.category.name,
@@ -46,7 +48,9 @@ const mapStateToProps = (state) => {
 class FormComponent extends Component {
 
     render() {
+  
         return (
+            
             <form onSubmit={this.props.handleSubmit}>
                 <FormGroup row>
                     <Col md={6}>

@@ -18,7 +18,6 @@ import { deleteCategory } from "../../../../actions/Regular/categoryActions";
 const { SearchBar } = Search;
 
 const handleClick = (dispatch, id) => {
-
     swal({
         title: "Do you want to delete?",
         icon: "warning",
@@ -36,7 +35,6 @@ const handleClick = (dispatch, id) => {
             }
         });
 }
-
 
 const defaultSorted = [
     {

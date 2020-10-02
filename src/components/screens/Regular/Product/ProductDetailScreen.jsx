@@ -11,19 +11,20 @@ function ProductDetailsScreen(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-
         dispatch(detailsProduct(props.match.params.id));
         return () => {
             //
         };
-    }, []);
-    const submitHandler = (e) => {
-        e.preventDefault();
-        // dispatch actions
-        dispatch(
-            //
-        );
-    };
+    }, [props.match.params.id]);
+
+    // const submitHandler = (e) => {
+    //     e.preventDefault();
+    //     // dispatch actions
+    //     dispatch(
+    //         //
+    //     );
+    // };
+    
     const handleAddToCart = () => {
         props.history.push('/cart/' + props.match.params.id + '?qty=' + qty);
     };

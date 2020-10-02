@@ -7,6 +7,7 @@ import RouteComponemt from './components/common/RouteComponents';
 
 function App() {
   return (
+  
     <div>
       <NavbarComponent />
       <RouteComponemt />
