@@ -1,10 +1,21 @@
 import Axios from "axios";
 import Cookie from 'js-cookie';
-import { APPSHARER_LOGOUT, APPSHARER_REGISTER_FAIL, APPSHARER_REGISTER_REQUEST, APPSHARER_REGISTER_SUCCESS, APPSHARER_SIGNIN_FAIL, APPSHARER_SIGNIN_REQUEST, APPSHARER_SIGNIN_SUCCESS, APPSHARER_UPDATE_FAIL, APPSHARER_UPDATE_REQUEST, APPSHARER_UPDATE_SUCCESS } from "../../constants/Auth/appSharerConstants";
+import {
+    APPSHARER_LOGOUT,
+    APPSHARER_REGISTER_FAIL,
+    APPSHARER_REGISTER_REQUEST,
+    APPSHARER_REGISTER_SUCCESS,
+    APPSHARER_SIGNIN_FAIL,
+    APPSHARER_SIGNIN_REQUEST,
+    APPSHARER_SIGNIN_SUCCESS,
+    APPSHARER_PROFILE_UPDATE_FAIL,
+    APPSHARER_PROFILE_UPDATE_REQUEST,
+    APPSHARER_PROFILE_UPDATE_SUCCESS
+} from "../../constants/Auth/appSharerConstants";
 
 const appSharerUpdate = ({ userId, firstname, mobilenumber, password }) => async (dispatch, getState) => {
     const { appSharerSignin: { appSharerInfo } } = getState();
-    dispatch({ type: APPSHARER_UPDATE_REQUEST, payload: { userId, firstname, mobilenumber, password } });
+    dispatch({ type: APPSHARER_PROFILE_UPDATE_REQUEST, payload: { userId, firstname, mobilenumber, password } });
     try {
         const { data } = await Axios.put("/api/users/" + userId,
             { firstname, mobilenumber, password }, {
@@ -12,10 +23,10 @@ const appSharerUpdate = ({ userId, firstname, mobilenumber, password }) => async
                 Authorization: 'Bearer ' + appSharerInfo.token
             }
         });
-        dispatch({ type: APPSHARER_UPDATE_SUCCESS, payload: data });
+        dispatch({ type: APPSHARER_PROFILE_UPDATE_SUCCESS, payload: data });
         Cookie.set('appSharerInfo', JSON.stringify(data));
     } catch (error) {
-        dispatch({ type: APPSHARER_UPDATE_FAIL, payload: error.message });
+        dispatch({ type: APPSHARER_PROFILE_UPDATE_FAIL, payload: error.message });
     }
 }
 

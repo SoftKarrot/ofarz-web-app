@@ -1,4 +1,15 @@
-import { APPSHARER_LOGOUT, APPSHARER_REGISTER_FAIL, APPSHARER_REGISTER_REQUEST, APPSHARER_REGISTER_SUCCESS, APPSHARER_SIGNIN_FAIL, APPSHARER_SIGNIN_REQUEST, APPSHARER_SIGNIN_SUCCESS, APPSHARER_UPDATE_FAIL, APPSHARER_UPDATE_REQUEST, APPSHARER_UPDATE_SUCCESS } from "../../constants/Auth/appSharerConstants";
+import {
+    APPSHARER_LOGOUT,
+    APPSHARER_REGISTER_FAIL,
+    APPSHARER_REGISTER_REQUEST,
+    APPSHARER_REGISTER_SUCCESS,
+    APPSHARER_SIGNIN_FAIL,
+    APPSHARER_SIGNIN_REQUEST,
+    APPSHARER_SIGNIN_SUCCESS,
+    APPSHARER_PROFILE_UPDATE_FAIL,
+    APPSHARER_PROFILE_UPDATE_REQUEST,
+    APPSHARER_PROFILE_UPDATE_SUCCESS
+} from "../../constants/Auth/appSharerConstants";
 
 function appSharerSigninReducer(state = {}, action) {
     switch (action.type) {
@@ -16,11 +27,11 @@ function appSharerSigninReducer(state = {}, action) {
 
 function appSharerUpdateReducer(state = {}, action) {
     switch (action.type) {
-        case APPSHARER_UPDATE_REQUEST:
+        case APPSHARER_PROFILE_UPDATE_REQUEST:
             return { loading: true };
-        case APPSHARER_UPDATE_SUCCESS:
+        case APPSHARER_PROFILE_UPDATE_SUCCESS:
             return { loading: false, appSharerInfo: action.payload };
-        case APPSHARER_UPDATE_FAIL:
+        case APPSHARER_PROFILE_UPDATE_FAIL:
             return { loading: false, error: action.payload };
         default: return state;
     }

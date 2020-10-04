@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { agentRegister } from '../../../../actions/Auth/agentActions';
 
-
 function AgentAddScreen(props) {
 
     const [firstname, setFirstName] = useState('');
@@ -37,9 +36,7 @@ function AgentAddScreen(props) {
 
     const submitHandler = (e) => {
         e.preventDefault();
-
         dispatch(agentRegister(firstname, lastname, mobilenumber, nid_number, postalcode, profilePhoto, password, confirmPassword));
-
     }
 
     const uploadFileHandler = (e) => {

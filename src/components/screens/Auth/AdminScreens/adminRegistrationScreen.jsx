@@ -28,10 +28,8 @@ function AdminRegistrationScreen(props) {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const [uploading, setUploading] = useState(false);
-
     const Register = useSelector(state => state.adminRegistration);
-    const { loading, userinfo, error } = Register;
+    const { userinfo } = Register;
 
     const countryList = useSelector(state => state.countryList);
     const { countries } = countryList;
@@ -85,12 +83,10 @@ function AdminRegistrationScreen(props) {
             confirmPassword
         ));
     }
-
     const uploadFileHandler = (e) => {
         const file = e.target.files[0];
         const bodyFormData = new FormData();
         bodyFormData.append('profilePhoto', file);
-        setUploading(true);
         axios
             .post('/api/admin/savephoto', bodyFormData, {
                 headers: {
@@ -99,14 +95,13 @@ function AdminRegistrationScreen(props) {
             })
             .then((response) => {
                 setProfilePhoto(response.data);
-                setUploading(false);
+
             })
             .catch((err) => {
                 console.log(err);
-                setUploading(false);
+
             });
     };
-
     const saveCountryHandler = (e) => {
         setCountry(e.target.value);
     }
@@ -122,9 +117,8 @@ function AdminRegistrationScreen(props) {
     const saveUnionHandler = (e) => {
         setUnion(e.target.value)
     }
-
     return (
-        <div className="content content-margined" style={{
+        <div className="container" style={{
             backgroundColor: 'black',
 
         }}>
@@ -160,7 +154,6 @@ function AdminRegistrationScreen(props) {
                                 </FormGroup>
                             </div>
                         </div>
-
                         <div className="row">
                             <div className="col col-lg-6">
                                 <FormGroup>
@@ -220,10 +213,7 @@ function AdminRegistrationScreen(props) {
                                     />
                                 </FormGroup>
                             </div>
-
                         </div>
-
-
                         <div className="row">
                             <div className="col col-lg-12">
                                 <FormGroup>
@@ -243,7 +233,6 @@ function AdminRegistrationScreen(props) {
                                 </FormGroup>
                             </div>
                         </div>
-
                         <div className="row">
                             <div className="col col-lg-6">
                                 <FormGroup>
@@ -347,7 +336,6 @@ function AdminRegistrationScreen(props) {
                                     </Input>
                                 </FormGroup>
                             </div>
-
                         </div>
                         <div className="row">
                             <div className="col col-lg-6">
@@ -377,15 +365,11 @@ function AdminRegistrationScreen(props) {
                                 </FormGroup>
                             </div>
                         </div>
-
                         <Button variant="primary" type="submit">
                             Submit
                        </Button>
-
                     </Form>
-
                 </div>
-
             )
             }
         </div >

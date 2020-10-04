@@ -8,7 +8,7 @@ function ModeratorSigninScreen(props) {
 
     const [mobilenumber, setMobilenumber] = useState('');
     const [password, setPassword] = useState('');
-    const SignIn = useSelector(state => state.ModeratorSignin);
+    const SignIn = useSelector(state => state.moderatorSignin);
     const { loading, userInfo, error } = SignIn;
     const dispatch = useDispatch();
     const redirect = props.location.search ? props.location.search.split("=")[1] : '/';

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { listProducttypes } from '../../../../actions/Regular/productTypeActions';
+import { listProducttypes } from '../../../../../actions/Regular/productTypeActions';
 import { Button, Card } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-function AgentFirstScreen(props) {
+function PaymentProductTypeScreen(props) {
 
     const productTypeList = useSelector((state) => state.productTypeList);
     const { productTypes, loading, error } = productTypeList;
@@ -25,15 +25,15 @@ function AgentFirstScreen(props) {
             ) : error ? (
                 <div>{error}</div>
             ) : (
-                        <ul className="products">
+                        <ul>
                             {productTypes.map((ptype) => (
                                 <li key={ptype.id}>
                                     <div className="row">
                                         <div className="product-name">
                                             <Card>
-                                                <Link to={'/agentcategories/' + ptype.id}>
+                                                <Link to={'/paymenttypesforpay'}>
                                                     {ptype.name}
-                                                </Link>                                              
+                                                </Link>
                                             </Card>
                                         </div>
                                     </div>
@@ -44,4 +44,4 @@ function AgentFirstScreen(props) {
         </>
     );
 }
-export default AgentFirstScreen;
+export default PaymentProductTypeScreen;

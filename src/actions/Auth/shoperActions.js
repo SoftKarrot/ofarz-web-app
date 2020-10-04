@@ -1,23 +1,17 @@
 import Axios from "axios";
 import Cookie from 'js-cookie';
-import { SHOPER_LOGOUT, SHOPER_REGISTER_FAIL, SHOPER_REGISTER_REQUEST, SHOPER_REGISTER_SUCCESS, SHOPER_SIGNIN_FAIL, SHOPER_SIGNIN_REQUEST, SHOPER_SIGNIN_SUCCESS, SHOPER_UPDATE_FAIL, SHOPER_UPDATE_REQUEST, SHOPER_UPDATE_SUCCESS } from "../../constants/Auth/shoperConstants";
+import {
+    SHOPER_LOGOUT,
+    SHOPER_REGISTER_FAIL,
+    SHOPER_REGISTER_REQUEST,
+    SHOPER_REGISTER_SUCCESS,
+    SHOPER_SIGNIN_FAIL,
+    SHOPER_SIGNIN_REQUEST,
+    SHOPER_SIGNIN_SUCCESS,
 
-const shoperUpdate = ({ userId, firstname, mobilenumber, password }) => async (dispatch, getState) => {
-    const { shoperSignin: { shoperInfo } } = getState();
-    dispatch({ type: SHOPER_UPDATE_REQUEST, payload: { userId, firstname, mobilenumber, password } });
-    try {
-        const { data } = await Axios.put("/api/users/" + userId,
-            { firstname, mobilenumber, password }, {
-            headers: {
-                Authorization: 'Bearer ' + shoperInfo.token
-            }
-        });
-        dispatch({ type: SHOPER_UPDATE_SUCCESS, payload: data });
-        Cookie.set('shoperInfo', JSON.stringify(data));
-    } catch (error) {
-        dispatch({ type: SHOPER_UPDATE_FAIL, payload: error.message });
-    }
-}
+} from "../../constants/Auth/shoperConstants";
+
+
 
 const shoperSignin = (mobilenumber, password) => async (dispatch) => {
 
@@ -54,4 +48,4 @@ const shoperLogout = () => (dispatch) => {
     Cookie.remove("shoperInfo");
     dispatch({ type: SHOPER_LOGOUT })
 }
-export { shoperUpdate, shoperSignin, shoperRegister, shoperLogout };
+export { shoperSignin, shoperRegister, shoperLogout };

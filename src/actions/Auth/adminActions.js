@@ -18,6 +18,7 @@ import {
     ADMIN_PROFILE_DETAILS_SUCCESS,
     ADMIN_PROFILE_DETAILS_FAIL
 } from "../../constants/Auth/adminConstants";
+
 const adminUpdate = (currentuser, firstname, lastname, profilephoto, email, mobilenumber) => async (dispatch, getState) => {
     const { adminSignin: { adminInfo } } = getState();
     dispatch({
@@ -36,6 +37,7 @@ const adminUpdate = (currentuser, firstname, lastname, profilephoto, email, mobi
         dispatch({ type: ADMIN_PROFILE_UPDATE_FAIL, payload: error.message });
     }
 }
+
 const adminPasswordUpdate = (currentuserId, currentPassword, newPassword, confirmPassword) => async (dispatch, getState) => {
     const { adminSignin: { adminInfo } } = getState();
     dispatch({
@@ -67,17 +69,6 @@ const adminProfileDetail = (currentuserId) => async (dispatch, getState) => {
         dispatch({ type: ADMIN_PROFILE_DETAILS_FAIL, payload: error.message });
     }
 }
-// const detailsProduct = (productId) => async (dispatch) => {
-//     //debugger
-//     try {
-//         dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId });
-//         const { data } = await axios.get("/api/products/getoneasync/" + productId)
-//         dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
-//     }
-//     catch (error) {
-//         dispatch({ type: PRODUCT_DETAILS_FAIL, payload: error.message })
-//     }
-// }
 
 
 const adminSignin = (mobilenumber, password) => async (dispatch) => {

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import {
     updateMarket,
     detailsMarket
 } from '../../../../actions/Area/marketActions';
-
 import {
     listUnions
 } from '../../../../actions/Area/unionOrWardActions';
@@ -27,7 +25,6 @@ function MarketEditScreen(props) {
     const {
         success: successUpdate
     } = market;
-
 
     const dispatch = useDispatch();
 
@@ -114,7 +111,7 @@ function MarketEditScreen(props) {
                     </div>
                     <Button variant="primary" type="submit">
                         Submit
-                </Button>
+                    </Button>
                 </Form>
             ) :
                 <h1>Error</h1>
