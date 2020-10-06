@@ -1,42 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import BootstrapTable from "react-bootstrap-table-next";
 import { Container, Button, Row, Col, Spinner } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faInfo,
-    faEdit,
-    faTrash,
-    faUserPlus,
+    faInfo
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import swal from 'sweetalert';
-import { deleteRole } from "../../../../actions/Auth/applicationRoleActions";
+
+import { useSelector, useDispatch } from 'react-redux';
+import { listPayments } from '../../../../../actions/Fund/paymentActions';
 
 const { SearchBar } = Search;
-
-const handleClick = (dispatch, id) => {
-
-    swal({
-        title: "Do you want to delete?",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    })
-        .then((willDelete) => {
-            if (willDelete) {
-                dispatch(deleteRole(id))
-                swal("SuccessFully Deleted", {
-                    icon: "success",
-                });
-            } else {
-                swal("Can Not delete Role an Error occured");
-            }
-        });
-}
-
 
 const defaultSorted = [
     {
@@ -45,26 +21,28 @@ const defaultSorted = [
     },
 ];
 
-const mapStateToProps = (state) => {
 
-    return {
-        applicationRoleList: state.applicationRoleList.roles,
+const PaymentListFullForAdminScreen = (props) => {
 
-    };
 
-};
+    const paymentList = useSelector((state) => state.paymentList)
+    const { payments } = paymentList;
 
-const TableComponent = (props) => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+
+        dispatch(listPayments());
+        return () => {
+            //
+        };
+    }, []);
+
 
     const columns = [
         {
-            dataField: "name",
-            text: "Name",
-            sort: true,
-        },
-        {
-            dataField: "description",
-            text: "Description",
+            dataField: "id",
+            text: "Id",
             sort: true,
         },
         {
@@ -73,22 +51,11 @@ const TableComponent = (props) => {
             formatter: (rowContent, row) => {
                 return (
                     <div>
-                        <Link to={"applicationroledetail/" + row.id}>
+                        <Link to={"marketdetails/" + row.id}>
                             <Button color="dark" className="mr-2">
                                 <FontAwesomeIcon icon={faInfo} /> Detail
                             </Button>
                         </Link>
-
-                        <Link to={"applicationroleedit/" + row.id}>
-                            <Button color="dark" className="mr-2">
-                                <FontAwesomeIcon icon={faEdit} /> Edit
-                            </Button>
-                        </Link>
-
-                        <Button color="dark" className="mr-2" onClick={() => handleClick(props.dispatch, row.id)}>
-                            <FontAwesomeIcon icon={faTrash} /> Delete
-                        </Button>
-
                     </div>
                 );
             },
@@ -98,11 +65,11 @@ const TableComponent = (props) => {
     return (
 
         <Container>
-            {props.applicationRoleList ? (
+            {payments ? (
                 <ToolkitProvider
                     bootstrap4
                     keyField="id"
-                    data={props.applicationRoleList}
+                    data={payments}
                     columns={columns}
                     defaultSorted={defaultSorted}
                     search
@@ -111,19 +78,11 @@ const TableComponent = (props) => {
                         <div>
                             <Row>
                                 <Col>
-                                    <Link to="/applicationrolecreate">
-                                        <Button color="dark" className="mr-2">
-                                            <FontAwesomeIcon icon={faUserPlus} /> Create Applicationrole
-                                        </Button>
-                                    </Link>
-                                </Col>
-                                <Col>
                                     <div className="float-right">
                                         <SearchBar {...props.searchProps} placeholder="Search .." />
                                     </div>
                                 </Col>
                             </Row>
-
                             <BootstrapTable
                                 {...props.baseProps}
                                 pagination={paginationFactory()}
@@ -144,4 +103,4 @@ const TableComponent = (props) => {
     );
 };
 
-export default connect(mapStateToProps, null)(TableComponent);
+export default PaymentListFullForAdminScreen;

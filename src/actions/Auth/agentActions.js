@@ -1,13 +1,11 @@
 import Axios from "axios";
 import Cookie from 'js-cookie';
 import {
-    AGENT_LOGOUT,
+
     AGENT_REGISTER_FAIL,
     AGENT_REGISTER_REQUEST,
     AGENT_REGISTER_SUCCESS,
-    AGENT_SIGNIN_FAIL,
-    AGENT_SIGNIN_REQUEST,
-    AGENT_SIGNIN_SUCCESS,
+
     AGENT_PROFILE_UPDATE_FAIL,
     AGENT_PROFILE_UPDATE_REQUEST,
     AGENT_PROFILE_UPDATE_SUCCESS
@@ -30,19 +28,6 @@ const agentUpdate = ( userId, firstname, mobilenumber, password ) => async (disp
     }
 }
 
-const agentSignin = (mobilenumber, password) => async (dispatch) => {
-
-    dispatch({ type: AGENT_SIGNIN_REQUEST, payload: { mobilenumber, password } });
-    try {
-        const { data } = await Axios.post("/api/agent/agentsignin", { mobilenumber, password });
-        dispatch({ type: AGENT_SIGNIN_SUCCESS, payload: data });
-        Cookie.set('agentInfo', JSON.stringify(data));
-    } catch (error) {
-        dispatch({ type: AGENT_SIGNIN_FAIL, payload: error.message });
-    }
-}
-
-
 
 const agentRegister = (firstname, lastname, mobilenumber, nid_number, postalcode, profilephoto, password, confirmpassword) => async (dispatch) => {
 
@@ -61,8 +46,4 @@ const agentRegister = (firstname, lastname, mobilenumber, nid_number, postalcode
 }
 
 
-const agentLogout = () => (dispatch) => {
-    Cookie.remove("agentInfo");
-    dispatch({ type: AGENT_LOGOUT })
-}
-export { agentUpdate, agentSignin, agentRegister, agentLogout };
+export { agentUpdate, agentRegister };

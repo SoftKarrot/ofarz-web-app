@@ -12,26 +12,29 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { appSharerLogout } from "../../actions/Auth/appSharerActions";
+
 import { useDispatch } from 'react-redux';
+import { SignOut } from "../../actions/Auth/signInActions";
 
 const NavbarComponent = ({ toggleSidebar, props }) => {
+
+
+    const userSignIn = useSelector((state) => state.userSignIn);
+    const { userInfo } = userSignIn;
 
     const [topbarIsOpen, setTopbarOpen] = useState(true);
     const toggleTopbar = () => setTopbarOpen(!topbarIsOpen);
 
     const dispatch = useDispatch();
 
-    const appSharerSignin = useSelector((state) => state.appSharerSignin);
-    const { appSharerInfo } = appSharerSignin;
 
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
 
     const handleLogout = () => {
-        dispatch(appSharerLogout());
-        props.history.push("/signin");
+        dispatch(SignOut());
+
     }
     return (
         <Navbar
@@ -46,26 +49,32 @@ const NavbarComponent = ({ toggleSidebar, props }) => {
             <NavbarToggler onClick={toggleTopbar} />
             <Collapse isOpen={topbarIsOpen} navbar>
                 <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink tag={Link} to={"/page-1"}>
-                            page 1
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink tag={Link} to={"/page-2"}>
-                            page 2
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink tag={Link} to={"/page-3"}>
-                            page 3
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink tag={Link} to={"/page-4"}>
-                            page 4
-                        </NavLink>
-                    </NavItem>
+                    {userInfo ? (
+                        <Nav className="ml-auto" navbar>
+                            <NavItem>
+                                <NavLink tag={Link} to={"/"}>
+                                    {userInfo.item1.firstName}
+                                </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink
+                                    tag={Link}
+                                    to={"/signin"}
+                                    onClick={handleLogout}
+                                >
+                                    Logout
+                                </NavLink>
+                            </NavItem>
+                        </Nav>
+                    ) : (
+                            <Nav>
+                                <NavItem>
+                                    <NavLink tag={Link} to={"/signin"}>
+                                        SignIn
+                                    </NavLink>
+                                </NavItem>
+                            </Nav>
+                        )}
                 </Nav>
             </Collapse>
         </Navbar>

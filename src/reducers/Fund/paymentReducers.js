@@ -54,7 +54,7 @@ import {
 
     PAYMENT_SUBMIT_TABLECASH_PROMOTIONAL_FAIL,
     PAYMENT_SUBMIT_TABLECASH_PROMOTIONAL_REQUEST,
-    PAYMENT_SUBMIT_TABLECASH_PROMOTIONAL_SUCCESS
+    PAYMENT_SUBMIT_TABLECASH_PROMOTIONAL_SUCCESS, PAYMENT_LIST_FAIL_AGENT, PAYMENT_LIST_SUCCESS_AGENT, PAYMENT_LIST_REQUEST_AGENT, PAYMENT_LIST_REQUEST_APPSHARER, PAYMENT_LIST_SUCCESS_APPSHARER, PAYMENT_LIST_FAIL_APPSHARER, PAYMENT_LIST_REQUEST_SHOPER, PAYMENT_LIST_SUCCESS_SHOPER, PAYMENT_LIST_FAIL_SHOPER
 } from "../../constants/Fund/paymentConstants";
 //#endregion
 
@@ -78,11 +78,11 @@ function paymentListReducer(state = { payments: [] }, action) {
 }
 function paymentListAgentReducer(state = { payments: [] }, action) {
     switch (action.type) {
-        case PAYMENT_LIST_REQUEST:
+        case PAYMENT_LIST_REQUEST_AGENT:
             return { loading: true };
-        case PAYMENT_LIST_SUCCESS:
+        case PAYMENT_LIST_SUCCESS_AGENT:
             return { loading: false, payments: action.payload };
-        case PAYMENT_LIST_FAIL:
+        case PAYMENT_LIST_FAIL_AGENT:
             return { loading: false, error: action.payload }
         default:
             return state;
@@ -90,11 +90,11 @@ function paymentListAgentReducer(state = { payments: [] }, action) {
 }
 function paymentListAppSharerReducer(state = { payments: [] }, action) {
     switch (action.type) {
-        case PAYMENT_LIST_REQUEST:
+        case PAYMENT_LIST_REQUEST_APPSHARER:
             return { loading: true };
-        case PAYMENT_LIST_SUCCESS:
+        case PAYMENT_LIST_SUCCESS_APPSHARER:
             return { loading: false, payments: action.payload };
-        case PAYMENT_LIST_FAIL:
+        case PAYMENT_LIST_FAIL_APPSHARER:
             return { loading: false, error: action.payload }
         default:
             return state;
@@ -102,11 +102,11 @@ function paymentListAppSharerReducer(state = { payments: [] }, action) {
 }
 function paymentListShoperReducer(state = { payments: [] }, action) {
     switch (action.type) {
-        case PAYMENT_LIST_REQUEST:
+        case PAYMENT_LIST_REQUEST_SHOPER:
             return { loading: true };
-        case PAYMENT_LIST_SUCCESS:
+        case PAYMENT_LIST_SUCCESS_SHOPER:
             return { loading: false, payments: action.payload };
-        case PAYMENT_LIST_FAIL:
+        case PAYMENT_LIST_FAIL_SHOPER:
             return { loading: false, error: action.payload }
         default:
             return state;

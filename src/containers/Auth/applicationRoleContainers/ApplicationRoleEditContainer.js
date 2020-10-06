@@ -35,7 +35,7 @@ class ApplicationRoleEditContainer extends Component {
         return (
             <Container>
                 <BackComponent />
-                <h1>Edit Category</h1>
+                <h1>Edit ApplicationRole</h1>
                 <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
             </Container>
         );

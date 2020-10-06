@@ -37,7 +37,7 @@ class RoleCreateContainer extends Component {
         return (
             <Container>
                 <BackComponent />
-                <h1>Create Category</h1>
+                <h1>Create ApplicationRole</h1>
                 <FormComponent onSubmit={(data) => this.handleSubmit(data)} />
             </Container>
         );

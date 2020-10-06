@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { moderatorSignin } from '../../../../actions/Auth/moderatorActions';
+import { SignIn } from '../../../../actions/Auth/signInActions';
 
 
-
-function ModeratorSigninScreen(props) {
+function SigninScreen(props) {
 
     const [mobilenumber, setMobilenumber] = useState('');
     const [password, setPassword] = useState('');
-    const SignIn = useSelector(state => state.moderatorSignin);
-    const { loading, userInfo, error } = SignIn;
+    const userSignIn = useSelector(state => state.userSignIn);
+
+    const { loading, userInfo, error } = userSignIn;
     const dispatch = useDispatch();
-    const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
+
+    //const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
 
     useEffect(() => {
-        if (userInfo) {
-            props.history.push(redirect);
-        }
+
         return () => {
             //
         };
@@ -24,7 +23,11 @@ function ModeratorSigninScreen(props) {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(moderatorSignin(mobilenumber, password));
+
+        dispatch(SignIn(mobilenumber, password));
+
+        props.history.push("/");
+
 
     }
     return <div className="form">
@@ -58,4 +61,4 @@ function ModeratorSigninScreen(props) {
         </form>
     </div>
 }
-export default ModeratorSigninScreen;
+export default SigninScreen;

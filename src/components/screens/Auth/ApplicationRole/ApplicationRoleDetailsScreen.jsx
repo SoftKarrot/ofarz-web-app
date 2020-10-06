@@ -10,14 +10,14 @@ const mapStateToProps = (state) => {
 };
 
 const ApplicationRoleDetails = (props) => {
-    debugger
+
     return (
         <Table striped>
             <tbody>
                 <tr>
                     <td width="200">Name</td>
                     <td width="10">:</td>
-                    <td>{props.roleDetails.roleName}</td>
+                    <td>{props.roleDetails.name}</td>
                 </tr>
                 <tr>
                     <td width="200">Description</td>

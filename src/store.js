@@ -32,7 +32,6 @@ import {
 } from './reducers/Regular/productReducers';
 import {
     appSharerAddDownlineReducer,
-    appSharerSigninReducer,
     appSharerUpdateReducer
 } from './reducers/Auth/appSharerReducers';
 import { cartReducer } from './reducers/Regular/cartReducers';
@@ -46,24 +45,19 @@ import {
 import {
     adminProfileDetailsReducer,
     adminRegistrationReducer,
-    adminSigninReducer,
     adminUpdatePasswordReducer,
     adminUpdateReducer
 } from './reducers/Auth/adminReducers';
 import {
     moderatorAddReducer,
-    moderatorSigninReducer,
     moderatorUpdateReducer
 } from './reducers/Auth/moderatorReducers';
 import {
     agentAddReducer,
-    agentSigninReducer,
     agentUpdateReducer
 } from './reducers/Auth/agentReducers';
 import {
     shoperRegistrationReducer,
-    shoperSigninReducer,
-    shoperUpdateReducer
 } from './reducers/Auth/shoperReducers';
 import {
     countryDeleteReducer,
@@ -153,22 +147,39 @@ import {
     paymentSubmitTableCashOfferReducer,
     paymentSubmitTableCashPromotionalReducer
 } from './reducers/Fund/paymentReducers';
+import {
+    withdrawAgentReducer,
+    withdrawAppSharerReducer,
+    withdrawCeoReducer,
+    withdrawKarrotReducer,
+    withdrawListAgentReducer,
+    withdrawListAppSharerReducer,
+    withdrawListCeoReducer,
+    withdrawListKarrotReducer,
+    withdrawListReducer
+} from './reducers/Fund/withdrawReducers';
+import {
+    fundAgentReducer,
+    fundAppSharerReducer,
+    fundCeoReducer,
+    fundKarrotReducer,
+    fundListAgentReducer,
+    fundListAppSharerReducer,
+    fundListShoperReducer
+} from './reducers/Fund/fundReducers';
+import {
+    SigninReducer
+} from './reducers/Auth/signInReducers';
 //#endregion
 
 const cartItems = Cookie.getJSON('cartItems') || [];
-const adminInfo = Cookie.getJSON('adminInfo') || null;
-const agentInfo = Cookie.getJSON('agentInfo') || null;
-const moderatorInfo = Cookie.getJSON('moderatorInfo') || null;
-const appSharerInfo = Cookie.getJSON('appSharerInfo') || null;
-const shoperInfo = Cookie.getJSON('shoperInfo') || null;
+const userInfo = Cookie.getJSON('userInfo') || null;
+
 
 const initialState = {
     cart: { cartItems },
-    adminSignin: { adminInfo },
-    agentSignin: { agentInfo },
-    moderatorSignin: { moderatorInfo },
-    appSharerSignin: { appSharerInfo },
-    shoperSignin: { shoperInfo }
+    userSignIn: { userInfo },
+
 };
 
 const reducer = combineReducers({
@@ -247,30 +258,27 @@ const reducer = combineReducers({
     applicationRoleUpdate: roleUpdateReducer,
     applicationRoleDelete: roleDeleteReducer,
 
-    appSharerSignin: appSharerSigninReducer,
+    userSignIn: SigninReducer,
+
     appSharerAddDownline: appSharerAddDownlineReducer,
     appSharerUpdate: appSharerUpdateReducer,
 
-    adminSignin: adminSigninReducer,
     adminRegistration: adminRegistrationReducer,
     adminUpdate: adminUpdateReducer,
     adminUpdatePassword: adminUpdatePasswordReducer,
     adminProfileDetails: adminProfileDetailsReducer,
 
-    moderatorSignin: moderatorSigninReducer,
     moderatorAdd: moderatorAddReducer,
     moderatorUpdate: moderatorUpdateReducer,
 
-    agentSignin: agentSigninReducer,
     agentAdd: agentAddReducer,
     agentUpdate: agentUpdateReducer,
 
-    shoperSignin: shoperSigninReducer,
     shoperRegistration: shoperRegistrationReducer,
     //#endregion
 
     //#region Payment
-    
+
     paymentTypeList: paymentTypeListReducer,
     paymentTypeDetails: paymentTypeDetailsReducer,
     paymentTypeSave: paymentTypeSaveReducer,
@@ -319,6 +327,30 @@ const reducer = combineReducers({
     paymentSubmitBackShoppingOffer: paymentSubmitBackShoppingOfferReducer,
     paymentSubmitBackShoppingPromotional: paymentSubmitBackShoppingPromotionalReducer,
 
+    //#endregion
+
+    //#region Withdraw
+    awithdrawReducer: withdrawListReducer,
+    awithdrawAgentReducer: withdrawListAgentReducer,
+    awithdrawAppSharerReducer: withdrawListAppSharerReducer,
+    awithdrawKarrotReducer: withdrawListKarrotReducer,
+    awithdrawCeoReducer: withdrawListCeoReducer,
+
+    awithdrawAgent: withdrawAgentReducer,
+    awithdrawAppSharer: withdrawAppSharerReducer,
+    awithdrawKarrot: withdrawKarrotReducer,
+    awithdrawCeo: withdrawCeoReducer,
+    //#endregion
+
+    //#region Fund
+    fundAgentReducer: fundListAgentReducer,
+    fundAppSharerReducer: fundListAppSharerReducer,
+    fundShoperReducer: fundListShoperReducer,
+
+    fundAgent: fundAgentReducer,
+    fundAppSharer: fundAppSharerReducer,
+    fundKarrot: fundKarrotReducer,
+    fundCeo: fundCeoReducer,
     //#endregion
 
     form: formReducer

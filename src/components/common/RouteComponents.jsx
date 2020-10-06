@@ -1,3 +1,5 @@
+//#region Import
+
 import React from "react";
 import classNames from "classnames";
 import { Container } from "reactstrap";
@@ -9,7 +11,6 @@ import ProductHomeScreen from '../screens/Regular/Product/ProductHomeScreen';
 import ProductCreateScreen from '../screens/Regular/Product/ProductCreateScreen';
 import ProductDetailsScreen from '../screens/Regular/Product/ProductDetailScreen';
 
-
 import CategoryHomeContainer from '../../containers/Reguler/categoryContainers/CategoryHomeContainer';
 import CategoryCreateContainer from '../../containers/Reguler/categoryContainers/CategoryCreateContainer';
 import CategoryDetailContaioner from '../../containers/Reguler/categoryContainers/CategoryDetailContaioner';
@@ -19,91 +20,88 @@ import ProductTypeCreateContainer from '../../containers/Reguler/productTypeCont
 import ProductTypeDetailContainer from '../../containers/Reguler/productTypeContainers/ProductTypeDetailContainer';
 import ProductTypeEditContainer from '../../containers/Reguler/productTypeContainers/ProductTypeEditContainer';
 
-
 import CartScreen from '../screens/Regular/cart/cartScreen';
 import ApplicationRoleHomeContainer from '../../containers/Auth/applicationRoleContainers/ApplicationRoleHomeContainer';
 import ApplicationRoleCreateContainer from '../../containers/Auth/applicationRoleContainers/ApplicationRoleCreateContainer';
 import ApplicationRoleDetailContainer from '../../containers/Auth/applicationRoleContainers/ApplicationRoleDetailContainer';
 import ApplicationRoleEditContainer from '../../containers/Auth/applicationRoleContainers/ApplicationRoleEditContainer';
 
-
-import AppSharerSigninScreen from '../screens/Auth/AppSharerScreens/appSharerSigninScreen';
 import AppSharerAddDownlineScreen from '../screens/Auth/AppSharerScreens/appSharerAddDownlineScreen';
 
-
-import AdminSigninScreen from '../screens/Auth/AdminScreens/adminSigninScreen';
 import AdminRegistrationScreen from '../screens/Auth/AdminScreens/adminRegistrationScreen';
 import AdminProfileUpdateScreen from '../screens/Auth/AdminScreens/adminProfileUpdateScreen';
 import AdminChangePasswordScreen from '../screens/Auth/AdminScreens/adminChangePasswordScreen';
 
-
-import ModeratorSigninScreen from '../screens/Auth/ModeratorScreens/moderatorSigninScreen';
 import ModeratorAddScreen from '../screens/Auth/ModeratorScreens/moderatorAddScreen';
 
-
-import AgentSigninScreen from '../screens/Auth/AgentScreens/agentSigninScreen';
 import AgentAddScreen from '../screens/Auth/AgentScreens/agentAddScreen';
 
-
-import ShoperSigninScreen from '../screens/Auth/ShoperScreens/shoperSigninScreen';
 import ShoperRegistrationScreen from '../screens/Auth/ShoperScreens/shoperRegistrationScreen';
-
 
 import AgentFirtScreen from '../screens/Regular/Agent/agentFirstScreen';
 import AgentSecondScreen from '../screens/Regular/Agent/agentSecondScreen';
 import AgentProductsScreen from '../screens/Regular/Agent/agentProductScreen';
-
 
 import CountryCreateScreen from '../screens/Area/country/countryCreateScreen';
 import CountryScreen from '../screens/Area/country/countriesScreen';
 import CountryDetails from '../screens/Area/country/countryDetailsScreen';
 import CountryEditScreen from '../screens/Area/country/countryEditScreen';
 
-
 import DivisionCreateScreen from '../screens/Area/division/divisionCreateScreen';
 import DivisionScreen from '../screens/Area/division/divisionsScreen';
 import DivisionDetails from '../screens/Area/division/divisionDetailsScreen';
 import DivisionEditScreen from '../screens/Area/division/divisionEditScreen';
-
 
 import DistrictScreen from '../screens/Area/district/districtsScreen';
 import DistrictCreateScreen from '../screens/Area/district/districtCreateScreen';
 import DistrictDetails from '../screens/Area/district/districtDetailsScreen';
 import DistrictEditScreen from '../screens/Area/district/districtEditScreen';
 
-
 import UpozilaScreen from '../screens/Area/upozila/upozilasScreen';
 import UpozilaCreateScreen from '../screens/Area/upozila/upozilaCreateScreen';
 import UpozilaEditScreen from '../screens/Area/upozila/upozilaEditScreen';
 import UpozilaDetails from '../screens/Area/upozila/upozilaDetailsScreen';
-
 
 import UnionScreen from '../screens/Area/union/unionsScreen';
 import UnionCreateScreen from '../screens/Area/union/unionCreateScreen';
 import UnionDetails from '../screens/Area/union/unionDetailsScreen';
 import UnionEditScreen from '../screens/Area/union/unionEditScreen';
 
-
 import MarketsScreen from '../screens/Area/market/marketsScreen';
 import MarketCreateScreen from '../screens/Area/market/marketCreateScreen';
 import MarketDetails from '../screens/Area/market/marketDetailsScreen';
 import MarketEditScreen from '../screens/Area/market/marketEditScreen';
 
-
 import ProductsScreen from '../screens/Regular/Product/productsScreen';
 import ProductEditScreen from '../screens/Regular/Product/productEditScreen';
 import AdminProfileScreen from '../screens/Auth/AdminScreens/adminProfileScreen';
 
-
 import NavbarComponent from './NavbarComponent';
-
 
 import PaymentTypeScreen from "../screens/Fund/paymentType/paymentTypesScreen";
 import PaymentTypeCreateScreen from "../screens/Fund/paymentType/paymentTypeCreateScreen";
 import PaymentTypeDetails from "../screens/Fund/paymentType/paymentTypeDetailsScreen";
 import PaymentTypeEditScreen from "../screens/Fund/paymentType/paymentTypeEditScreen";
+
 import PaymentProductTypeScreen from "../screens/Fund/payment/AppSharer/paymentProductTypeListScreen";
-import PaymentTypesForPay from "../screens/Fund/payment/AppSharer/paymentTypeListScreen";
+import PaymentOfferProduct from "../screens/Fund/payment/AppSharer/paymentOfferProductScreen";
+import PaymentPromotionalProduct from "../screens/Fund/payment/AppSharer/paymentPromotionalProductScreen";
+import PaymentTableCashOffer from "../screens/Fund/payment/AppSharer/paymentSubmit/TableCash/paymentSubmitTableCashOffer";
+import PaymentTableCashPromotional from "../screens/Fund/payment/AppSharer/paymentSubmit/TableCash/paymentSubmitTableCashPromotional";
+import PaymentMainAccountOffer from "../screens/Fund/payment/AppSharer/paymentSubmit/MainAccount/paymentSubmitMainAccountOffer";
+import PaymentMainAccountPromotional from "../screens/Fund/payment/AppSharer/paymentSubmit/MainAccount/paymentSubmitMainAccountPromotional";
+import PaymentBackShoppingOffer from "../screens/Fund/payment/AppSharer/paymentSubmit/BackShopping/paymentSubmitBackShoppingOffer";
+import PaymentBackShoppingPromotional from "../screens/Fund/payment/AppSharer/paymentSubmit/BackShopping/paymentSubmitBackShoppingPromotional";
+
+
+import PaymentListFullForAdminScreen from "../screens/Fund/paymentList/AdminAndModerator/paymentListFullForAdminAndModerator.";
+import PaymentListAgentForAdminScreen from "../screens/Fund/paymentList/AdminAndModerator/paymentListAgentForAdminAndModerator";
+import PaymentListAppSharerForAdminScreen from "../screens/Fund/paymentList/AdminAndModerator/paymentListAppSharerForAdminAndModerator.";
+import PaymentListShoperForAdminScreen from "../screens/Fund/paymentList/AdminAndModerator/paymentListShoperForAdminAndModerator.";
+
+import SigninScreen from "../screens/Auth/SignInScreen/signInScreen";
+
+//#endregion
 
 const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
     <Container
@@ -113,6 +111,8 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
         <NavbarComponent toggleSidebar={toggleSidebar} />
         <Switch>
             <Route path="/" exact component={HomeScreen} />
+
+            <Route path="/signin" exact component={SigninScreen} />
 
             <Route path="/categories" exact component={CategoryHomeContainer} />
             <Route path="/categorycreate" exact component={CategoryCreateContainer} />
@@ -137,22 +137,18 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/applicationroledetail/:id" exact component={ApplicationRoleDetailContainer} />
             <Route path="/applicationroleedit/:id" exact component={ApplicationRoleEditContainer} />
 
-            <Route path="/appsharersignin" exact component={AppSharerSigninScreen} />
+
             <Route path="/appshareradddownline" exact component={AppSharerAddDownlineScreen} />
 
-            <Route path="/adminsignin" exact component={AdminSigninScreen} />
             <Route path="/adminregistrations" exact component={AdminRegistrationScreen} />
             <Route path="/adminprofileupdate" exact component={AdminProfileUpdateScreen} />
             <Route path="/adminpasswordupdate" exact component={AdminChangePasswordScreen} />
             <Route path="/adminprofile" exact component={AdminProfileScreen} />
 
-            <Route path="/moderatorsignin" exact component={ModeratorSigninScreen} />
             <Route path="/moderatoradd" exact component={ModeratorAddScreen} />
 
-            <Route path="/agentsignin" exact component={AgentSigninScreen} />
             <Route path="/agentadd" exact component={AgentAddScreen} />
 
-            <Route path="/shopersignin" exact component={ShoperSigninScreen} />
             <Route path="/shoperregistration" exact component={ShoperRegistrationScreen} />
 
             <Route path="/agentptype" exact component={AgentFirtScreen} />
@@ -169,18 +165,15 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/divisiondetails/:id" exact component={DivisionDetails} />
             <Route path="/divisionupdate/:id" exact component={DivisionEditScreen} />
 
-
             <Route path="/districts" exact component={DistrictScreen} />
             <Route path="/districtcreate" exact component={DistrictCreateScreen} />
             <Route path="/districtdetails/:id" exact component={DistrictDetails} />
             <Route path="/districtupdate/:id" exact component={DistrictEditScreen} />
 
-
             <Route path="/upozilas" exact component={UpozilaScreen} />
             <Route path="/upozilacreate" exact component={UpozilaCreateScreen} />
             <Route path="/upoziladetails/:id" exact component={UpozilaDetails} />
             <Route path="/upozilaupdate/:id" exact component={UpozilaEditScreen} />
-
 
             <Route path="/unions" exact component={UnionScreen} />
             <Route path="/unioncreate" exact component={UnionCreateScreen} />
@@ -198,7 +191,22 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/paymenttypeupdate/:id" exact component={PaymentTypeEditScreen} />
 
             <Route path="/paymentproducttypes" exact component={PaymentProductTypeScreen} />
-            <Route path="/paymenttypesforpay" exact component={PaymentTypesForPay} />
+            <Route path="/paymentofferproduct" exact component={PaymentOfferProduct} />
+            <Route path="/paymentpromotionalproduct" exact component={PaymentPromotionalProduct} />
+
+            <Route path="/submitpaymenttablecashoffer" exact component={PaymentTableCashOffer} />
+            <Route path="/submitpaymenttablecashpromotional" exact component={PaymentTableCashPromotional} />
+
+            <Route path="/submitpaymentmainaccountoffer" exact component={PaymentMainAccountOffer} />
+            <Route path="/submitpaymentmainaccountpromotional" exact component={PaymentMainAccountPromotional} />
+
+            <Route path="/submitpaymentbackshoppingoffer" exact component={PaymentBackShoppingOffer} />
+            <Route path="/submitpaymentbackshoppingpromotional" exact component={PaymentBackShoppingPromotional} />
+
+            <Route path="/getallpaymentlists" exact component={PaymentListFullForAdminScreen} />
+            <Route path="/getallpaymentlistsAgent" exact component={PaymentListAgentForAdminScreen} />
+            <Route path="/getallpaymentlistsAppSharer" exact component={PaymentListAppSharerForAdminScreen} />
+            <Route path="/getallpaymentlistsShoper" exact component={PaymentListShoperForAdminScreen} />
 
         </Switch>
     </Container>

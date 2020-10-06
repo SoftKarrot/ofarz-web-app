@@ -37,7 +37,7 @@ const renderField = ({
 const mapStateToProps = (state) => {
     return {
         initialValues: {
-            roleName: state.applicationRoleDetails.role.roleName,
+            name: state.applicationRoleDetails.role.name,
             description: state.applicationRoleDetails.role.description
         }
     };
@@ -53,7 +53,7 @@ class FormComponent extends Component {
                         <FormGroup>
                             <Field
                                 type="text"
-                                name="roleName"
+                                name="name"
                                 label="Name"
                                 component={renderField}
                             />

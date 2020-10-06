@@ -1,16 +1,13 @@
 import Axios from "axios";
 import Cookie from 'js-cookie';
 import {
-    ADMIN_LOGOUT,
+
     ADMIN_PASSWORD_UPDATE_FAIL,
     ADMIN_PASSWORD_UPDATE_REQUEST,
     ADMIN_PASSWORD_UPDATE_SUCCESS,
     ADMIN_REGISTER_FAIL,
     ADMIN_REGISTER_REQUEST,
-    ADMIN_REGISTER_SUCCESS,
-    ADMIN_SIGNIN_FAIL,
-    ADMIN_SIGNIN_REQUEST,
-    ADMIN_SIGNIN_SUCCESS,
+    ADMIN_REGISTER_SUCCESS,S,
     ADMIN_PROFILE_UPDATE_FAIL,
     ADMIN_PROFILE_UPDATE_REQUEST,
     ADMIN_PROFILE_UPDATE_SUCCESS,
@@ -24,11 +21,12 @@ const adminUpdate = (currentuser, firstname, lastname, profilephoto, email, mobi
     dispatch({
         type: ADMIN_PROFILE_UPDATE_REQUEST, payload: { currentuser, firstname, lastname, profilephoto, email, mobilenumber }
     });
+    
     try {
         const { data } = await Axios.put("/api/admin/adminprofileUpdate",
             { currentuser, firstname, lastname, profilephoto, email, mobilenumber }, {
             headers: {
-                Authorization: 'Bearer ' + adminInfo.token
+                Authorization: 'Bearer ' + adminInfo.item2
             }
         });
         dispatch({ type: ADMIN_PROFILE_UPDATE_SUCCESS, payload: data });
@@ -44,10 +42,11 @@ const adminPasswordUpdate = (currentuserId, currentPassword, newPassword, confir
         type: ADMIN_PASSWORD_UPDATE_REQUEST, payload: { currentuserId, currentPassword, newPassword, confirmPassword }
     });
     try {
+
         const { data } = await Axios.put("/api/admin/changepassword",
             { currentuserId, currentPassword, newPassword, confirmPassword }, {
             headers: {
-                Authorization: 'Bearer ' + adminInfo.token
+                Authorization: 'Bearer ' + adminInfo.item2
             }
         });
         dispatch({ type: ADMIN_PASSWORD_UPDATE_SUCCESS, payload: data });
@@ -71,16 +70,6 @@ const adminProfileDetail = (currentuserId) => async (dispatch, getState) => {
 }
 
 
-const adminSignin = (mobilenumber, password) => async (dispatch) => {
-    dispatch({ type: ADMIN_SIGNIN_REQUEST, payload: { mobilenumber, password } });
-    try {
-        const { data } = await Axios.post("/api/admin/adminsignin", { mobilenumber, password });
-        dispatch({ type: ADMIN_SIGNIN_SUCCESS, payload: data });
-        Cookie.set('adminInfo', JSON.stringify(data));
-    } catch (error) {
-        dispatch({ type: ADMIN_SIGNIN_FAIL, payload: error.message });
-    }
-}
 const adminRegister = (firstname, lastname, mobilenumber, nid_number, email, postalcode, profilephoto, countryId, divisionId, districtId, upozilaId, unionOrWardId, password, confirmpassword) => async (dispatch, getState) => {
     
     dispatch({
@@ -94,8 +83,5 @@ const adminRegister = (firstname, lastname, mobilenumber, nid_number, email, pos
         dispatch({ type: ADMIN_REGISTER_FAIL, payload: error.message });
     }
 }
-const adminLogout = () => (dispatch) => {
-    Cookie.remove("adminInfo");
-    dispatch({ type: ADMIN_LOGOUT })
-}
-export { adminUpdate, adminSignin, adminRegister, adminLogout, adminPasswordUpdate, adminProfileDetail };
+
+export { adminUpdate,  adminRegister, adminPasswordUpdate, adminProfileDetail };

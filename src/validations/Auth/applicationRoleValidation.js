@@ -1,7 +1,7 @@
 const RoleValidation = (values) => {
     const errors = {};
 
-    if (!values.roleName || values.roleName === "") {
+    if (!values.name || values.name === "") {
         errors.name = "Role name should not empty";
     }
 

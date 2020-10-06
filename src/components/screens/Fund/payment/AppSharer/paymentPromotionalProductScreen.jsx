@@ -5,7 +5,7 @@ import { Card } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
-function PaymentTypesForPay(props) {
+function PaymentPromotionalProduct(props) {
 
 
     const paymentTypeList = useSelector((state) => state.paymentTypeList);
@@ -28,28 +28,31 @@ function PaymentTypesForPay(props) {
             ) : (
                         <ul>
                             <li>
+                                <p>Promotional</p>
+                            </li>
+                            <li>
                                 <div className="row">
-                                    <Link to={`/`}>
+                                    <Link to={`/submitpaymenttablecashpromotional`}>
                                         <Card>
-                                            <h4>Table Cash</h4>
+                                            <h4>Table Cash (Promotional)</h4>
                                         </Card>
                                     </Link>
                                 </div>
                             </li>
                             <li>
                                 <div className="row">
-                                    <Link to={`/`}>
+                                    <Link to={`/submitpaymentmainaccountpromotional`}>
                                         <Card>
-                                            <h4>Main Account</h4>
+                                            <h4>Main Account (Promotional)</h4>
                                         </Card>
                                     </Link>
                                 </div>
                             </li>
                             <li>
                                 <div className="row">
-                                    <Link to={`/`}>
+                                    <Link to={`/submitpaymentbackshoppingpromotional`}>
                                         <Card>
-                                            <h4>Back Shoping</h4>
+                                            <h4>Back Shoping (Promotional)</h4>
                                         </Card>
                                     </Link>
                                 </div>
@@ -59,4 +62,4 @@ function PaymentTypesForPay(props) {
         </>
     );
 }
-export default PaymentTypesForPay;
+export default PaymentPromotionalProduct;

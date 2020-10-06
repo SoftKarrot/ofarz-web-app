@@ -26,19 +26,27 @@ function PaymentProductTypeScreen(props) {
                 <div>{error}</div>
             ) : (
                         <ul>
-                            {productTypes.map((ptype) => (
-                                <li key={ptype.id}>
-                                    <div className="row">
-                                        <div className="product-name">
-                                            <Card>
-                                                <Link to={'/paymenttypesforpay'}>
-                                                    {ptype.name}
-                                                </Link>
-                                            </Card>
-                                        </div>
-                                    </div>
-                                </li>
-                            ))}
+                            <li>
+                                Product Type
+                            </li>
+                            <li>
+                                <div className="row">
+                                    <Link to={`/paymentofferproduct`}>
+                                        <Card>
+                                            <h4>Offer</h4>
+                                        </Card>
+                                    </Link>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="row">
+                                    <Link to={`/paymentpromotionalproduct`}>
+                                        <Card>
+                                            <h4>Promotional</h4>
+                                        </Card>
+                                    </Link>
+                                </div>
+                            </li>
                         </ul>
                     )}
         </>

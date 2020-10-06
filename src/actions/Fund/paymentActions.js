@@ -55,7 +55,7 @@ import {
 
     PAYMENT_SUBMIT_BACKSHOPPING_PROMOTIONAL_REQUEST,
     PAYMENT_SUBMIT_BACKSHOPPING_PROMOTIONAL_SUCCESS,
-    PAYMENT_SUBMIT_BACKSHOPPING_PROMOTIONAL_FAIL
+    PAYMENT_SUBMIT_BACKSHOPPING_PROMOTIONAL_FAIL, PAYMENT_LIST_REQUEST_AGENT, PAYMENT_LIST_SUCCESS_AGENT, PAYMENT_LIST_FAIL_AGENT, PAYMENT_LIST_REQUEST_APPSHARER, PAYMENT_LIST_SUCCESS_APPSHARER, PAYMENT_LIST_FAIL_APPSHARER, PAYMENT_LIST_REQUEST_SHOPER, PAYMENT_LIST_SUCCESS_SHOPER, PAYMENT_LIST_FAIL_SHOPER
 
 } from '../../constants/Fund/paymentConstants';
 //#endregion
@@ -65,7 +65,7 @@ import {
 const listPayments = () => async (dispatch) => {
     try {
         dispatch({ type: PAYMENT_LIST_REQUEST });
-        const { data } = await axios.get("/api/payment");
+        const { data } = await axios.get("/api/payments/GetAllPaymentList");
         dispatch({ type: PAYMENT_LIST_SUCCESS, payload: data });
 
     }
@@ -73,42 +73,44 @@ const listPayments = () => async (dispatch) => {
         dispatch({ type: PAYMENT_LIST_FAIL, payload: error.message });
     }
 }
-const listPaymentsAgent = () => async (dispatch) => {
+const listPaymentsAgent = (agentPhoneNumber) => async (dispatch) => {
+
     try {
-        dispatch({ type: PAYMENT_LIST_REQUEST });
-        const { data } = await axios.get("/api/payment");
-        dispatch({ type: PAYMENT_LIST_SUCCESS, payload: data });
+
+        dispatch({ type: PAYMENT_LIST_REQUEST_AGENT, payload: { agentPhoneNumber }});
+        const { data } = await axios.get("/api/payments/GetAllPaymentListAgent/" + agentPhoneNumber);
+        dispatch({ type: PAYMENT_LIST_SUCCESS_AGENT, payload: data });
 
     }
     catch (error) {
-        dispatch({ type: PAYMENT_LIST_FAIL, payload: error.message });
+        dispatch({ type: PAYMENT_LIST_FAIL_AGENT, payload: error.message });
     }
 }
-const listPaymentsAppSharer = () => async (dispatch) => {
+const listPaymentsAppSharer = (appSharerPhoneNumber) => async (dispatch) => {
     try {
-        dispatch({ type: PAYMENT_LIST_REQUEST });
-        const { data } = await axios.get("/api/payment");
-        dispatch({ type: PAYMENT_LIST_SUCCESS, payload: data });
+        dispatch({ type: PAYMENT_LIST_REQUEST_APPSHARER, payload: { appSharerPhoneNumber } });
+        const { data } = await axios.get("/api/payments/getAllPaymentListAppSharer/" + appSharerPhoneNumber);
+        dispatch({ type: PAYMENT_LIST_SUCCESS_APPSHARER, payload: data });
 
     }
     catch (error) {
-        dispatch({ type: PAYMENT_LIST_FAIL, payload: error.message });
+        dispatch({ type: PAYMENT_LIST_FAIL_APPSHARER, payload: error.message });
     }
 }
-const listPaymentsShoper = () => async (dispatch) => {
+const listPaymentsShoper = (shoperPhoneNumber) => async (dispatch) => {
     try {
-        dispatch({ type: PAYMENT_LIST_REQUEST });
-        const { data } = await axios.get("/api/payment");
-        dispatch({ type: PAYMENT_LIST_SUCCESS, payload: data });
+        dispatch({ type: PAYMENT_LIST_REQUEST_SHOPER, payload: { shoperPhoneNumber } });
+        const { data } = await axios.get("/api/payments/getAllPaymentListShoper/" + shoperPhoneNumber);
+        dispatch({ type: PAYMENT_LIST_SUCCESS_SHOPER, payload: data });
 
     }
     catch (error) {
-        dispatch({ type: payment_LIST_FAIL, payload: error.message });
+        dispatch({ type: PAYMENT_LIST_FAIL_SHOPER, payload: error.message });
     }
 }
 //#endregion
 
-//#region PaymentList TableCash Offer
+//#region Payment List TableCash Offer
 
 const listPaymentsTableCashOffer = () => async (dispatch) => {
     try {
@@ -156,7 +158,7 @@ const listPaymentsTableCashOfferShoper = () => async (dispatch) => {
 }
 //#endregion
 
-//#region Payment MainAccount Offer
+//#region Payment List MainAccount Offer
 
 const listPaymentsMainAccountOffer = () => async (dispatch) => {
     try {
@@ -195,7 +197,7 @@ const listPaymentsMainAccountOfferAppSharer = () => async (dispatch) => {
 }
 //#endregion
 
-//#region Payment Backshoppimg Offer
+//#region Payment List Backshoppimg Offer
 const listPaymentsBackShoppingOffer = () => async (dispatch) => {
     try {
         dispatch({ type: PAYMENT_LIST_BACKSHOPPING_OFFER_PRODUCT_REQUEST });
@@ -246,7 +248,7 @@ const listPaymentsBackShoppingOfferShoper = () => async (dispatch) => {
 }
 //#endregion
 
-//#region Payment TableCash Promotional
+//#region Payment List TableCash Promotional
 
 const listPaymentsTableCashPromotional = () => async (dispatch) => {
     try {
@@ -285,7 +287,7 @@ const listPaymentsTableCashPromotionalAppSharer = () => async (dispatch) => {
 }
 //#endregion
 
-//#region Payment MainAccount Promotional
+//#region Payment List MainAccount Promotional
 
 
 const listPaymentsMainAccountPromotional = () => async (dispatch) => {
@@ -325,7 +327,7 @@ const listPaymentsMainAccountPromotionalAppSharer = () => async (dispatch) => {
 }
 //#endregion
 
-//#region Payment Backshoppimg Promotional
+//#region Payment List Backshoppimg Promotional
 
 const listPaymentsBackShoppingPromotional = () => async (dispatch) => {
     try {
@@ -366,10 +368,11 @@ const listPaymentsBackShoppingPromotionalAppSharer = () => async (dispatch) => {
 
 //#region Submit Payments
 
-const submitPaymentTableCashOffer = (payment) => async (dispatch) => {
+const submitPaymentTableCashOffer = (amount, agentPhnNumber, payerId) => async (dispatch) => {
+
     try {
-        dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_REQUEST, payload: payment });
-        const { data } = await axios.post('/api/appsharer/paymentSubmitTableCashOffer', payment)
+        dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_REQUEST, payload: { amount, agentPhnNumber, payerId } });
+        const { data } = await axios.post('/api/appsharer/paymentSubmitTableCashOffer', { amount, agentPhnNumber, payerId })
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_SUCCESS, payload: data });
     } catch (error) {
 
