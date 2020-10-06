@@ -53,7 +53,7 @@ const NavbarComponent = ({ toggleSidebar, props }) => {
                         <Nav className="ml-auto" navbar>
                             <NavItem>
                                 <NavLink tag={Link} to={"/"}>
-                                    {userInfo.item1.firstName}
+                                    {userInfo.item1.phoneNumber}
                                 </NavLink>
                             </NavItem>
                             <NavItem>
