@@ -79,18 +79,18 @@ function SideBar({ isOpen, toggle }) {
                         <NavItem>
                             <NavLink tag={Link} to={"/adminpasswordupdate"}>
                                 Admin Change Password
-                    </NavLink>
+                            </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/adminprofile"}>
                                 Admin Profile
-                    </NavLink>
+                            </NavLink>
                         </NavItem>
                         <p>______________________________</p>
                         <NavItem>
                             <NavLink tag={Link} to={"/agentadd"}>
                                 Add Agent
-                                </NavLink>
+                            </NavLink>
                         </NavItem>
 
                         <p>______________________________</p>
@@ -226,6 +226,11 @@ function SideBar({ isOpen, toggle }) {
                             </NavLink>
                         </NavItem>
                         <SubMenu title="Payment" items={submenus[0]} />
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawmoneyappsharer"}>
+                                Cash Out
+                            </NavLink>
+                        </NavItem>
                     </Nav>
 
                 </div>) :

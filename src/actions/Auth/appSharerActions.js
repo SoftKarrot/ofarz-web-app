@@ -43,8 +43,8 @@ const appSharerRegister = (firstname, mobilenumber, currentuser, password, confi
                 Authorization: 'Bearer ' + userInfo.item3
             }
         });
+        debugger
         Cookie.set('userInfo', JSON.stringify(data));
-   
         dispatch({ type: APPSHARER_REGISTER_SUCCESS, payload: data });
 
     } catch (error) {

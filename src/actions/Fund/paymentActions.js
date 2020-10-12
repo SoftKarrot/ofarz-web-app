@@ -1,5 +1,7 @@
-import axios from 'axios'
+
 //#region Import
+import axios from 'axios'
+import Cookie from 'js-cookie';
 import {
     PAYMENT_DETAILS_FAIL,
     PAYMENT_DETAILS_REQUEST,
@@ -77,7 +79,7 @@ const listPaymentsAgent = (agentPhoneNumber) => async (dispatch) => {
 
     try {
 
-        dispatch({ type: PAYMENT_LIST_REQUEST_AGENT, payload: { agentPhoneNumber }});
+        dispatch({ type: PAYMENT_LIST_REQUEST_AGENT, payload: { agentPhoneNumber } });
         const { data } = await axios.get("/api/payments/GetAllPaymentListAgent/" + agentPhoneNumber);
         dispatch({ type: PAYMENT_LIST_SUCCESS_AGENT, payload: data });
 
@@ -146,6 +148,7 @@ const listPaymentsTableCashOfferAppSharer = () => async (dispatch) => {
     }
 }
 const listPaymentsTableCashOfferShoper = () => async (dispatch) => {
+
     try {
         dispatch({ type: PAYMENT_LIST_TABLECASH_OFFER_PRODUCT_REQUEST });
         const { data } = await axios.get("/api/payment");
@@ -368,14 +371,14 @@ const listPaymentsBackShoppingPromotionalAppSharer = () => async (dispatch) => {
 
 //#region Submit Payments
 
-const submitPaymentTableCashOffer = (amount, agentPhnNumber, payerId) => async (dispatch) => {
-
+const submitPaymentTableCashOffer = (amount, agentPhnNumber, payerId) => async (dispatch, getState) => {
+    const { userSignIn: { userInfo } } = getState();
     try {
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_REQUEST, payload: { amount, agentPhnNumber, payerId } });
         const { data } = await axios.post('/api/appsharer/paymentSubmitTableCashOffer', { amount, agentPhnNumber, payerId })
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_SUCCESS, payload: data });
     } catch (error) {
-
+        Cookie.set('userInfo', JSON.stringify(userInfo));
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_FAIL, payload: error.message });
     }
 }

@@ -1,6 +1,6 @@
 //#region  Import
 import axios from 'axios'
-
+import Cookie from 'js-cookie';
 import {
     WITHDRAW_FAIL_AGENT,
     WITHDRAW_FAIL_APPSHARER,
@@ -108,6 +108,7 @@ const withdrawAgent = (agentPhoneNumber) => async (dispatch) => {
 
         dispatch({ type: WITHDRAW_REQUEST_AGENT, payload: { agentPhoneNumber } });
         const { data } = await axios.get("/api/payments/GetAllPaymentListAgent/" + agentPhoneNumber);
+
         dispatch({ type: WITHDRAW_SUCCESS_AGENT, payload: data });
 
     }
@@ -115,12 +116,20 @@ const withdrawAgent = (agentPhoneNumber) => async (dispatch) => {
         dispatch({ type: WITHDRAW_FAIL_AGENT, payload: error.message });
     }
 }
-const withdrawAppSharer = (agentPhoneNumber) => async (dispatch) => {
+const withdrawAppSharer = (amount, agentPhnNumber, currentUserId) => async (dispatch, getState) => {
 
+    const { userSignIn: { userInfo } } = getState();
     try {
 
-        dispatch({ type: WITHDRAW_REQUEST_APPSHARER, payload: { agentPhoneNumber } });
-        const { data } = await axios.get("/api/payments/GetAllPaymentListAgent/" + agentPhoneNumber);
+        dispatch({ type: WITHDRAW_REQUEST_APPSHARER, payload: { amount, agentPhnNumber, currentUserId } });
+        const { data } = await axios.post("/api/appsharer/WithdrawMoneyViaCashOut/", { amount, agentPhnNumber, currentUserId }, {
+            headers: {
+                Authorization: 'Bearer ' + userInfo.item3
+            }
+        });
+
+        Cookie.set('userInfo', JSON.stringify(data));
+        debugger
         dispatch({ type: WITHDRAW_SUCCESS_APPSHARER, payload: data });
 
     }

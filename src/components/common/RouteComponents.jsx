@@ -100,6 +100,7 @@ import PaymentListAppSharerForAdminScreen from "../screens/Fund/paymentList/Admi
 import PaymentListShoperForAdminScreen from "../screens/Fund/paymentList/AdminAndModerator/paymentListShoperForAdminAndModerator.";
 
 import SigninScreen from "../screens/Auth/SignInScreen/signInScreen";
+import WithdrawMoneyAppSharer from "../screens/Fund/withdrawMoney/withdrawMoneyAppSharer";
 
 //#endregion
 
@@ -207,6 +208,9 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/getallpaymentlistsAgent" exact component={PaymentListAgentForAdminScreen} />
             <Route path="/getallpaymentlistsAppSharer" exact component={PaymentListAppSharerForAdminScreen} />
             <Route path="/getallpaymentlistsShoper" exact component={PaymentListShoperForAdminScreen} />
+
+
+            <Route path="/withdrawmoneyappsharer" exact component={WithdrawMoneyAppSharer} />
 
         </Switch>
     </Container>

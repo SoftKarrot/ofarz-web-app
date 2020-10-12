@@ -26,7 +26,7 @@ function AppSharerAddDownlineScreen(props) {
     const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
 
     useEffect(() => {
-        dispatch(appSharerProfileDetail(userInfo.item1.id));
+        //dispatch(appSharerProfileDetail(userInfo.item1.id));
         return () => {
             //
         };

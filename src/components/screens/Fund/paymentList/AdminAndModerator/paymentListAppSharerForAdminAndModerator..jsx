@@ -3,10 +3,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import { Container, Button, Row, Col, Spinner, Label, Input, Form, FormGroup } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faInfo,
-    faEdit,
-    faTrash,
-    faUserPlus,
+    faInfo
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -48,8 +45,39 @@ const PaymentListAppSharerForAdminScreen = (props) => {
 
     const columns = [
         {
-            dataField: "id",
-            text: "Id",
+            dataField: "payer.firstName",
+            text: "Payer Name",
+            sort: true,
+        },
+        {
+            dataField: "payerPhoneNumber",
+            text: "Payer Phone Number",
+            sort: true,
+        },
+        {
+            dataField: "agentPhnNumber",
+            text: "Agent Phone Number",
+            sort: true,
+        },
+        {
+            dataField: "productType.name",
+            text: "Product Type",
+            sort: true,
+        },
+        {
+            dataField: "paymentType.paymentTypeName",
+            text: "Payment Type",
+            sort: true,
+        },
+        {
+            dataField: "paymentTime",
+            text: "Payment Time",
+            sort: true,
+            style: { 'width': '120px' }
+        },
+        {
+            dataField: "amount",
+            text: "Amount",
             sort: true,
         },
         {

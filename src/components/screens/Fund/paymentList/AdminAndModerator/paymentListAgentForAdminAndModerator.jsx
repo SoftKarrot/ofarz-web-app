@@ -36,7 +36,7 @@ const PaymentListFullForAdminScreen = (props) => {
 
     useEffect(() => {
 
-        
+
 
         return () => {
             //
@@ -51,8 +51,33 @@ const PaymentListFullForAdminScreen = (props) => {
 
     const columns = [
         {
-            dataField: "id",
-            text: "Id",
+            dataField: "payerName",
+            text: "Payer Name",
+            sort: true,
+        },
+        {
+            dataField: "payerPhoneNumber",
+            text: "Payer Phone Number",
+            sort: true,
+        },
+        {
+            dataField: "agentPhnNumber",
+            text: "Agent Phone Number",
+            sort: true,
+        },
+        {
+            dataField: "productType.name",
+            text: "Product Type",
+            sort: true,
+        },
+        {
+            dataField: "paymentType.name",
+            text: "Payment Type",
+            sort: true,
+        },
+        {
+            dataField: "paymentTime",
+            text: "Payment Time",
             sort: true,
         },
         {
