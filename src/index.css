@@ -23,7 +23,9 @@ a:focus {
   background: #000000;
   color: #fff;
   margin-left: -250px;
+  margin-top: 60px;
   transition: all 0.5s;
+  position: fixed;
 }
 .sidebar.is-open {
   margin-left: 0;
@@ -66,15 +68,15 @@ li a.dropdown-toggle::after {
   display: none;
 }
 .side-menu {
-  height: calc(100vh - 130px);
+  height: calc(100vh - 145px);
   overflow-y: scroll;
 }
 .side-menu::-webkit-scrollbar {
-  width: 0px;
+  width: 10px;
 }
 .side-menu::-webkit-scrollbar-thumb {
   background: #000000;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 .side-menu::-webkit-scrollbar-thumb:hover {
   background: #000000;
@@ -137,7 +139,6 @@ html {
 
 body {
   font: 1rem Helvetica;
-  height: 100vh;
   margin: 0;
 }
 

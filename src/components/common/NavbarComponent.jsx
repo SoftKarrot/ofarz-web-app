@@ -42,6 +42,7 @@ const NavbarComponent = ({ toggleSidebar, props }) => {
             light
             className="navbar shadow-sm p-3 mb-5 bg-white rounded"
             expand="md"
+            fixed="top"
         >
             <Button color="dark" onClick={toggleSidebar}>
                 <FontAwesomeIcon icon={faAlignLeft} />

@@ -21,12 +21,13 @@ function SideBar({ isOpen, toggle }) {
     }, [])
 
     return (
+
         <div className={classNames("sidebar", { "is-open": isOpen })}>
 
             <div className="sidebar-header">
                 <span color="info" onClick={toggle} style={{ color: "#fff" }}>
                     &times;
-            </span>
+                </span>
                 <h3>OfarZ</h3>
             </div>
             {userInfo.item2.name == "Admin" ? (
