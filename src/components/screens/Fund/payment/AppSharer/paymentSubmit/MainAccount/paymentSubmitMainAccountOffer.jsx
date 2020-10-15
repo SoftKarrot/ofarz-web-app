@@ -8,8 +8,8 @@ function PaymentMainAccountOffer(props) {
     const [amount, setAmount] = useState('');
     const [agentPhnNumber, setAgentPhnNumber] = useState('');
 
-    const appSharerSignin = useSelector((state) => state.appSharerSignin);
-    const { appSharerInfo } = appSharerSignin;
+    const userSignIn = useSelector((state) => state.userSignIn);
+    const { userInfo } = userSignIn;
 
     const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ function PaymentMainAccountOffer(props) {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        const payerId = appSharerInfo.item1.id;
+        const payerId = userInfo.item1.id;
         dispatch(submitPaymentMainAccountOffer(amount, agentPhnNumber, payerId));
 
     }
@@ -31,7 +31,7 @@ function PaymentMainAccountOffer(props) {
         <form onSubmit={submitHandler} >
             <ul className="form-container">
                 <li>
-                    <p>Table Cash Offer</p>
+                    <p>Table Cash Offer {userInfo.item3.mainAccount}</p>
                 </li>
                 <li>
                     <label htmlFor="amount">

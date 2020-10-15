@@ -8,8 +8,8 @@ function PaymentBackShoppingPromotional(props) {
     const [amount, setAmount] = useState('');
     const [agentPhnNumber, setAgentPhnNumber] = useState('');
 
-    const appSharerSignin = useSelector((state) => state.appSharerSignin);
-    const { appSharerInfo } = appSharerSignin;
+    const userSignIn = useSelector((state) => state.userSignIn);
+    const { userInfo } = userSignIn;
 
     const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ function PaymentBackShoppingPromotional(props) {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        const payerId = appSharerInfo.item1.id;
+        const payerId = userInfo.item1.id;
         dispatch(submitPaymentBackShoppingPromotional(amount, agentPhnNumber, payerId));
 
     }

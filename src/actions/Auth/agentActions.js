@@ -1,4 +1,4 @@
-import Axios from "axios";
+import axios from "axios";
 import Cookie from 'js-cookie';
 import {
 
@@ -8,14 +8,35 @@ import {
 
     AGENT_PROFILE_UPDATE_FAIL,
     AGENT_PROFILE_UPDATE_REQUEST,
-    AGENT_PROFILE_UPDATE_SUCCESS
+    AGENT_PROFILE_UPDATE_SUCCESS,
+
+    AGENT_LIST_REQUEST,
+    AGENT_LIST_SUCCESS,
+    AGENT_LIST_FAIL
 } from "../../constants/Auth/agentConstants";
 
-const agentUpdate = ( userId, firstname, mobilenumber, password ) => async (dispatch, getState) => {
+const agentsList = () => async (dispatch) => {
+
+
+    try {
+        dispatch({ type: AGENT_LIST_REQUEST });
+        const { data } = await axios.get("/api/agent/GetAllAgents");
+        dispatch({ type: AGENT_LIST_SUCCESS, payload: data });
+
+
+    }
+    catch (error) {
+        dispatch({ type: AGENT_LIST_FAIL, payload: error.message });
+    }
+
+
+}
+
+const agentUpdate = (userId, firstname, mobilenumber, password) => async (dispatch, getState) => {
     const { agentSignin: { agentInfo } } = getState();
     dispatch({ type: AGENT_PROFILE_UPDATE_REQUEST, payload: { userId, firstname, mobilenumber, password } });
     try {
-        const { data } = await Axios.put("/api/users/" + userId,
+        const { data } = await axios.put("/api/users/" + userId,
             { firstname, mobilenumber, password }, {
             headers: {
                 Authorization: 'Bearer ' + agentInfo.token
@@ -36,7 +57,7 @@ const agentRegister = (firstname, lastname, mobilenumber, nid_number, postalcode
     });
 
     try {
-        const { data } = await Axios.post("/api/agent/addagent", { firstname, lastname, mobilenumber, nid_number, postalcode, profilephoto, password, confirmpassword });
+        const { data } = await axios.post("/api/agent/addagent", { firstname, lastname, mobilenumber, nid_number, postalcode, profilephoto, password, confirmpassword });
 
         dispatch({ type: AGENT_REGISTER_SUCCESS, payload: data });
         Cookie.set('agentInfo', JSON.stringify(data));
@@ -46,4 +67,4 @@ const agentRegister = (firstname, lastname, mobilenumber, nid_number, postalcode
 }
 
 
-export { agentUpdate, agentRegister };
+export { agentsList, agentUpdate, agentRegister };

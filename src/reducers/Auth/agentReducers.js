@@ -6,9 +6,26 @@ import {
 
     AGENT_PROFILE_UPDATE_FAIL,
     AGENT_PROFILE_UPDATE_REQUEST,
-    AGENT_PROFILE_UPDATE_SUCCESS
+    AGENT_PROFILE_UPDATE_SUCCESS,
+
+    AGENT_LIST_REQUEST,
+    AGENT_LIST_SUCCESS,
+    AGENT_LIST_FAIL
 } from "../../constants/Auth/agentConstants";
 
+
+function agentListReducer(state = { agents: [] }, action) {
+    switch (action.type) {
+        case AGENT_LIST_REQUEST:
+            return { loading: true };
+        case AGENT_LIST_SUCCESS:
+            return { loading: false, agents: action.payload };
+        case AGENT_LIST_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
 
 
 function agentUpdateReducer(state = {}, action) {
@@ -35,5 +52,7 @@ function agentAddReducer(state = {}, action) {
     }
 }
 export {
-    agentAddReducer, agentUpdateReducer
+    agentListReducer,
+    agentAddReducer,
+    agentUpdateReducer
 }

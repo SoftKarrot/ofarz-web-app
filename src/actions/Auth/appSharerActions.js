@@ -8,7 +8,12 @@ import {
 
     APPSHARER_PROFILE_UPDATE_FAIL,
     APPSHARER_PROFILE_UPDATE_REQUEST,
-    APPSHARER_PROFILE_UPDATE_SUCCESS, APPSHARER_PROFILE_DETAILS_REQUEST, APPSHARER_PROFILE_DETAILS_SUCCESS, APPSHARER_PROFILE_DETAILS_FAIL
+    APPSHARER_PROFILE_UPDATE_SUCCESS,
+
+    APPSHARER_DOWNLINE_LIST_REQUEST,
+    APPSHARER_DOWNLINE_LIST_SUCCESS,
+    APPSHARER_DOWNLINE_LIST_FAIL,
+
 } from "../../constants/Auth/appSharerConstants";
 
 const appSharerUpdate = ({ userId, firstname, mobilenumber, password }) => async (dispatch, getState) => {
@@ -42,8 +47,9 @@ const appSharerRegister = (firstname, mobilenumber, currentuser, password, confi
             headers: {
                 Authorization: 'Bearer ' + userInfo.item3
             }
+
         });
-        debugger
+        // debugger
         Cookie.set('userInfo', JSON.stringify(data));
         dispatch({ type: APPSHARER_REGISTER_SUCCESS, payload: data });
 
@@ -54,24 +60,22 @@ const appSharerRegister = (firstname, mobilenumber, currentuser, password, confi
 
 
 
-const appSharerProfileDetail = (currentUserId) => async (dispatch, getState) => {
-    const { userSignIn: { userInfo } } = getState();
-    try {
-        dispatch({ type: APPSHARER_PROFILE_DETAILS_REQUEST, payload: currentUserId });
-        const { data } = await axios.get("/api/appsharer/GetProfileDetails/" + currentUserId, {
-            headers: {
-                Authorization: 'Bearer ' + userInfo.item3
-            }
-        });
-        Cookie.set('userInfo', JSON.stringify(userInfo));
+const appSharerFirstDownlineList = (id) => async (dispatch) => {
 
-        dispatch({ type: APPSHARER_PROFILE_DETAILS_SUCCESS, payload: data });
+    try {
+        dispatch({ type: APPSHARER_DOWNLINE_LIST_REQUEST, payload: id });
+        const { data } = await axios.get("/api/appsharer/GetDownlineList/" + id);
+        dispatch({ type: APPSHARER_DOWNLINE_LIST_SUCCESS, payload: data });
     }
     catch (error) {
-        dispatch({ type: APPSHARER_PROFILE_DETAILS_FAIL, payload: error.message })
+        dispatch({ type: APPSHARER_DOWNLINE_LIST_FAIL, payload: error.message })
     }
 }
 
 
 
-export { appSharerUpdate, appSharerRegister, appSharerProfileDetail };
+export {
+    appSharerUpdate,
+    appSharerRegister,
+    appSharerFirstDownlineList
+};

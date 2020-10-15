@@ -48,33 +48,91 @@ function SideBar({ isOpen, toggle }) {
                         <NavItem>
                             <NavLink tag={Link} to={"/getallpaymentlists"}>
                                 Get All Payment Lists
-                                </NavLink>
+                            </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/getallpaymentlistsagent"}>
                                 Get All Payment Lists Agent
-                                </NavLink>
+                            </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/getallpaymentlistsAppSharer"}>
                                 Get All Payment Lists App Sharer
-                                </NavLink>
+                            </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/getallpaymentlistsShoper"}>
                                 Get All Payment Lists Shoper
-                                </NavLink>
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistall"}>
+                                Get All Withdraw Lists
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistappSharer"}>
+                                Get All Withdraw Lists App Sharer
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/fundlistagent"}>
+                                Get All Agents Fund Lists
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/fundlistappsharer"}>
+                                Get All App Sharer Fund Lists
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/fundappsharerforadmin"}>
+                                Get App Sharer Fund
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/fundofarzforadmin"}>
+                                Get Ofarz Fund
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/agentadd"}>
+                                Add Agent
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/moderatoradd"}>
+                                Add Moderator
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/addkarrot"}>
+                                Add KARROT
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/addceo"}>
+                                Add CEO
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/addofarz"}>
+                                Add Ofarz
+                            </NavLink>
                         </NavItem>
                         <p>______________________________</p>
                         <NavItem>
                             <NavLink tag={Link} to={"/adminregistrations"}>
                                 Admin Registration
-                        </NavLink>
+                            </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/adminprofileupdate"}>
                                 Admin Update Profile
-                    </NavLink>
+                            </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/adminpasswordupdate"}>
@@ -87,21 +145,6 @@ function SideBar({ isOpen, toggle }) {
                             </NavLink>
                         </NavItem>
                         <p>______________________________</p>
-                        <NavItem>
-                            <NavLink tag={Link} to={"/agentadd"}>
-                                Add Agent
-                            </NavLink>
-                        </NavItem>
-
-                        <p>______________________________</p>
-                        <NavItem>
-                            <NavLink tag={Link} to={"/moderatoradd"}>
-                                Add Moderator
-                            </NavLink>
-                        </NavItem>
-
-                        <p>______________________________</p>
-
                         <NavItem>
                             <NavLink tag={Link} to={"/categories"}>
                                 Category
@@ -132,34 +175,33 @@ function SideBar({ isOpen, toggle }) {
                         <NavItem>
                             <NavLink tag={Link} to={"/countries"}>
                                 Country
-                    </NavLink>
+                            </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/divisions"}>
                                 Division
-                    </NavLink>
+                            </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/districts"}>
                                 District
-                    </NavLink>
+                            </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/upozilas"}>
                                 Upozila
-                    </NavLink>
+                            </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/unions"}>
                                 Union
-                    </NavLink>
+                            </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/markets"}>
                                 Market
                             </NavLink>
                         </NavItem>
-
                     </Nav>
                 </div>
             ) : (
@@ -221,6 +263,12 @@ function SideBar({ isOpen, toggle }) {
                              </NavLink>
                         </NavItem>
                         <NavItem>
+                            <NavLink tag={Link} to={"/appsharerfirstdownlinelist"}>
+                                First Downline List
+                             </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
                             <NavLink tag={Link} to={"/paymentproducttypes"}>
                                 Make Payment
                             </NavLink>
@@ -231,8 +279,19 @@ function SideBar({ isOpen, toggle }) {
                                 Cash Out
                             </NavLink>
                         </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/fundsharerforsharer"}>
+                                Fund
+                             </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/getallpaymentlistsAppSharerForAppSharer"}>
+                                Payment List
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
                     </Nav>
-
                 </div>) :
                 <h1></h1>
             }
@@ -248,11 +307,82 @@ function SideBar({ isOpen, toggle }) {
                         </NavItem>
                         <p>______________________________</p>
                         <NavItem>
-                            <NavLink tag={Link} to={"/shopersignin"}>
-                                Shoper SignIn
+                            <NavLink tag={Link} to={"/fundshoperforshoper"}>
+                                Shoper Fund
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/submitpaymenttablecashofferbyshoper"}>
+                                Table Cash Payment
                             </NavLink>
                         </NavItem>
 
+                        <NavItem>
+                            <NavLink tag={Link} to={"/submitpaymentbackshoppingofferbyshoper"}>
+                                Back Shopping Payment
+                            </NavLink>
+                        </NavItem>
+
+                    </Nav>
+
+                </div>) :
+                <h1></h1>
+            }
+            {userInfo.item2.name == "Karrot" ? (
+                <div className="side-menu">
+                    <Nav vertical className="list-unstyled pb-3">
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/"}>
+                                <h3>Home</h3>
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/fundkarrotforkarrot"}>
+                                Fund
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawmoneykarrottoofarz"}>
+                                Cash Out To Ofarz
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawmoneykarrottoagent"}>
+                                Cash Out To Agent
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+
+                </div>) :
+                <h1></h1>
+            }
+            {userInfo.item2.name == "CEO" ? (
+                <div className="side-menu">
+                    <Nav vertical className="list-unstyled pb-3">
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/"}>
+                                <h3>Home</h3>
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/fundceoforceo"}>
+                                Fund
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawmoneyceotoofarz"}>
+                                Cash Out To Ofarz
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawmoneyceotoagent"}>
+                                Cash Out To Agent
+                            </NavLink>
+                        </NavItem>
                     </Nav>
 
                 </div>) :

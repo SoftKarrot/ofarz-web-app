@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { submitPaymentTableCashOffer } from '../../../../../../../actions/Fund/paymentActions';
+import { fundAppSharers } from '../../../../../../../actions/Fund/fundActions';
 
 
 function PaymentTableCashOffer(props) {
@@ -10,6 +11,7 @@ function PaymentTableCashOffer(props) {
 
     const userSignIn = useSelector((state) => state.userSignIn);
     const { userInfo } = userSignIn;
+
 
     const dispatch = useDispatch();
 

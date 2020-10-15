@@ -7,7 +7,6 @@ function ShoperRegistrationScreen(props) {
     const [firstname, setFirstName] = useState('');
     const [lastname, setLastName] = useState('');
     const [mobilenumber, setMobilenumber] = useState('');
-    const [agentphonenumber, setAgentPhonenumber] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -29,7 +28,7 @@ function ShoperRegistrationScreen(props) {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(shoperRegister(firstname, lastname, mobilenumber, agentphonenumber, password, confirmPassword));
+        dispatch(shoperRegister(firstname, lastname, mobilenumber, password, confirmPassword));
     }
 
     return <div className="form">
@@ -61,13 +60,6 @@ function ShoperRegistrationScreen(props) {
                         Mobilenumber
                     </label>
                     <input type="text" name="mobilenumber" id="mobilenumber" onChange={(e) => setMobilenumber(e.target.value)}>
-                    </input>
-                </li>
-                <li>
-                    <label htmlFor="agentphonenumber">
-                        Agent Mobilenumber
-                    </label>
-                    <input type="text" name="agentphonenumber" id="agentphonenumber" onChange={(e) => setAgentPhonenumber(e.target.value)}>
                     </input>
                 </li>
 

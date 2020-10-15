@@ -369,13 +369,14 @@ const listPaymentsBackShoppingPromotionalAppSharer = () => async (dispatch) => {
 }
 //#endregion
 
-//#region Submit Payments
+//#region Submit Payments App Sharer
 
 const submitPaymentTableCashOffer = (amount, agentPhnNumber, payerId) => async (dispatch, getState) => {
     const { userSignIn: { userInfo } } = getState();
     try {
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_REQUEST, payload: { amount, agentPhnNumber, payerId } });
         const { data } = await axios.post('/api/appsharer/paymentSubmitTableCashOffer', { amount, agentPhnNumber, payerId })
+        Cookie.set('userInfo', JSON.stringify(data));
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_SUCCESS, payload: data });
     } catch (error) {
         Cookie.set('userInfo', JSON.stringify(userInfo));
@@ -383,13 +384,14 @@ const submitPaymentTableCashOffer = (amount, agentPhnNumber, payerId) => async (
     }
 }
 
-const submitPaymentTableCashPromotional = (payment) => async (dispatch) => {
+const submitPaymentTableCashPromotional = (amount, agentPhnNumber, payerId) => async (dispatch, getState) => {
+    const { userSignIn: { userInfo } } = getState();
     try {
-        dispatch({ type: PAYMENT_SUBMIT_TABLECASH_PROMOTIONAL_REQUEST, payload: payment });
-        const { data } = await axios.post('/api/appsharer/paymentSubmitTableCashPromotional', payment)
+        dispatch({ type: PAYMENT_SUBMIT_TABLECASH_PROMOTIONAL_REQUEST, payload: { amount, agentPhnNumber, payerId } });
+        const { data } = await axios.post('/api/appsharer/paymentSubmitTableCashPromotional', { amount, agentPhnNumber, payerId })
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_PROMOTIONAL_SUCCESS, payload: data });
     } catch (error) {
-
+        Cookie.set('userInfo', JSON.stringify(userInfo));
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_PROMOTIONAL_FAIL, payload: error.message });
     }
 }
@@ -454,6 +456,31 @@ const detailsPayment = (paymentId) => async (dispatch) => {
 }
 //#endregion
 
+
+//#region Submit Payment Shoper
+const submitPaymentShoperTableCashOffer = (amount, agentPhnNumber, payerId) => async (dispatch) => {
+    try {
+        dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_REQUEST, payload: { amount, agentPhnNumber, payerId } });
+        const { data } = await axios.post('/api/shoper/MakePaymentViaDirectCashOffer', { amount, agentPhnNumber, payerId })
+        dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_FAIL, payload: error.message });
+    }
+}
+
+const submitPaymentShoperBackShoppingOffer = (amount, agentPhnNumber, payerId) => async (dispatch) => {
+    try {
+        dispatch({ type: PAYMENT_SUBMIT_BACKSHOPPING_OFFER_REQUEST, payload: { amount, agentPhnNumber, payerId } });
+        const { data } = await axios.post('/api/shoper/MakePaymentViaBackShoppingOffer', { amount, agentPhnNumber, payerId })
+        dispatch({ type: PAYMENT_SUBMIT_BACKSHOPPING_OFFER_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: PAYMENT_SUBMIT_BACKSHOPPING_OFFER_FAIL, payload: error.message });
+    }
+}
+
+
+//#endregion
+
 //#region exportd
 export {
     listPayments,
@@ -495,6 +522,10 @@ export {
 
     submitPaymentBackShoppingOffer,
     submitPaymentBackShoppingPromotional,
+
+
+    submitPaymentShoperTableCashOffer,
+    submitPaymentShoperBackShoppingOffer,
 
     detailsPayment
 }

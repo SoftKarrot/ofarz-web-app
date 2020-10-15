@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { appSharerProfileDetail, appSharerRegister } from '../../../../actions/Auth/appSharerActions';
+import { appSharerRegister } from '../../../../actions/Auth/appSharerActions';
 
 function AppSharerAddDownlineScreen(props) {
 
@@ -10,7 +10,7 @@ function AppSharerAddDownlineScreen(props) {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const Register = useSelector(state => state.appSharerAddDownline);
-    const { loading, registerInfo, error } = Register;
+    const { loading, error } = Register;
 
     const userSignIn = useSelector((state) => state.userSignIn);
     const { userInfo } = userSignIn;

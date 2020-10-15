@@ -4,37 +4,51 @@ import {
     WITHDRAW_LIST_SUCCESS,
     WITHDRAW_LIST_FAIL,
 
-    WITHDRAW_LIST_REQUEST_AGENT,
-    WITHDRAW_LIST_SUCCESS_AGENT,
-    WITHDRAW_LIST_FAIL_AGENT,
 
-    WITHDRAW_LIST_REQUEST_APPSHARER,
-    WITHDRAW_LIST_SUCCESS_APPSHARER,
-    WITHDRAW_LIST_FAIL_APPSHARER,
+    WITHDRAW_REQUEST_KARROT_TO_AGENT,
+    WITHDRAW_SUCCESS_KARROT_TO_AGENT,
+    WITHDRAW_FAIL_KARROT_TO_AGENT,
 
-    WITHDRAW_LIST_REQUEST_KARROT,
-    WITHDRAW_LIST_SUCCESS_KARROT,
-    WITHDRAW_LIST_FAIL_KARROT,
+    WITHDRAW_REQUEST_APPSHARER_TO_AGENT,
+    WITHDRAW_SUCCESS_APPSHARER_TO_AGENT,
+    WITHDRAW_FAIL_APPSHARER_TO_AGENT,
 
-    WITHDRAW_LIST_REQUEST_CEO,
-    WITHDRAW_LIST_SUCCESS_CEO,
-    WITHDRAW_LIST_FAIL_CEO,
-
-    WITHDRAW_REQUEST_AGENT,
-    WITHDRAW_SUCCESS_AGENT,
-    WITHDRAW_FAIL_AGENT,
-
-    WITHDRAW_REQUEST_APPSHARER,
-    WITHDRAW_SUCCESS_APPSHARER,
-    WITHDRAW_FAIL_APPSHARER,
-
-    WITHDRAW_REQUEST_KARROT,
-    WITHDRAW_SUCCESS_KARROT,
-    WITHDRAW_FAIL_KARROT,
-
-    WITHDRAW_REQUEST_CEO,
-    WITHDRAW_SUCCESS_CEO,
-    WITHDRAW_FAIL_CEO
+    WITHDRAW_REQUEST_AGENT_TO_OFARZ,
+    WITHDRAW_SUCCESS_AGENT_TO_OFARZ,
+    WITHDRAW_FAIL_AGENT_TO_OFARZ,
+    WITHDRAW_REQUEST_APPSHARER_TO_OFARZ,
+    WITHDRAW_SUCCESS_APPSHARER_TO_OFARZ,
+    WITHDRAW_FAIL_APPSHARER_TO_OFARZ,
+    WITHDRAW_REQUEST_KARROT_TO_OFARZ,
+    WITHDRAW_SUCCESS_KARROT_TO_OFARZ,
+    WITHDRAW_FAIL_KARROT_TO_OFARZ,
+    WITHDRAW_REQUEST_CEO_TO_AGENT,
+    WITHDRAW_SUCCESS_CEO_TO_AGENT,
+    WITHDRAW_FAIL_CEO_TO_AGENT,
+    WITHDRAW_REQUEST_CEO_TO_OFARZ,
+    WITHDRAW_SUCCESS_CEO_TO_OFARZ,
+    WITHDRAW_FAIL_CEO_TO_OFARZ,
+    WITHDRAW_LIST_REQUEST_AGENT_TO_OFARZ,
+    WITHDRAW_LIST_SUCCESS_AGENT_TO_OFARZ,
+    WITHDRAW_LIST_FAIL_AGENT_TO_OFARZ,
+    WITHDRAW_LIST_REQUEST_APPSHARER_TO_AGENT,
+    WITHDRAW_LIST_SUCCESS_APPSHARER_TO_AGENT,
+    WITHDRAW_LIST_FAIL_APPSHARER_TO_AGENT,
+    WITHDRAW_LIST_REQUEST_KARROT_TO_AGENT,
+    WITHDRAW_LIST_SUCCESS_KARROT_TO_AGENT,
+    WITHDRAW_LIST_FAIL_KARROT_TO_AGENT,
+    WITHDRAW_LIST_REQUEST_CEO_TO_AGENT,
+    WITHDRAW_LIST_SUCCESS_CEO_TO_AGENT,
+    WITHDRAW_LIST_FAIL_CEO_TO_AGENT,
+    WITHDRAW_LIST_REQUEST_CEO_TO_OFARZ,
+    WITHDRAW_LIST_SUCCESS_CEO_TO_OFARZ,
+    WITHDRAW_LIST_FAIL_CEO_TO_OFARZ,
+    WITHDRAW_LIST_REQUEST_KARROT_TO_OFARZ,
+    WITHDRAW_LIST_SUCCESS_KARROT_TO_OFARZ,
+    WITHDRAW_LIST_FAIL_KARROT_TO_OFARZ,
+    WITHDRAW_LIST_REQUEST_APPSHARER_TO_OFARZ,
+    WITHDRAW_LIST_SUCCESS_APPSHARER_TO_OFARZ,
+    WITHDRAW_LIST_FAIL_APPSHARER_TO_OFARZ
 } from "../../constants/Fund/withdrawConstants";
 
 //#endregion
@@ -42,6 +56,7 @@ let initialState = {
     withdraw: false
 }
 //#region Withdraw List
+
 function withdrawListReducer(state = { withdraws: [] }, action) {
     switch (action.type) {
         case WITHDRAW_LIST_REQUEST:
@@ -54,51 +69,98 @@ function withdrawListReducer(state = { withdraws: [] }, action) {
             return state;
     }
 }
-function withdrawListAgentReducer(state = { withdraws: [] }, action) {
+
+//#region List Agent
+function withdrawListAgentToOfarzReducer(state = { withdraws: [] }, action) {
     switch (action.type) {
-        case WITHDRAW_LIST_REQUEST_AGENT:
+        case WITHDRAW_LIST_REQUEST_AGENT_TO_OFARZ:
             return { loading: true };
-        case WITHDRAW_LIST_SUCCESS_AGENT:
+        case WITHDRAW_LIST_SUCCESS_AGENT_TO_OFARZ:
             return { loading: false, withdraws: action.payload };
-        case WITHDRAW_LIST_FAIL_AGENT:
+        case WITHDRAW_LIST_FAIL_AGENT_TO_OFARZ:
             return { loading: false, error: action.payload }
         default:
             return state;
     }
 }
-function withdrawListAppSharerReducer(state = { withdraws: [] }, action) {
+//#endregion
+//#region List AppSharer
+function withdrawListAppSharerToAgentReducer(state = { withdraws: [] }, action) {
     switch (action.type) {
-        case WITHDRAW_LIST_REQUEST_APPSHARER:
+        case WITHDRAW_LIST_REQUEST_APPSHARER_TO_AGENT:
             return { loading: true };
-        case WITHDRAW_LIST_SUCCESS_APPSHARER:
+        case WITHDRAW_LIST_SUCCESS_APPSHARER_TO_AGENT:
             return { loading: false, withdraws: action.payload };
-        case WITHDRAW_LIST_FAIL_APPSHARER:
+        case WITHDRAW_LIST_FAIL_APPSHARER_TO_AGENT:
             return { loading: false, error: action.payload }
         default:
             return state;
     }
 }
 
-function withdrawListKarrotReducer(state = { withdraws: [] }, action) {
+
+function withdrawListAppSharerToOfarzReducer(state = { withdraws: [] }, action) {
     switch (action.type) {
-        case WITHDRAW_LIST_REQUEST_KARROT:
+        case WITHDRAW_LIST_REQUEST_APPSHARER_TO_OFARZ:
             return { loading: true };
-        case WITHDRAW_LIST_SUCCESS_KARROT:
+        case WITHDRAW_LIST_SUCCESS_APPSHARER_TO_OFARZ:
             return { loading: false, withdraws: action.payload };
-        case WITHDRAW_LIST_FAIL_KARROT:
+        case WITHDRAW_LIST_FAIL_APPSHARER_TO_OFARZ:
             return { loading: false, error: action.payload }
         default:
             return state;
     }
 }
 
-function withdrawListCeoReducer(state = { withdraws: [] }, action) {
+//#endregion
+//#region List Karrot
+function withdrawListKarrotToAgentReducer(state = { withdraws: [] }, action) {
     switch (action.type) {
-        case WITHDRAW_LIST_REQUEST_CEO:
+        case WITHDRAW_LIST_REQUEST_KARROT_TO_AGENT:
             return { loading: true };
-        case WITHDRAW_LIST_SUCCESS_CEO:
+        case WITHDRAW_LIST_SUCCESS_KARROT_TO_AGENT:
             return { loading: false, withdraws: action.payload };
-        case WITHDRAW_LIST_FAIL_CEO:
+        case WITHDRAW_LIST_FAIL_KARROT_TO_AGENT:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+
+function withdrawListKarrotToOfarzReducer(state = { withdraws: [] }, action) {
+    switch (action.type) {
+        case WITHDRAW_LIST_REQUEST_KARROT_TO_OFARZ:
+            return { loading: true };
+        case WITHDRAW_LIST_SUCCESS_KARROT_TO_OFARZ:
+            return { loading: false, withdraws: action.payload };
+        case WITHDRAW_LIST_FAIL_KARROT_TO_OFARZ:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+//#endregion
+//#region List CEO
+function withdrawListCeoToAgentReducer(state = { withdraws: [] }, action) {
+    switch (action.type) {
+        case WITHDRAW_LIST_REQUEST_CEO_TO_AGENT:
+            return { loading: true };
+        case WITHDRAW_LIST_SUCCESS_CEO_TO_AGENT:
+            return { loading: false, withdraws: action.payload };
+        case WITHDRAW_LIST_FAIL_CEO_TO_AGENT:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+
+function withdrawListCeoToOfarzReducer(state = { withdraws: [] }, action) {
+    switch (action.type) {
+        case WITHDRAW_LIST_REQUEST_CEO_TO_OFARZ:
+            return { loading: true };
+        case WITHDRAW_LIST_SUCCESS_CEO_TO_OFARZ:
+            return { loading: false, withdraws: action.payload };
+        case WITHDRAW_LIST_FAIL_CEO_TO_OFARZ:
             return { loading: false, error: action.payload }
         default:
             return state;
@@ -106,79 +168,139 @@ function withdrawListCeoReducer(state = { withdraws: [] }, action) {
 }
 //#endregion
 
-//#region Withdraw One
-function withdrawAgentReducer(state = initialState, action) {
+//#region Withdraw Agent
+function withdrawAgentToOfarzReducer(state = initialState, action) {
 
     switch (action.type) {
-        case WITHDRAW_REQUEST_AGENT:
+        case WITHDRAW_REQUEST_AGENT_TO_OFARZ:
             return { loading: true };
-        case WITHDRAW_SUCCESS_AGENT:
+        case WITHDRAW_SUCCESS_AGENT_TO_OFARZ:
             return { loading: false, success: true, withdraw: action.payload };
-        case WITHDRAW_FAIL_AGENT:
+        case WITHDRAW_FAIL_AGENT_TO_OFARZ:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+//#endregion
+
+//#region App Sharer
+function withdrawAppSharerToAgentReducer(state = initialState, action) {
+
+    switch (action.type) {
+        case WITHDRAW_REQUEST_APPSHARER_TO_AGENT:
+            return { loading: true };
+        case WITHDRAW_SUCCESS_APPSHARER_TO_AGENT:
+            return { loading: false, success: true, withdraw: action.payload };
+        case WITHDRAW_FAIL_APPSHARER_TO_AGENT:
             return { loading: false, error: action.payload }
         default:
             return state;
     }
 }
 
-function withdrawAppSharerReducer(state = initialState, action) {
+function withdrawAppSharerToOfarzReducer(state = initialState, action) {
 
     switch (action.type) {
-        case WITHDRAW_REQUEST_APPSHARER:
+        case WITHDRAW_REQUEST_APPSHARER_TO_OFARZ:
             return { loading: true };
-        case WITHDRAW_SUCCESS_APPSHARER:
+        case WITHDRAW_SUCCESS_APPSHARER_TO_OFARZ:
             return { loading: false, success: true, withdraw: action.payload };
-        case WITHDRAW_FAIL_APPSHARER:
+        case WITHDRAW_FAIL_APPSHARER_TO_OFARZ:
             return { loading: false, error: action.payload }
         default:
             return state;
     }
 }
 
-
-function withdrawKarrotReducer(state = initialState, action) {
+//#endregion
+//#region Karrot
+function withdrawKarrotToAgentReducer(state = initialState, action) {
 
     switch (action.type) {
-        case WITHDRAW_REQUEST_KARROT:
+        case WITHDRAW_REQUEST_KARROT_TO_AGENT:
             return { loading: true };
-        case WITHDRAW_SUCCESS_KARROT:
+        case WITHDRAW_SUCCESS_KARROT_TO_AGENT:
             return { loading: false, success: true, withdraw: action.payload };
-        case WITHDRAW_FAIL_KARROT:
+        case WITHDRAW_FAIL_KARROT_TO_AGENT:
             return { loading: false, error: action.payload }
         default:
             return state;
     }
 }
 
-
-function withdrawCeoReducer(state = initialState, action) {
+function withdrawKarrotToOfarzReducer(state = initialState, action) {
 
     switch (action.type) {
-        case WITHDRAW_REQUEST_CEO:
+        case WITHDRAW_REQUEST_KARROT_TO_OFARZ:
             return { loading: true };
-        case WITHDRAW_SUCCESS_CEO:
+        case WITHDRAW_SUCCESS_KARROT_TO_OFARZ:
             return { loading: false, success: true, withdraw: action.payload };
-        case WITHDRAW_FAIL_CEO:
+        case WITHDRAW_FAIL_KARROT_TO_OFARZ:
             return { loading: false, error: action.payload }
         default:
             return state;
     }
 }
 
+//#endregion
+
+//#region Ceo
+function withdrawCeoToAgentReducer(state = initialState, action) {
+
+    switch (action.type) {
+        case WITHDRAW_REQUEST_CEO_TO_AGENT:
+            return { loading: true };
+        case WITHDRAW_SUCCESS_CEO_TO_AGENT:
+            return { loading: false, success: true, withdraw: action.payload };
+        case WITHDRAW_FAIL_CEO_TO_AGENT:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+
+function withdrawCeoToOfarzReducer(state = initialState, action) {
+
+    switch (action.type) {
+        case WITHDRAW_REQUEST_CEO_TO_OFARZ:
+            return { loading: true };
+        case WITHDRAW_SUCCESS_CEO_TO_OFARZ:
+            return { loading: false, success: true, withdraw: action.payload };
+        case WITHDRAW_FAIL_CEO_TO_OFARZ:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
 //#endregion
 
 //#region Export
 export {
-    withdrawListReducer,
-    withdrawListAgentReducer,
-    withdrawListAppSharerReducer,
-    withdrawListKarrotReducer,
-    withdrawListCeoReducer,
 
-    withdrawAgentReducer,
-    withdrawAppSharerReducer,
-    withdrawKarrotReducer,
-    withdrawCeoReducer
+    withdrawListReducer,
+
+    withdrawListAgentToOfarzReducer,
+
+    withdrawListAppSharerToAgentReducer,
+    withdrawListAppSharerToOfarzReducer,
+
+    withdrawListKarrotToAgentReducer,
+    withdrawListKarrotToOfarzReducer,
+
+    withdrawListCeoToAgentReducer,
+    withdrawListCeoToOfarzReducer,
+
+    withdrawAgentToOfarzReducer,
+
+    withdrawAppSharerToAgentReducer,
+    withdrawAppSharerToOfarzReducer,
+
+    withdrawKarrotToAgentReducer,
+    withdrawKarrotToOfarzReducer,
+
+    withdrawCeoToAgentReducer,
+    withdrawCeoToOfarzReducer
 }
 
 //#endregion

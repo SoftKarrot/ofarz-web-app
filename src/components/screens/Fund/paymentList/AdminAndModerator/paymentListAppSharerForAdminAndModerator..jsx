@@ -10,7 +10,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { listPayments, listPaymentsAgent, listPaymentsAppSharer } from '../../../../../actions/Fund/paymentActions';
+import { listPaymentsAppSharer } from '../../../../../actions/Fund/paymentActions';
 
 const { SearchBar } = Search;
 

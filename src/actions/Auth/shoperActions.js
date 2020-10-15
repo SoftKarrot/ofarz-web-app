@@ -6,18 +6,16 @@ import {
     SHOPER_REGISTER_SUCCESS,
 } from "../../constants/Auth/shoperConstants";
 
-
-const shoperRegister = (firstname, lastname, mobilenumber, agentphonenumber, password, confirmpassword) => async (dispatch) => {
+const shoperRegister = (firstname, lastname, mobilenumber, password, confirmpassword) => async (dispatch) => {
 
     dispatch({
-        type: SHOPER_REGISTER_REQUEST, payload: { firstname, lastname, mobilenumber, agentphonenumber, password, confirmpassword }
+        type: SHOPER_REGISTER_REQUEST, payload: { firstname, lastname, mobilenumber, password, confirmpassword }
     });
 
     try {
-        const { data } = await Axios.post("/api/shoper/shoperregistration", { firstname, lastname, mobilenumber, agentphonenumber, password, confirmpassword });
-
+        const { data } = await Axios.post("/api/shoper/shoperregistration", { firstname, lastname, mobilenumber, password, confirmpassword });
         dispatch({ type: SHOPER_REGISTER_SUCCESS, payload: data });
-        Cookie.set('shoperInfo', JSON.stringify(data));
+        Cookie.set('userInfo', JSON.stringify(data));
     } catch (error) {
         dispatch({ type: SHOPER_REGISTER_FAIL, payload: error.message });
     }

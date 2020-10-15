@@ -372,7 +372,7 @@ function paymentListBackShoppingPromotionalAppSharerReducer(state = { payments: 
 }
 //#endregion
 
-//#region Submit Payment
+//#region Submit Payment App Sharer
 
 function paymentSubmitTableCashOfferReducer(state = initialState, action) {
 
@@ -454,6 +454,36 @@ function paymentSubmitBackShoppingPromotionalReducer(state = initialState, actio
 }
 //#endregion
 
+//#region Submit Payment Shoper
+function paymentSubmitShoperTableCashOfferReducer(state = initialState, action) {
+
+    switch (action.type) {
+        case PAYMENT_SUBMIT_TABLECASH_OFFER_REQUEST:
+            return { loading: true };
+        case PAYMENT_SUBMIT_TABLECASH_OFFER_SUCCESS:
+            return { loading: false, success: true, payment: action.payload };
+        case PAYMENT_SUBMIT_TABLECASH_OFFER_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+
+function paymentSubmitShoperBackshoppingOfferReducer(state = initialState, action) {
+
+    switch (action.type) {
+        case PAYMENT_SUBMIT_BACKSHOPPING_OFFER_REQUEST:
+            return { loading: true };
+        case PAYMENT_SUBMIT_BACKSHOPPING_OFFER_SUCCESS:
+            return { loading: false, success: true, payment: action.payload };
+        case PAYMENT_SUBMIT_BACKSHOPPING_OFFER_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+//#endregion
+
 //#region
 function paymentDetailsReducer(state = { paymentType: {} }, action) {
 
@@ -511,7 +541,10 @@ export {
     paymentSubmitMainAccountPromotionalReducer,
 
     paymentSubmitBackShoppingOfferReducer,
-    paymentSubmitBackShoppingPromotionalReducer
+    paymentSubmitBackShoppingPromotionalReducer,
+
+    paymentSubmitShoperBackshoppingOfferReducer,
+    paymentSubmitShoperTableCashOfferReducer
 }
 
 //#endregion
