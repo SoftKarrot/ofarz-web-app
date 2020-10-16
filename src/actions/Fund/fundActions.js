@@ -63,6 +63,47 @@ const listFundsShoper = () => async (dispatch) => {
         dispatch({ type: FUND_LIST_FAIL_SHOPER, payload: error.message });
     }
 }
+
+const listFundKarrot = () => async (dispatch) => {
+
+    try {
+
+        dispatch({ type: FUND_LIST_REQUEST_KARROT });
+        const { data } = await axios.get("/api/funds/GetKarrotFunds");
+        dispatch({ type: FUND_LIST_SUCCESS_KARROT, payload: data });
+
+    }
+    catch (error) {
+        dispatch({ type: FUND_LIST_FAIL_KARROT, payload: error.message });
+    }
+}
+const listFundCeo = () => async (dispatch) => {
+
+    try {
+
+        dispatch({ type: FUND_LIST_REQUEST_CEO });
+        const { data } = await axios.get("/api/funds/GetCeoFunds");
+        dispatch({ type: FUND_LIST_SUCCESS_CEO, payload: data });
+
+    }
+    catch (error) {
+        dispatch({ type: FUND_LIST_FAIL_CEO, payload: error.message });
+    }
+}
+
+const listFundOfarz = () => async (dispatch) => {
+
+    try {
+        debugger
+        dispatch({ type: FUND_LIST_REQUEST_OFARZ });
+        const { data } = await axios.get("/api/funds/GetOfarzFunds");
+        dispatch({ type: FUND_LIST_SUCCESS_OFARZ, payload: data });
+    }
+    catch (error) {
+        dispatch({ type: FUND_LIST_FAIL_OFARZ, payload: error.message });
+    }
+}
+
 //#endregion
 
 //#region Get One Fund
@@ -71,7 +112,7 @@ const fundAgent = (agentPhoneNumber) => async (dispatch) => {
     try {
 
         dispatch({ type: FUND_LIST_REQUEST_AGENT, payload: { agentPhoneNumber } });
-        const { data } = await axios.get("/api/payments/GetAllPaymentListAgent/" + agentPhoneNumber);
+        const { data } = await axios.get("/api/funds/GetAgentFund/" + agentPhoneNumber);
         dispatch({ type: FUND_LIST_SUCCESS_AGENT, payload: data });
 
     }
@@ -149,6 +190,9 @@ export {
     listFundsAgent,
     listFundsAppSharer,
     listFundsShoper,
+    listFundKarrot,
+    listFundCeo,
+    listFundOfarz,
 
     fundAgent,
     fundAppSharers,

@@ -10,7 +10,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { fundOfarz } from '../../../../../actions/Fund/fundActions';
+import { fundOfarz, listFundOfarz } from '../../../../../actions/Fund/fundActions';
 
 const { SearchBar } = Search;
 
@@ -40,7 +40,7 @@ const FundOfarzForAdminScreen = (props) => {
 
     const submitHandler = () => {
 
-        dispatch(fundOfarz(ofarzPhoneNumber))
+        dispatch(listFundOfarz())
     }
 
     const columns = [

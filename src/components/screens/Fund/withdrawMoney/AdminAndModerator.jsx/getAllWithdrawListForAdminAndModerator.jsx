@@ -51,6 +51,11 @@ const WithdrawListAdminAndModeratorScreen = (props) => {
             sort: true,
         },
         {
+            dataField: "ofarzPhnNumber",
+            text: "Ofarz Phone Number",
+            sort: true,
+        },
+        {
             dataField: "paymentTime",
             text: "Payment Time",
             sort: true,

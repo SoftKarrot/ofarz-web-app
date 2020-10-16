@@ -2,28 +2,26 @@ import React, { useEffect, useState } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider from 'react-bootstrap-table2-toolkit';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Col, Container, Form, FormGroup, Input, Label, Row, Spinner } from 'reactstrap';
-import { agentsList } from '../../../../../actions/Auth/agentActions';
-import { fundAppSharers } from '../../../../../actions/Fund/fundActions';
-
-import { withdrawAppSharer, withdrawAppSharerToAgent } from '../../../../../actions/Fund/withdrawActions';
+import { Spinner } from 'reactstrap';
+import { fundAgent, fundAppSharers } from '../../../../../actions/Fund/fundActions';
+import { withdrawAgentToOfarz, withdrawAppSharerToOfarz } from '../../../../../actions/Fund/withdrawActions';
 
 
-function WithdrawMoneyAppSharerToAgent(props) {
+function WithdrawMoneyAgentToOfarz(props) {
 
     const [amount, setAmount] = useState('');
-    const [agentPhnNumber, setAgentPhnNumber] = useState('');
+    const [ofarzPhnNumber, setOfarzPhnNumber] = useState('');
 
     const userSignIn = useSelector((state) => state.userSignIn);
     const { userInfo } = userSignIn;
 
-    const fundListAppSharer = useSelector((state) => state.fundListAppSharer)
-    const { funds } = fundListAppSharer;
+    const fundListAgent = useSelector((state) => state.fundListAgent)
+    const { funds } = fundListAgent;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fundAppSharers(userInfo.item1.phoneNumber))
+        dispatch(fundAgent(userInfo.item1.phoneNumber))
         return () => {
             //
         };
@@ -34,7 +32,7 @@ function WithdrawMoneyAppSharerToAgent(props) {
 
         const sharerId = userInfo.item1.id;
 
-        dispatch(withdrawAppSharerToAgent(amount, agentPhnNumber, sharerId));
+        dispatch(withdrawAgentToOfarz(amount, ofarzPhnNumber, sharerId));
 
 
     }
@@ -100,14 +98,14 @@ function WithdrawMoneyAppSharerToAgent(props) {
                                 </input>
                             </li>
                             <li>
-                                <label htmlFor="agentPhnNumber">
+                                <label htmlFor="ofarzPhnNumber">
                                     Agent Phone Number
                     </label>
                                 <input
                                     type="text"
-                                    id="agentPhnNumber"
-                                    name="agentPhnNumber"
-                                    onChange={(e) => setAgentPhnNumber(e.target.value)}>
+                                    id="ofarzPhnNumber"
+                                    name="ofarzPhnNumber"
+                                    onChange={(e) => setOfarzPhnNumber(e.target.value)}>
                                 </input>
                             </li>
                             <li>
@@ -123,4 +121,4 @@ function WithdrawMoneyAppSharerToAgent(props) {
         </div>
     </div>
 }
-export default WithdrawMoneyAppSharerToAgent;
+export default WithdrawMoneyAgentToOfarz;

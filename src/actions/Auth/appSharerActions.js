@@ -1,7 +1,6 @@
 import axios from "axios";
 import Cookie from 'js-cookie';
 import {
-
     APPSHARER_REGISTER_FAIL,
     APPSHARER_REGISTER_REQUEST,
     APPSHARER_REGISTER_SUCCESS,
@@ -13,7 +12,9 @@ import {
     APPSHARER_DOWNLINE_LIST_REQUEST,
     APPSHARER_DOWNLINE_LIST_SUCCESS,
     APPSHARER_DOWNLINE_LIST_FAIL,
-
+    APPSHARER_PROFILE_DETAILS_REQUEST,
+    APPSHARER_PROFILE_DETAILS_SUCCESS,
+    APPSHARER_PROFILE_DETAILS_FAIL
 } from "../../constants/Auth/appSharerConstants";
 
 const appSharerUpdate = ({ userId, firstname, mobilenumber, password }) => async (dispatch, getState) => {
@@ -32,34 +33,34 @@ const appSharerUpdate = ({ userId, firstname, mobilenumber, password }) => async
         dispatch({ type: APPSHARER_PROFILE_UPDATE_FAIL, payload: error.message });
     }
 }
-
-const appSharerRegister = (firstname, mobilenumber, currentuser, password, confirmpassword) => async (dispatch, getState) => {
+const appSharerProfileDetails = (currentUserId) => async (dispatch) => {
     //debugger
+    try {
+        dispatch({ type: APPSHARER_PROFILE_DETAILS_REQUEST, payload: currentUserId });
+        const { data } = await axios.get("/api/appsharer/GetProfileDetails/" + currentUserId)
+        dispatch({ type: APPSHARER_PROFILE_DETAILS_SUCCESS, payload: data });
+    }
+    catch (error) {
+        dispatch({ type: APPSHARER_PROFILE_DETAILS_FAIL, payload: error.message })
+    }
+}
+const appSharerRegister = (firstname, mobilenumber, currentuser, password, confirmpassword) => async (dispatch, getState) => {
     const { userSignIn: { userInfo } } = getState();
-
     dispatch({
         type: APPSHARER_REGISTER_REQUEST, payload: { firstname, mobilenumber, currentuser, password, confirmpassword }
     });
-
-    //debugger
     try {
         const { data } = await axios.post("/api/appsharer/adddownline", { firstname, mobilenumber, currentuser, password, confirmpassword }, {
             headers: {
                 Authorization: 'Bearer ' + userInfo.item3
             }
-
         });
-        // debugger
         Cookie.set('userInfo', JSON.stringify(data));
         dispatch({ type: APPSHARER_REGISTER_SUCCESS, payload: data });
-
     } catch (error) {
         dispatch({ type: APPSHARER_REGISTER_FAIL, payload: error.message });
     }
 }
-
-
-
 const appSharerFirstDownlineList = (id) => async (dispatch) => {
 
     try {
@@ -71,11 +72,9 @@ const appSharerFirstDownlineList = (id) => async (dispatch) => {
         dispatch({ type: APPSHARER_DOWNLINE_LIST_FAIL, payload: error.message })
     }
 }
-
-
-
 export {
     appSharerUpdate,
     appSharerRegister,
-    appSharerFirstDownlineList
+    appSharerFirstDownlineList,
+    appSharerProfileDetails
 };

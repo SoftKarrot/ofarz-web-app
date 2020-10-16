@@ -38,6 +38,7 @@ import {
     appSharerGetFourthDownlineCountReducer,
     appSharerGetSecondDownlineCountReducer,
     appSharerGetThirdDownlineCountReducer,
+    appSharerProfileDetailsReducer,
     appSharerUpdateReducer
 } from './reducers/Auth/appSharerReducers';
 import { cartReducer } from './reducers/Regular/cartReducers';
@@ -290,6 +291,7 @@ const reducer = combineReducers({
 
     userSignIn: SigninReducer,
 
+    appSharerProfileDetails: appSharerProfileDetailsReducer,
     appSharerAddDownline: appSharerAddDownlineReducer,
     appSharerUpdate: appSharerUpdateReducer,
 
@@ -315,7 +317,7 @@ const reducer = combineReducers({
     ceoUpdate: ceoUpdateReducer,
 
     ofarzAdd: ofarzAddReducer,
-    
+
     shoperRegistration: shoperRegistrationReducer,
     //#endregion
 
@@ -404,7 +406,7 @@ const reducer = combineReducers({
     fundKarrot: fundListKarrotReducer,
     fundCeo: fundListCeoReducer,
     fundListOfarz: fundListOfarzReducer,
-
+    
 
     //#endregion
 

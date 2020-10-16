@@ -94,6 +94,16 @@ function SideBar({ isOpen, toggle }) {
                             </NavLink>
                         </NavItem>
                         <NavItem>
+                            <NavLink tag={Link} to={"/fundkarrotforAdmin"}>
+                                Get Karrot Fund
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/fundceoforAdmin"}>
+                                Get CEO Fund
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
                             <NavLink tag={Link} to={"/fundofarzforadmin"}>
                                 Get Ofarz Fund
                             </NavLink>
@@ -136,8 +146,8 @@ function SideBar({ isOpen, toggle }) {
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink tag={Link} to={"/adminpasswordupdate"}>
-                                Admin Change Password
+                            <NavLink tag={Link} to={"/passwordupdate"}>
+                                Change Password
                             </NavLink>
                         </NavItem>
                         <NavItem>
@@ -218,14 +228,25 @@ function SideBar({ isOpen, toggle }) {
                             </NavLink>
                         </NavItem>
                         <p>______________________________</p>
-
+                        <NavItem>
+                            <NavLink tag={Link} to={"/passwordupdate"}>
+                                Change Password
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
 
                         <NavItem>
                             <NavLink tag={Link} to={"/agentptype"}>
                                 Agent Product List
                             </NavLink>
                         </NavItem>
-
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawmoneyagenttoofarz"}>
+                                Cash Out To Ofarz
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
                     </Nav>
 
                 </div>) :
@@ -259,6 +280,16 @@ function SideBar({ isOpen, toggle }) {
                         <p>______________________________</p>
 
                         <NavItem>
+                            <NavLink tag={Link} to={"/appsharerprofiledetails"}>
+                                Profile
+                             </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/passwordupdate"}>
+                                Change Password
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
                             <NavLink tag={Link} to={"/appshareradddownline"}>
                                 AppDownline
                              </NavLink>
@@ -276,8 +307,13 @@ function SideBar({ isOpen, toggle }) {
                         </NavItem>
                         <SubMenu title="Payment" items={submenus[0]} />
                         <NavItem>
-                            <NavLink tag={Link} to={"/withdrawmoneyappsharer"}>
-                                Cash Out
+                            <NavLink tag={Link} to={"/withdrawmoneyappsharertoagent"}>
+                                Cash Out To Agent
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawmoneyappsharertoofarz"}>
+                                Cash Out To Ofarz
                             </NavLink>
                         </NavItem>
                         <p>______________________________</p>
@@ -323,7 +359,13 @@ function SideBar({ isOpen, toggle }) {
                                 Back Shopping Payment
                             </NavLink>
                         </NavItem>
-
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/passwordupdate"}>
+                                Change Password
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
                     </Nav>
 
                 </div>) :
@@ -340,20 +382,35 @@ function SideBar({ isOpen, toggle }) {
                         </NavItem>
                         <p>______________________________</p>
                         <NavItem>
+                            <NavLink tag={Link} to={"/passwordupdate"}>
+                                Change Password
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
                             <NavLink tag={Link} to={"/fundkarrotforkarrot"}>
                                 Fund
                             </NavLink>
                         </NavItem>
+                        <p>______________________________</p>
                         <NavItem>
                             <NavLink tag={Link} to={"/withdrawmoneykarrottoofarz"}>
                                 Cash Out To Ofarz
                             </NavLink>
                         </NavItem>
+
                         <NavItem>
                             <NavLink tag={Link} to={"/withdrawmoneykarrottoagent"}>
                                 Cash Out To Agent
                             </NavLink>
                         </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistkarrottoofarz"}>
+                                Cash Out List To Ofarz
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
                     </Nav>
 
                 </div>) :
@@ -366,6 +423,12 @@ function SideBar({ isOpen, toggle }) {
                         <NavItem>
                             <NavLink tag={Link} to={"/"}>
                                 <h3>Home</h3>
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/passwordupdate"}>
+                                Change Password
                             </NavLink>
                         </NavItem>
                         <p>______________________________</p>

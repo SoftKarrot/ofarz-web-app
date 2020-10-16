@@ -26,6 +26,18 @@ function appSharerUpdateReducer(state = {}, action) {
         default: return state;
     }
 }
+
+function appSharerProfileDetailsReducer(state = { sharer: {} }, action) {
+
+    switch (action.type) {
+        case APPSHARER_PROFILE_DETAILS_SUCCESS:
+            return { loading: false, sharer: action.payload };
+        case APPSHARER_PROFILE_DETAILS_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
 function appSharerAddDownlineReducer(state = {}, action) {
     switch (action.type) {
         case APPSHARER_REGISTER_REQUEST:
@@ -37,15 +49,17 @@ function appSharerAddDownlineReducer(state = {}, action) {
         default: return state;
     }
 }
-function appSharerProfileDetailsReducer(state = {}, action) {
-    switch (action.type) {
-        case APPSHARER_PROFILE_DETAILS_SUCCESS:
-            return { loading: false, adminInfo: action.payload };
-        case APPSHARER_PROFILE_DETAILS_FAIL:
-            return { loading: false, error: action.payload };
-        default: return state;
-    }
-}
+
+// function appSharerProfileDetailsReducer(state = {}, action) {
+//     switch (action.type) {
+//         case APPSHARER_PROFILE_DETAILS_SUCCESS:
+//             return { loading: false, userInfo: action.payload };
+//         case APPSHARER_PROFILE_DETAILS_FAIL:
+//             return { loading: false, error: action.payload };
+//         default: return state;
+//     }
+// }
+
 function appSharerGetFirstDownlineListReducer(state = { downlines: [] }, action) {
     switch (action.type) {
         case APPSHARER_DOWNLINE_LIST_REQUEST:

@@ -23,7 +23,7 @@ a:focus {
   background: #000000;
   color: #fff;
   margin-left: -250px;
-  margin-top: 60px;
+  margin-top: 10px;
   transition: all 0.5s;
   position: fixed;
 }
@@ -139,8 +139,9 @@ html {
 
 body {
   font: 1rem Helvetica;
-  margin: 0;
+  margin-top: 50px;
 }
+
 
 button {
   font-size: 1.6rem;

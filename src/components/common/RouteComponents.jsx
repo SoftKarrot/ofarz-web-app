@@ -29,7 +29,6 @@ import ApplicationRoleEditContainer from '../../containers/Auth/applicationRoleC
 
 import AdminRegistrationScreen from '../screens/Auth/AdminScreens/adminRegistrationScreen';
 import AdminProfileUpdateScreen from '../screens/Auth/AdminScreens/adminProfileUpdateScreen';
-import AdminChangePasswordScreen from '../screens/Auth/AdminScreens/adminChangePasswordScreen';
 
 import ModeratorAddScreen from '../screens/Auth/ModeratorScreens/moderatorAddScreen';
 
@@ -99,7 +98,7 @@ import PaymentListAppSharerForAdminScreen from "../screens/Fund/paymentList/Admi
 import PaymentListShoperForAdminScreen from "../screens/Fund/paymentList/AdminAndModerator/paymentListShoperForAdminAndModerator.";
 
 import SigninScreen from "../screens/Auth/SignInScreen/signInScreen";
-import WithdrawMoneyAppSharer from "../screens/Fund/withdrawMoney/AppSharer/appSharerWithdrawMoneyToAgentScreen";
+
 import WithdrawListAdminAndModeratorScreen from "../screens/Fund/withdrawMoney/AdminAndModerator.jsx/getAllWithdrawListForAdminAndModerator";
 import WithdrawListAppSharerForAdminAndModeratorScreen from "../screens/Fund/withdrawMoney/AdminAndModerator.jsx/getAppSharerToAgentWithdrawListAdminAndModerator";
 
@@ -128,6 +127,16 @@ import AppSharerAddDownlineScreen from "../screens/Auth/AppSharerScreens/appShar
 import ThirdDownlineListForAppSharerScreen from "../screens/Auth/AppSharerScreens/appSharerThirdDownlineScreen";
 import FifthDownlineListForAppSharerScreen from "../screens/Auth/AppSharerScreens/appSharerFifthDownlineScreen";
 import FourthDownlineListForAppSharerScreen from "../screens/Auth/AppSharerScreens/appSharerFourthDownlineScreen";
+import AppSharerProfileDetailsForAppSharer from "../screens/Auth/AppSharerScreens/appSharerProfileDetailsForAppSharerScreen";
+import AppSharerDownlineProfileDetailsForAppSharer from "../screens/Auth/AppSharerScreens/appSharerDownlineProfileDetailsScreen";
+
+import ChangePasswordScreen from "../screens/Auth/AdminScreens/ChangePasswordScreen";
+import FundCeoForAdminScreen from "../screens/Fund/Funds/AdminAndModerator/getCeoFundForAdminAndModerator";
+import FundKarrotForAdminScreen from "../screens/Fund/Funds/AdminAndModerator/getKarrotFundForAdminAndModerator";
+import WithdrawMoneyAppSharerToAgent from "../screens/Fund/withdrawMoney/AppSharer/appSharerWithdrawMoneyToAgentScreen";
+import WithdrawMoneyAppSharerToOfarz from "../screens/Fund/withdrawMoney/AppSharer/appSharerWithdrawMoneyToOfarzScreen";
+import WithdrawMoneyAgentToOfarz from "../screens/Fund/withdrawMoney/Agent/agentWithdrawMoneyToOfarzScreen";
+import WithdrawListKarrotToOfarzForKarrotScreen from "../screens/Fund/withdrawList/Karrot/withdrawListKarrotToOfarzForKarrotScreen";
 
 
 //#endregion
@@ -171,7 +180,7 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
 
             <Route path="/adminregistrations" exact component={AdminRegistrationScreen} />
             <Route path="/adminprofileupdate" exact component={AdminProfileUpdateScreen} />
-            <Route path="/adminpasswordupdate" exact component={AdminChangePasswordScreen} />
+            <Route path="/passwordupdate" exact component={ChangePasswordScreen} />
             <Route path="/adminprofile" exact component={AdminProfileScreen} />
 
             <Route path="/moderatoradd" exact component={ModeratorAddScreen} />
@@ -235,7 +244,6 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/submitpaymenttablecashofferbyshoper" exact component={PaymentTableCashOfferByShoper} />
             <Route path="/submitpaymentbackshoppingofferbyshoper" exact component={PaymentBackShoppingOfferByShoper} />
 
-
             <Route path="/getallpaymentlists" exact component={PaymentListFullForAdminScreen} />
             <Route path="/getallpaymentlistsAgent" exact component={PaymentListAgentForAdminScreen} />
             <Route path="/getallpaymentlistsAppSharer" exact component={PaymentListAppSharerForAdminScreen} />
@@ -244,8 +252,10 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/getallpaymentlistsAppSharerForAppSharer" exact component={PaymentListAppSharerForAppSharerScreen} />
 
 
+            <Route path="/withdrawmoneyagenttoofarz" exact component={WithdrawMoneyAgentToOfarz} />
 
-            <Route path="/withdrawmoneyappsharer" exact component={WithdrawMoneyAppSharer} />
+            <Route path="/withdrawmoneyappsharertoagent" exact component={WithdrawMoneyAppSharerToAgent} />
+            <Route path="/withdrawmoneyappsharertoofarz" exact component={WithdrawMoneyAppSharerToOfarz} />
 
             <Route path="/withdrawmoneykarrottoofarz" exact component={WithdrawMoneyKarrotToOfarz} />
             <Route path="/withdrawmoneykarrottoagent" exact component={WithdrawMoneyKarrotToAgent} />
@@ -256,7 +266,9 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/withdrawlistall" exact component={WithdrawListAdminAndModeratorScreen} />
             <Route path="/withdrawlistappSharer" exact component={WithdrawListAppSharerForAdminAndModeratorScreen} />
 
+            <Route path="/withdrawlistkarrottoofarz" exact component={WithdrawListKarrotToOfarzForKarrotScreen} />
 
+           
             <Route path="/fundlistagent" exact component={FundListAgentForAdminScreen} />
             <Route path="/fundlistappsharer" exact component={FundListAppSharerForAdminScreen} />
 
@@ -266,13 +278,18 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/fundsharerforsharer" exact component={FundAppSharerForAppSharerScreen} />
             <Route path="/fundkarrotforkarrot" exact component={FundKarrotForKarrotScreen} />
             <Route path="/fundceoforceo" exact component={FundCEOForCEOScreen} />
+            <Route path="/fundceoforAdmin" exact component={FundCeoForAdminScreen} />
+            <Route path="/fundkarrotforAdmin" exact component={FundKarrotForAdminScreen} />
             <Route path="/fundshoperforshoper" exact component={FundShoperForShoperScreen} />
+
 
             <Route path="/addkarrot" exact component={KarrotRegistrationScreen} />
             <Route path="/addceo" exact component={CeoRegistrationScreen} />
             <Route path="/addofarz" exact component={OfarzRegistrationScreen} />
 
             <Route path="/appsharerfirstdownlinelist" exact component={FirstDownlineListForAppSharerScreen} />
+            <Route path="/appsharerprofiledetails" exact component={AppSharerProfileDetailsForAppSharer} />
+            <Route path="/appsharerdownlineprofiledetails/:id" exact component={AppSharerDownlineProfileDetailsForAppSharer} />
             <Route path="/appsharerseconddownlinelist/:id" exact component={SecondDownlineListForAppSharerScreen} />
             <Route path="/appsharerseconddownlinelist/appsharerthirddownlinelist/:id" exact component={ThirdDownlineListForAppSharerScreen} />
             <Route path="/appsharerseconddownlinelist/appsharerthirddownlinelist/appsharerfourthdownlinelist/:id" exact component={FourthDownlineListForAppSharerScreen} />

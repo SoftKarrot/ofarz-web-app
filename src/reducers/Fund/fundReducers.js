@@ -76,7 +76,7 @@ function fundListKarrotReducer(state = { funds: [] }, action) {
         case FUND_LIST_FAIL_KARROT:
             return { loading: false, error: action.payload }
         default:
-            return state;
+            return state; 
     }
 }
 

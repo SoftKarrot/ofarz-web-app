@@ -80,14 +80,21 @@ const FirstDownlineListForAppSharerScreen = (props) => {
                                 <FontAwesomeIcon icon={faInfo} /> Downline
                             </Button>
                         </Link>
+                        <Link to={"appsharerdownlineprofiledetails/" + row.id}>
+                            <Button color="primary" className="mr-2">
+                                <FontAwesomeIcon icon={faInfo} /> Profile
+                            </Button>
+                        </Link>
                     </div>
                 );
             },
         },
     ];
 
+
+
     return (
-        <div>
+        <div className="container">
             <h1>First Downline</h1>
             <Container>
                 {downlines ? (

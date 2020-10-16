@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { adminPasswordUpdate } from '../../../../actions/Auth/adminActions';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
-function AdminChangePasswordScreen(props) {
+function ChangePasswordScreen(props) {
 
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -12,8 +12,8 @@ function AdminChangePasswordScreen(props) {
     const adminUpdatePassword = useSelector((state) => state.adminUpdatePassword);
     const { adminUpdatePasswordInfo } = adminUpdatePassword;
 
-    const adminSignin = useSelector((state) => state.adminSignin);
-    const { adminInfo } = adminSignin;
+    const userSignIn = useSelector((state) => state.userSignIn);
+    const { userInfo } = userSignIn;
 
     const dispatch = useDispatch();
 
@@ -28,8 +28,8 @@ function AdminChangePasswordScreen(props) {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        const currentuserId = adminInfo.item1.id;
-        
+        const currentuserId = userInfo.item1.id;
+
         dispatch(adminPasswordUpdate(
             currentuserId,
             currentPassword,
@@ -39,12 +39,16 @@ function AdminChangePasswordScreen(props) {
     }
 
     return (
-        <div className="content content-margined">
-            {adminInfo && (
-                <div className="container">
+        <div className="row">
+            <div className="col-3">
+
+            </div>
+            <div className="col-6">
+                {userInfo && (
+
                     <Form onSubmit={submitHandler}>
                         <div className="row">
-                            <div className="col col-lg-6">
+                            <div className="col col-lg-12">
                                 <FormGroup>
                                     <Label for="firstname">Currrent Password</Label>
                                     <Input type="password"
@@ -58,9 +62,8 @@ function AdminChangePasswordScreen(props) {
                                 </FormGroup>
                             </div>
                         </div>
-
                         <div className="row">
-                            <div className="col col-lg-6">
+                            <div className="col col-lg-12">
                                 <FormGroup>
                                     <Label for="newPassword">New Password</Label>
                                     <Input
@@ -76,7 +79,7 @@ function AdminChangePasswordScreen(props) {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col col-lg-6">
+                            <div className="col col-lg-12">
                                 <FormGroup>
                                     <Label for="confirmPassword">Confirm Password</Label>
                                     <Input
@@ -95,11 +98,16 @@ function AdminChangePasswordScreen(props) {
                             Submit
                        </Button>
                     </Form>
-                </div>
-            )
-            }
-        </div >
+
+                )
+                }
+            </div >
+            <div className="col-3">
+
+            </div>
+        </div>
+
     );
 }
-export default AdminChangePasswordScreen;
+export default ChangePasswordScreen;
 
