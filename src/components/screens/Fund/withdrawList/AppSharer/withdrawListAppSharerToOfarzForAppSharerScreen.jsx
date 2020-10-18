@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { listPaymentsAppSharer } from '../../../../../actions/Fund/paymentActions';
-import { listWithdrawKarrotToAgent, listWithdrawKarrotToOfarz } from '../../../../../actions/Fund/withdrawActions';
+import { listWithdrawAppSharerToAgent, listWithdrawAppSharerToOfarz, listWithdrawCeoToAgent } from '../../../../../actions/Fund/withdrawActions';
 
 const { SearchBar } = Search;
 
@@ -23,19 +23,18 @@ const defaultSorted = [
 ];
 
 
-const WithdrawListKarrotToAgentForKarrotScreen = (props) => {
+const WithdrawListAppSharerToOfarzForAppSharerScreen = (props) => {
 
     const userSignIn = useSelector((state) => state.userSignIn)
     const { userInfo } = userSignIn;
 
-
-    const KarrotToOfarz = useSelector((state) => state.withdrawListKarrotToOfarz)
-    const { withdraws } = KarrotToOfarz;
+    const withdrawListAppSharerToOfarz = useSelector((state) => state.withdrawListAppSharerToOfarz)
+    const { withdraws } = withdrawListAppSharerToOfarz;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(listWithdrawKarrotToAgent(userInfo.item1.phoneNumber))
+        dispatch(listWithdrawAppSharerToOfarz(userInfo.item1.phoneNumber))
         return () => {
             //
         };
@@ -45,8 +44,13 @@ const WithdrawListKarrotToAgentForKarrotScreen = (props) => {
 
     const columns = [
         {
+            dataField: "userName",
+            text: "Payer Name",
+            sort: true,
+        },
+        {
             dataField: "userPhoneNumber",
-            text: "User Phone Number",
+            text: "Payer Phone Number",
             sort: true,
         },
         {
@@ -55,31 +59,10 @@ const WithdrawListKarrotToAgentForKarrotScreen = (props) => {
             sort: true,
         },
         {
-            dataField: "paymentTime",
-            text: "Payment Time",
-            sort: true,
-            style: { 'width': '120px' }
-        },
-        {
             dataField: "amount",
             text: "Amount",
             sort: true,
-        },
-        {
-            dataField: "link",
-            text: "Action",
-            formatter: (rowContent, row) => {
-                return (
-                    <div>
-                        <Link to={"marketdetails/" + row.id}>
-                            <Button color="dark" className="mr-2">
-                                <FontAwesomeIcon icon={faInfo} /> Detail
-                            </Button>
-                        </Link>
-                    </div>
-                );
-            },
-        },
+        }
     ];
 
     return (
@@ -96,13 +79,6 @@ const WithdrawListKarrotToAgentForKarrotScreen = (props) => {
                 >
                     {(props) => (
                         <div>
-                            <Row>
-                                <Col>
-                                    <div className="float-right">
-                                        <SearchBar {...props.searchProps} placeholder="Search .." />
-                                    </div>
-                                </Col>
-                            </Row>
                             <BootstrapTable
                                 {...props.baseProps}
                                 pagination={paginationFactory()}
@@ -123,5 +99,4 @@ const WithdrawListKarrotToAgentForKarrotScreen = (props) => {
     );
 };
 
-
-export default WithdrawListKarrotToAgentForKarrotScreen;
+export default WithdrawListAppSharerToOfarzForAppSharerScreen;

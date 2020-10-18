@@ -100,11 +100,11 @@ const listPaymentsAppSharer = (appSharerPhoneNumber) => async (dispatch) => {
     }
 }
 const listPaymentsShoper = (shoperPhoneNumber) => async (dispatch) => {
+    
     try {
         dispatch({ type: PAYMENT_LIST_REQUEST_SHOPER, payload: { shoperPhoneNumber } });
         const { data } = await axios.get("/api/payments/getAllPaymentListShoper/" + shoperPhoneNumber);
         dispatch({ type: PAYMENT_LIST_SUCCESS_SHOPER, payload: data });
-
     }
     catch (error) {
         dispatch({ type: PAYMENT_LIST_FAIL_SHOPER, payload: error.message });
@@ -136,10 +136,10 @@ const listPaymentsTableCashOfferAgent = () => async (dispatch) => {
         dispatch({ type: PAYMENT_LIST_TABLECASH_OFFER_PRODUCT_FAIL, payload: error.message });
     }
 }
-const listPaymentsTableCashOfferAppSharer = () => async (dispatch) => {
+const listPaymentsTableCashOfferAppSharer = (appSharerPhoneNumber) => async (dispatch) => {
     try {
-        dispatch({ type: PAYMENT_LIST_TABLECASH_OFFER_PRODUCT_REQUEST });
-        const { data } = await axios.get("/api/payment");
+        dispatch({ type: PAYMENT_LIST_TABLECASH_OFFER_PRODUCT_REQUEST, payload: { appSharerPhoneNumber } });
+        const { data } = await axios.get("/api/payments/GetAllPaymentListTableCashOfferAppSharer/" + appSharerPhoneNumber);
         dispatch({ type: PAYMENT_LIST_TABLECASH_OFFER_PRODUCT_SUCCESS, payload: data });
 
     }
@@ -147,11 +147,11 @@ const listPaymentsTableCashOfferAppSharer = () => async (dispatch) => {
         dispatch({ type: PAYMENT_LIST_TABLECASH_OFFER_PRODUCT_FAIL, payload: error.message });
     }
 }
-const listPaymentsTableCashOfferShoper = () => async (dispatch) => {
+const listPaymentsTableCashOfferShoper = (shoperPhoneNumber) => async (dispatch) => {
 
     try {
-        dispatch({ type: PAYMENT_LIST_TABLECASH_OFFER_PRODUCT_REQUEST });
-        const { data } = await axios.get("/api/payment");
+        dispatch({ type: PAYMENT_LIST_TABLECASH_OFFER_PRODUCT_REQUEST, payload: { shoperPhoneNumber } });
+        const { data } = await axios.get("/api/payments/GetAllPaymentListTableCashOfferShoper/" + shoperPhoneNumber);
         dispatch({ type: PAYMENT_LIST_TABLECASH_OFFER_PRODUCT_SUCCESS, payload: data });
 
     }
@@ -187,10 +187,10 @@ const listPaymentsMainAccountOfferAgent = () => async (dispatch) => {
     }
 }
 
-const listPaymentsMainAccountOfferAppSharer = () => async (dispatch) => {
+const listPaymentsMainAccountOfferAppSharer = (appSharerPhoneNumber) => async (dispatch) => {
     try {
-        dispatch({ type: PAYMENT_LIST_MAINACCOUNT_OFFER_PRODUCT_REQUEST });
-        const { data } = await axios.get("/api/payment");
+        dispatch({ type: PAYMENT_LIST_MAINACCOUNT_OFFER_PRODUCT_REQUEST, payload: { appSharerPhoneNumber } });
+        const { data } = await axios.get("/api/payments/GetAllPaymentListMainAccountOfferAppSharer/" + appSharerPhoneNumber);
         dispatch({ type: PAYMENT_LIST_MAINACCOUNT_OFFER_PRODUCT_SUCCESS, payload: data });
 
     }
@@ -226,10 +226,10 @@ const listPaymentsBackShoppingOfferAgent = () => async (dispatch) => {
 }
 
 
-const listPaymentsBackShoppingOfferAppSharer = () => async (dispatch) => {
+const listPaymentsBackShoppingOfferAppSharer = (appSharerPhoneNumber) => async (dispatch) => {
     try {
-        dispatch({ type: PAYMENT_LIST_BACKSHOPPING_OFFER_PRODUCT_REQUEST });
-        const { data } = await axios.get("/api/payment");
+        dispatch({ type: PAYMENT_LIST_BACKSHOPPING_OFFER_PRODUCT_REQUEST, payload: { appSharerPhoneNumber } });
+        const { data } = await axios.get("/api/payments/GetAllPaymentListBackShoppingOfferAppSharer/" + appSharerPhoneNumber);
         dispatch({ type: PAYMENT_LIST_BACKSHOPPING_OFFER_PRODUCT_SUCCESS, payload: data });
 
     }
@@ -238,10 +238,10 @@ const listPaymentsBackShoppingOfferAppSharer = () => async (dispatch) => {
     }
 }
 
-const listPaymentsBackShoppingOfferShoper = () => async (dispatch) => {
+const listPaymentsBackShoppingOfferShoper = (shoperPhoneNumber) => async (dispatch) => {
     try {
-        dispatch({ type: PAYMENT_LIST_BACKSHOPPING_OFFER_PRODUCT_REQUEST });
-        const { data } = await axios.get("/api/payment");
+        dispatch({ type: PAYMENT_LIST_BACKSHOPPING_OFFER_PRODUCT_REQUEST, payerId: { shoperPhoneNumber } });
+        const { data } = await axios.get("/api/payments/GetAllPaymentListBackShoppingOfferShoper/" + shoperPhoneNumber);
         dispatch({ type: PAYMENT_LIST_BACKSHOPPING_OFFER_PRODUCT_SUCCESS, payload: data });
 
     }
@@ -277,10 +277,10 @@ const listPaymentsTableCashPromotionalAgent = () => async (dispatch) => {
     }
 }
 
-const listPaymentsTableCashPromotionalAppSharer = () => async (dispatch) => {
+const listPaymentsTableCashPromotionalAppSharer = (appSharerPhoneNumber) => async (dispatch) => {
     try {
-        dispatch({ type: PAYMENT_LIST_TABLECASH_PROMOTIONAL_PRODUCT_REQUEST });
-        const { data } = await axios.get("/api/payment");
+        dispatch({ type: PAYMENT_LIST_TABLECASH_PROMOTIONAL_PRODUCT_REQUEST, payload: { appSharerPhoneNumber } });
+        const { data } = await axios.get("/api/payments/GetAllPaymentListTableCashPromotionalAppSharer/" + appSharerPhoneNumber);
         dispatch({ type: PAYMENT_LIST_TABLECASH_PROMOTIONAL_PRODUCT_SUCCESS, payload: data });
 
     }
@@ -317,10 +317,10 @@ const listPaymentsMainAccountPromotionalAgent = () => async (dispatch) => {
     }
 }
 
-const listPaymentsMainAccountPromotionalAppSharer = () => async (dispatch) => {
+const listPaymentsMainAccountPromotionalAppSharer = (appSharerPhoneNumber) => async (dispatch) => {
     try {
-        dispatch({ type: PAYMENT_LIST_MAINACCOUNT_PROMOTIONAL_PRODUCT_REQUEST });
-        const { data } = await axios.get("/api/payment");
+        dispatch({ type: PAYMENT_LIST_MAINACCOUNT_PROMOTIONAL_PRODUCT_REQUEST, payment: { appSharerPhoneNumber } });
+        const { data } = await axios.get("/api/payments/GetAllPaymentListMainAccountPromotionalAppSharer/" + appSharerPhoneNumber);
         dispatch({ type: PAYMENT_LIST_MAINACCOUNT_PROMOTIONAL_PRODUCT_SUCCESS, payload: data });
 
     }
@@ -356,10 +356,10 @@ const listPaymentsBackShoppingPromotionalAgent = () => async (dispatch) => {
     }
 }
 
-const listPaymentsBackShoppingPromotionalAppSharer = () => async (dispatch) => {
+const listPaymentsBackShoppingPromotionalAppSharer = (appSharerPhoneNumber) => async (dispatch) => {
     try {
-        dispatch({ type: PAYMENT_LIST_BACKSHOPPING_PROMOTIONAL_PRODUCT_REQUEST });
-        const { data } = await axios.get("/api/payment");
+        dispatch({ type: PAYMENT_LIST_BACKSHOPPING_PROMOTIONAL_PRODUCT_REQUEST, payload: { appSharerPhoneNumber } });
+        const { data } = await axios.get("/api/payments/GetAllPaymentListBackShoppingPromotionalAppSharer/" + appSharerPhoneNumber);
         dispatch({ type: PAYMENT_LIST_BACKSHOPPING_PROMOTIONAL_PRODUCT_SUCCESS, payload: data });
 
     }

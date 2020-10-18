@@ -130,7 +130,7 @@ const listWithdrawAgentToOfarz = () => async (dispatch) => {
 const listWithdrawAppSharerToAgent = (appSharerPhoneNumber) => async (dispatch) => {
     try {
         dispatch({ type: WITHDRAW_LIST_REQUEST_APPSHARER_TO_AGENT, payload: { appSharerPhoneNumber } });
-        const { data } = await axios.get("/api/funds/GetAppSharerWithdrawList/" + appSharerPhoneNumber);
+        const { data } = await axios.get("/api/funds/GetAppSharerWithdrawListToAgent/" + appSharerPhoneNumber);
         dispatch({ type: WITHDRAW_LIST_SUCCESS_APPSHARER_TO_AGENT, payload: data });
     }
     catch (error) {
@@ -142,7 +142,7 @@ const listWithdrawAppSharerToAgent = (appSharerPhoneNumber) => async (dispatch) 
 const listWithdrawAppSharerToOfarz = (appSharerPhoneNumber) => async (dispatch) => {
     try {
         dispatch({ type: WITHDRAW_LIST_REQUEST_APPSHARER_TO_OFARZ, payload: { appSharerPhoneNumber } });
-        const { data } = await axios.get("/api/funds/GetAppSharerWithdrawList/" + appSharerPhoneNumber);
+        const { data } = await axios.get("/api/funds/GetAppSharerWithdrawListToOfarz/" + appSharerPhoneNumber);
         dispatch({ type: WITHDRAW_LIST_SUCCESS_APPSHARER_TO_OFARZ, payload: data });
     }
     catch (error) {
@@ -154,10 +154,10 @@ const listWithdrawAppSharerToOfarz = (appSharerPhoneNumber) => async (dispatch) 
 //#region Withdraw List Karrot
 
 
-const listWithdrawKarrotToAgent = () => async (dispatch) => {
+const listWithdrawKarrotToAgent = (karrotPhoneNumber) => async (dispatch) => {
     try {
-        dispatch({ type: WITHDRAW_LIST_REQUEST_KARROT_TO_AGENT });
-        const { data } = await axios.get("/api/funds/GetKarrotWithdrawList");
+        dispatch({ type: WITHDRAW_LIST_REQUEST_KARROT_TO_AGENT, payload: { karrotPhoneNumber } });
+        const { data } = await axios.get("/api/funds/GetKarrotWithdrawListToAgent/" + karrotPhoneNumber);
         dispatch({ type: WITHDRAW_LIST_SUCCESS_KARROT_TO_AGENT, payload: data });
     }
     catch (error) {
@@ -178,10 +178,10 @@ const listWithdrawKarrotToOfarz = (karrotPhoneNumber) => async (dispatch) => {
 //#endregion
 
 //#region Withdraw List CEO
-const listWithdrawCeoToAgent = () => async (dispatch) => {
+const listWithdrawCeoToAgent = (ceoPhoneNumber) => async (dispatch) => {
     try {
-        dispatch({ type: WITHDRAW_LIST_REQUEST_CEO_TO_AGENT });
-        const { data } = await axios.get("/api/funds/GetCeoWithdrawList");
+        dispatch({ type: WITHDRAW_LIST_REQUEST_CEO_TO_AGENT, payload: { ceoPhoneNumber } });
+        const { data } = await axios.get("/api/funds/GetCeoWithdrawListToAgent/" + ceoPhoneNumber);
         dispatch({ type: WITHDRAW_LIST_SUCCESS_CEO_TO_AGENT, payload: data });
     }
     catch (error) {
@@ -189,10 +189,10 @@ const listWithdrawCeoToAgent = () => async (dispatch) => {
     }
 }
 
-const listWithdrawCeoToOfarz = () => async (dispatch) => {
+const listWithdrawCeoToOfarz = (ceoPhoneNumber) => async (dispatch) => {
     try {
-        dispatch({ type: WITHDRAW_LIST_REQUEST_CEO_TO_OFARZ });
-        const { data } = await axios.get("/api/funds/GetCeoWithdrawList");
+        dispatch({ type: WITHDRAW_LIST_REQUEST_CEO_TO_OFARZ, payload: { ceoPhoneNumber } });
+        const { data } = await axios.get("/api/funds/GetCeoWithdrawListToOfarz/" + ceoPhoneNumber);
         dispatch({ type: WITHDRAW_LIST_SUCCESS_CEO_TO_OFARZ, payload: data });
     }
     catch (error) {
@@ -227,10 +227,10 @@ const withdrawAppSharerToAgent = (amount, agentPhnNumber, currentUserId) => asyn
         dispatch({ type: WITHDRAW_FAIL_APPSHARER_TO_AGENT, payload: error.message });
     }
 }
-const withdrawAppSharerToOfarz = (amount, agentPhnNumber, currentUserId) => async (dispatch, getState) => {
+const withdrawAppSharerToOfarz = (amount, ofarzPhnNumber, currentUserId) => async (dispatch, getState) => {
     try {
-        dispatch({ type: WITHDRAW_REQUEST_APPSHARER_TO_OFARZ, payload: { amount, agentPhnNumber, currentUserId } });
-        const { data } = await axios.post("/api/appsharer/WithdrawMoneyAppSharerToOfarz/", { amount, agentPhnNumber, currentUserId });
+        dispatch({ type: WITHDRAW_REQUEST_APPSHARER_TO_OFARZ, payload: { amount, ofarzPhnNumber, currentUserId } });
+        const { data } = await axios.post("/api/appsharer/WithdrawMoneyAppSharerToOfarz/", { amount, ofarzPhnNumber, currentUserId });
         dispatch({ type: WITHDRAW_SUCCESS_APPSHARER_TO_OFARZ, payload: data });
     }
     catch (error) {

@@ -10,8 +10,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { listPaymentsAppSharer } from '../../../../../actions/Fund/paymentActions';
-import { listWithdrawKarrotToAgent, listWithdrawKarrotToOfarz } from '../../../../../actions/Fund/withdrawActions';
+import { listPaymentsAppSharer, listPaymentsBackShoppingOfferAppSharer, listPaymentsBackShoppingPromotionalAppSharer, listPaymentsMainAccountOfferAppSharer, listPaymentsMainAccountPromotionalAppSharer, listPaymentsTableCashOfferAppSharer, listPaymentsTableCashPromotionalAppSharer } from '../../../../../actions/Fund/paymentActions';
 
 const { SearchBar } = Search;
 
@@ -23,19 +22,18 @@ const defaultSorted = [
 ];
 
 
-const WithdrawListKarrotToAgentForKarrotScreen = (props) => {
+const PaymentListTableCashPromotionalForAppSharerScreen = (props) => {
 
     const userSignIn = useSelector((state) => state.userSignIn)
     const { userInfo } = userSignIn;
 
-
-    const KarrotToOfarz = useSelector((state) => state.withdrawListKarrotToOfarz)
-    const { withdraws } = KarrotToOfarz;
+    const paymentListTableCashPromotionalAppSharer = useSelector((state) => state.paymentListTableCashPromotionalAppSharer)
+    const { payments } = paymentListTableCashPromotionalAppSharer;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(listWithdrawKarrotToAgent(userInfo.item1.phoneNumber))
+        dispatch(listPaymentsTableCashPromotionalAppSharer(userInfo.item1.phoneNumber))
         return () => {
             //
         };
@@ -45,13 +43,28 @@ const WithdrawListKarrotToAgentForKarrotScreen = (props) => {
 
     const columns = [
         {
-            dataField: "userPhoneNumber",
-            text: "User Phone Number",
+            dataField: "payer.firstName",
+            text: "Payer Name",
             sort: true,
         },
         {
-            dataField: "ofarzPhoneNumber",
-            text: "Ofarz Phone Number",
+            dataField: "payerPhoneNumber",
+            text: "Payer Phone Number",
+            sort: true,
+        },
+        {
+            dataField: "agentPhnNumber",
+            text: "Agent Phone Number",
+            sort: true,
+        },
+        {
+            dataField: "productType.name",
+            text: "Product Type",
+            sort: true,
+        },
+        {
+            dataField: "paymentType.paymentTypeName",
+            text: "Payment Type",
             sort: true,
         },
         {
@@ -85,24 +98,17 @@ const WithdrawListKarrotToAgentForKarrotScreen = (props) => {
     return (
 
         <Container>
-            {withdraws ? (
+            {payments ? (
                 <ToolkitProvider
                     bootstrap4
                     keyField="id"
-                    data={withdraws}
+                    data={payments}
                     columns={columns}
                     defaultSorted={defaultSorted}
                     search
                 >
                     {(props) => (
                         <div>
-                            <Row>
-                                <Col>
-                                    <div className="float-right">
-                                        <SearchBar {...props.searchProps} placeholder="Search .." />
-                                    </div>
-                                </Col>
-                            </Row>
                             <BootstrapTable
                                 {...props.baseProps}
                                 pagination={paginationFactory()}
@@ -123,5 +129,4 @@ const WithdrawListKarrotToAgentForKarrotScreen = (props) => {
     );
 };
 
-
-export default WithdrawListKarrotToAgentForKarrotScreen;
+export default PaymentListTableCashPromotionalForAppSharerScreen;

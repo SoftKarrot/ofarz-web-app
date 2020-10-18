@@ -322,12 +322,55 @@ function SideBar({ isOpen, toggle }) {
                                 Fund
                              </NavLink>
                         </NavItem>
+                        <p>______________________________</p>
                         <NavItem>
                             <NavLink tag={Link} to={"/getallpaymentlistsAppSharerForAppSharer"}>
                                 Payment List
                             </NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/getpaymentlistsTableCashOfferForAppSharer"}>
+                                Payment List Table Cash Offer
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/getpaymentlistsTableCashPromotionalForAppSharer"}>
+                                Payment List Table Cash Promotional
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/getpaymentlistsBackShopingOfferForAppSharer"}>
+                                Payment List BackShopping Offer
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/getpaymentlistsBackShoppingPromotionalForAppSharer"}>
+                                Payment List BackShopping Promotional
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/getpaymentlistsMainAccountOfferForAppSharer"}>
+                                Payment List Main Account Offer
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/getpaymentlistsMainAccountPromotionalForAppSharer"}>
+                                Payment List Main Account Promotional
+                            </NavLink>
+                        </NavItem>
                         <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistappsharertoagentforappsharer"}>
+                                Cash Out List To Agent
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistappsharertoofarzforappsharer"}>
+                                Cash Out List To Ofarz
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+
                     </Nav>
                 </div>) :
                 <h1></h1>
@@ -344,10 +387,17 @@ function SideBar({ isOpen, toggle }) {
                         </NavItem>
                         <p>______________________________</p>
                         <NavItem>
+                            <NavLink tag={Link} to={"/passwordupdate"}>
+                                Change Password
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
                             <NavLink tag={Link} to={"/fundshoperforshoper"}>
                                 Shoper Fund
                             </NavLink>
                         </NavItem>
+                        <p>______________________________</p>
                         <NavItem>
                             <NavLink tag={Link} to={"/submitpaymenttablecashofferbyshoper"}>
                                 Table Cash Payment
@@ -360,12 +410,24 @@ function SideBar({ isOpen, toggle }) {
                             </NavLink>
                         </NavItem>
                         <p>______________________________</p>
+
                         <NavItem>
-                            <NavLink tag={Link} to={"/passwordupdate"}>
-                                Change Password
+                            <NavLink tag={Link} to={"/getpaymentlistsShoperforshopper"}>
+                                Payment List All
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/getpaymentlistsShoperbackshoppingoffer"}>
+                                Payment List Back Shopping
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/getpaymentlistsShopertablecashoffer"}>
+                                Payment List Table Cash
                             </NavLink>
                         </NavItem>
                         <p>______________________________</p>
+
                     </Nav>
 
                 </div>) :
@@ -410,6 +472,11 @@ function SideBar({ isOpen, toggle }) {
                                 Cash Out List To Ofarz
                             </NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistkarrottoagent"}>
+                                Cash Out List To Agent
+                            </NavLink>
+                        </NavItem>
                         <p>______________________________</p>
                     </Nav>
 
@@ -437,6 +504,7 @@ function SideBar({ isOpen, toggle }) {
                                 Fund
                             </NavLink>
                         </NavItem>
+                        <p>______________________________</p>
                         <NavItem>
                             <NavLink tag={Link} to={"/withdrawmoneyceotoofarz"}>
                                 Cash Out To Ofarz
@@ -445,6 +513,17 @@ function SideBar({ isOpen, toggle }) {
                         <NavItem>
                             <NavLink tag={Link} to={"/withdrawmoneyceotoagent"}>
                                 Cash Out To Agent
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistceotoagent"}>
+                                Cash Out List To Agent
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistceotoofarz"}>
+                                Cash Out List To Ofarz
                             </NavLink>
                         </NavItem>
                     </Nav>

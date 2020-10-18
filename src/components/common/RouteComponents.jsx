@@ -136,7 +136,24 @@ import FundKarrotForAdminScreen from "../screens/Fund/Funds/AdminAndModerator/ge
 import WithdrawMoneyAppSharerToAgent from "../screens/Fund/withdrawMoney/AppSharer/appSharerWithdrawMoneyToAgentScreen";
 import WithdrawMoneyAppSharerToOfarz from "../screens/Fund/withdrawMoney/AppSharer/appSharerWithdrawMoneyToOfarzScreen";
 import WithdrawMoneyAgentToOfarz from "../screens/Fund/withdrawMoney/Agent/agentWithdrawMoneyToOfarzScreen";
+
 import WithdrawListKarrotToOfarzForKarrotScreen from "../screens/Fund/withdrawList/Karrot/withdrawListKarrotToOfarzForKarrotScreen";
+
+import WithdrawListCeoToAgentForCeoScreen from "../screens/Fund/withdrawList/CEO/withdrawListCeoToAgentForCeoScreen";
+import WithdrawListCeoToOfarzForCeoScreen from "../screens/Fund/withdrawList/CEO/withdrawListCeoToOfarzForCeoScreen";
+import WithdrawListKarrotToAgentForKarrotScreen from "../screens/Fund/withdrawList/Karrot/withdrawListKarrotToAgentForKarrotScreen";
+import PaymentListBackShoppingOfferFroShopperScreen from "../screens/Fund/paymentList/Shoper/paymentListBackShoppingOfferShopperForShopperScreen.jsx";
+import PaymentListTableCashOfferFroShopperScreen from "../screens/Fund/paymentList/Shoper/paymentListTableCashOfferShopperForShopperScreen";
+import WithdrawListAppSharerToOfarzForAppSharerScreen from "../screens/Fund/withdrawList/AppSharer/withdrawListAppSharerToOfarzForAppSharerScreen";
+import WithdrawListAppSharerToAgentForAppSharerScreen from "../screens/Fund/withdrawList/AppSharer/withdrawListAppSharerToAgentForAppSharerScreen";
+import PaymentListAllForShopperScreen from "../screens/Fund/paymentList/Shoper/paymentListAllShoperForShoperScreen";
+import PaymentListTableCashPromotionalForAppSharerScreen from "../screens/Fund/paymentList/AppSharer/paymentListTableCashPromotionalForAppSharerScreen";
+import PaymentListTableCashOfferForAppSharerScreen from "../screens/Fund/paymentList/AppSharer/paymentListTableCashOfferForAppSharerScreen";
+import PaymentListMainAccountOfferForAppSharerScreen from "../screens/Fund/paymentList/AppSharer/paymentListMainAccountOfferForAppSharerScreen";
+import PaymentListBackShoppingOfferForAppSharerScreen from "../screens/Fund/paymentList/AppSharer/paymentListBackShoppingOfferForAppSharerScreen";
+
+import PaymentListBackShoppingPromotionalForAppSharerScreen from "../screens/Fund/paymentList/AppSharer/paymentListBackShoppingPromotionalForAppSharerScreen";
+import PaymentListMainAccountPromotionalForAppSharerScreen from "../screens/Fund/paymentList/AppSharer/paymentListMainAccountPromotionalForAppSharerScreen";
 
 
 //#endregion
@@ -250,6 +267,17 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/getallpaymentlistsShoper" exact component={PaymentListShoperForAdminScreen} />
 
             <Route path="/getallpaymentlistsAppSharerForAppSharer" exact component={PaymentListAppSharerForAppSharerScreen} />
+            <Route path="/getpaymentlistsBackShopingOfferForAppSharer" exact component={PaymentListBackShoppingOfferForAppSharerScreen} />
+            <Route path="/getpaymentlistsBackShoppingPromotionalForAppSharer" exact component={PaymentListBackShoppingPromotionalForAppSharerScreen} />
+            <Route path="/getpaymentlistsMainAccountOfferForAppSharer" exact component={PaymentListMainAccountOfferForAppSharerScreen} />
+            <Route path="/getpaymentlistsMainAccountPromotionalForAppSharer" exact component={PaymentListMainAccountPromotionalForAppSharerScreen} />
+            <Route path="/getpaymentlistsTableCashOfferForAppSharer" exact component={PaymentListTableCashOfferForAppSharerScreen} />
+            <Route path="/getpaymentlistsTableCashPromotionalForAppSharer" exact component={PaymentListTableCashPromotionalForAppSharerScreen} />
+
+
+            <Route path="/getpaymentlistsShoperforshopper" exact component={PaymentListAllForShopperScreen} />
+            <Route path="/getpaymentlistsShopertablecashoffer" exact component={PaymentListTableCashOfferFroShopperScreen} />
+            <Route path="/getpaymentlistsShoperbackshoppingoffer" exact component={PaymentListBackShoppingOfferFroShopperScreen} />
 
 
             <Route path="/withdrawmoneyagenttoofarz" exact component={WithdrawMoneyAgentToOfarz} />
@@ -266,9 +294,16 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/withdrawlistall" exact component={WithdrawListAdminAndModeratorScreen} />
             <Route path="/withdrawlistappSharer" exact component={WithdrawListAppSharerForAdminAndModeratorScreen} />
 
+
+            <Route path="/withdrawlistappsharertoagentforappsharer" exact component={WithdrawListAppSharerToAgentForAppSharerScreen} />
+            <Route path="/withdrawlistappsharertoofarzforappsharer" exact component={WithdrawListAppSharerToOfarzForAppSharerScreen} />
+
+            <Route path="/withdrawlistkarrottoagent" exact component={WithdrawListKarrotToAgentForKarrotScreen} />
             <Route path="/withdrawlistkarrottoofarz" exact component={WithdrawListKarrotToOfarzForKarrotScreen} />
 
-           
+            <Route path="/withdrawlistceotoagent" exact component={WithdrawListCeoToAgentForCeoScreen} />
+            <Route path="/withdrawlistceotoofarz" exact component={WithdrawListCeoToOfarzForCeoScreen} />
+
             <Route path="/fundlistagent" exact component={FundListAgentForAdminScreen} />
             <Route path="/fundlistappsharer" exact component={FundListAppSharerForAdminScreen} />
 
