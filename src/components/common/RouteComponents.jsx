@@ -99,8 +99,7 @@ import PaymentListShoperForAdminScreen from "../screens/Fund/paymentList/AdminAn
 
 import SigninScreen from "../screens/Auth/SignInScreen/signInScreen";
 
-import WithdrawListAdminAndModeratorScreen from "../screens/Fund/withdrawMoney/AdminAndModerator.jsx/getAllWithdrawListForAdminAndModerator";
-import WithdrawListAppSharerForAdminAndModeratorScreen from "../screens/Fund/withdrawMoney/AdminAndModerator.jsx/getAppSharerToAgentWithdrawListAdminAndModerator";
+import WithdrawListAdminAndModeratorScreen from "../screens/Fund/withdrawList/AdminAndModerator/withdrawListAllForAdminAndModerator";
 
 
 import FundListAgentForAdminScreen from "../screens/Fund/Funds/AdminAndModerator/getAllAgentFundForAdminAndModerator";
@@ -154,6 +153,24 @@ import PaymentListBackShoppingOfferForAppSharerScreen from "../screens/Fund/paym
 
 import PaymentListBackShoppingPromotionalForAppSharerScreen from "../screens/Fund/paymentList/AppSharer/paymentListBackShoppingPromotionalForAppSharerScreen";
 import PaymentListMainAccountPromotionalForAppSharerScreen from "../screens/Fund/paymentList/AppSharer/paymentListMainAccountPromotionalForAppSharerScreen";
+import FundAgentForAdminAndModeratorscreen from "../screens/Fund/Funds/AdminAndModerator/getAgentFundForAdminAndModerator";
+import FundAgentForAgentscreen from "../screens/Fund/Funds/Agent/getAgentFundForAgentScreen";
+import WithdrawListAgentToOfarzForAgentScreen from "../screens/Fund/withdrawList/Agent/withdrawListToOfarzForAgentScreen";
+import WithdrawListAgentFromUserForAgentScreen from "../screens/Fund/withdrawList/Agent/withdrawListFromUserForAgentScreen";
+import WithdrawListAgentToOfarzForAdminScreen from "../screens/Fund/withdrawList/AdminAndModerator/withdrawListAgentToOfarzForAdminScreen";
+import WithdrawListAppSharerToAgentForAdminAndModeratorScreen from "../screens/Fund/withdrawList/AdminAndModerator/withdrawListAppSharerToAgentForAdminScreen";
+import WithdrawListAppSharerToOfarzForAdminAndModeratorScreen from "../screens/Fund/withdrawList/AdminAndModerator/withdrawListAppSharerToOfarzForAdminScreen";
+import WithdrawListKarrotToAgentAdminAndModeratorScreen from "../screens/Fund/withdrawList/AdminAndModerator/withdrawListKarrotToAgentForAdminScreen";
+import WithdrawListCeoToAgentAdminAndModeratorScreen from "../screens/Fund/withdrawList/AdminAndModerator/withdrawListCEOToAgentForAdminScreen";
+import WithdrawListCeoToOfarzForAdminAndModeratorScreen from "../screens/Fund/withdrawList/AdminAndModerator/withdrawListCEOToOfarzForAdminScreen";
+import WithdrawListKarrotToOfarzAdminAndModeratorScreen from "../screens/Fund/withdrawList/AdminAndModerator/withdrawListKarrotToOfarzForAdminScreen";
+import FundListShopperForAdminScreen from "../screens/Fund/Funds/AdminAndModerator/getAllShoperFundForAdminAndModerator";
+import FundShopperForAdminScreen from "../screens/Fund/Funds/AdminAndModerator/getShoperFundAdminAndModerator";
+import SubCategoryScreen from "../screens/Regular/subCategory/subCategoriesScreen";
+import SubCategoryCreateScreen from "../screens/Regular/subCategory/subCategoryCreateScreen";
+import SubCategoryDetails from "../screens/Regular/subCategory/subCategoryDetailsScreen";
+import SubCategoryEditScreen from "../screens/Regular/subCategory/subCategoryEditScreen";
+import AreaCodeScreen from "./AreaCodeComponent";
 
 
 //#endregion
@@ -173,6 +190,14 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/categorycreate" exact component={CategoryCreateContainer} />
             <Route path="/categorydetail/:id" exact component={CategoryDetailContaioner} />
             <Route path="/categoryedit/:id" exact component={CategoryEditContainer} />
+
+
+            <Route path="/areacodes" exact component={AreaCodeScreen} />
+
+            <Route path="/subcategories" exact component={SubCategoryScreen} />
+            <Route path="/subcategorycreate" exact component={SubCategoryCreateScreen} />
+            <Route path="/subcategorydetails/:id" exact component={SubCategoryDetails} />
+            <Route path="/subcategoryedit/:id" exact component={SubCategoryEditScreen} />
 
             <Route path="/producttypes" exact component={ProductTypeHomeContainer} />
             <Route path="/producttypecreate" exact component={ProductTypeCreateContainer} />
@@ -292,7 +317,18 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/withdrawmoneyceotoagent" exact component={WithdrawMoneyCEOToAgent} />
 
             <Route path="/withdrawlistall" exact component={WithdrawListAdminAndModeratorScreen} />
-            <Route path="/withdrawlistappSharer" exact component={WithdrawListAppSharerForAdminAndModeratorScreen} />
+            <Route path="/withdrawlistagenttoofarzforadmin" exact component={WithdrawListAgentToOfarzForAdminScreen} />
+            <Route path="/withdrawlistappSharertoagentforadmin" exact component={WithdrawListAppSharerToAgentForAdminAndModeratorScreen} />
+            <Route path="/withdrawlistappSharertoofarzforadmin" exact component={WithdrawListAppSharerToOfarzForAdminAndModeratorScreen} />
+            <Route path="/withdrawlistkarrottoagentforadmin" exact component={WithdrawListKarrotToAgentAdminAndModeratorScreen} />
+            <Route path="/withdrawlistkarrottoofarzforadmin" exact component={WithdrawListKarrotToOfarzAdminAndModeratorScreen} />
+            <Route path="/withdrawlistceotoagentforadmin" exact component={WithdrawListCeoToAgentAdminAndModeratorScreen} />
+            <Route path="/withdrawlistceotoofarzforadmin" exact component={WithdrawListCeoToOfarzForAdminAndModeratorScreen} />
+
+
+            <Route path="/withdrawlistagettoofarzforagent" exact component={WithdrawListAgentToOfarzForAgentScreen} />
+            <Route path="/withdrawlistagefromforagent" exact component={WithdrawListAgentFromUserForAgentScreen} />
+
 
 
             <Route path="/withdrawlistappsharertoagentforappsharer" exact component={WithdrawListAppSharerToAgentForAppSharerScreen} />
@@ -304,12 +340,18 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/withdrawlistceotoagent" exact component={WithdrawListCeoToAgentForCeoScreen} />
             <Route path="/withdrawlistceotoofarz" exact component={WithdrawListCeoToOfarzForCeoScreen} />
 
-            <Route path="/fundlistagent" exact component={FundListAgentForAdminScreen} />
-            <Route path="/fundlistappsharer" exact component={FundListAppSharerForAdminScreen} />
+            <Route path="/fundlistagentforadmin" exact component={FundListAgentForAdminScreen} />
+            <Route path="/fundlistappsharerforadmin" exact component={FundListAppSharerForAdminScreen} />
+            <Route path="/fundlistshopperforadmin" exact component={FundListShopperForAdminScreen} />
 
+
+
+            <Route path="/fundagentforadmin" exact component={FundAgentForAdminAndModeratorscreen} />
             <Route path="/fundappsharerforadmin" exact component={FundAppSharerForAdminScreen} />
+            <Route path="/fundshopperforadmin" exact component={FundShopperForAdminScreen} />
             <Route path="/fundofarzforadmin" exact component={FundOfarzForAdminScreen} />
 
+            <Route path="/fundagentforagent" exact component={FundAgentForAgentscreen} />
             <Route path="/fundsharerforsharer" exact component={FundAppSharerForAppSharerScreen} />
             <Route path="/fundkarrotforkarrot" exact component={FundKarrotForKarrotScreen} />
             <Route path="/fundceoforceo" exact component={FundCEOForCEOScreen} />

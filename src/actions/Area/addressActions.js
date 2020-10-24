@@ -1,25 +1,28 @@
 import axios from 'axios'
 import {
+    AREA_CODE_LIST_FAIL,
+    AREA_CODE_LIST_REQUEST,
+    AREA_CODE_LIST_SUCCESS,
     COUNTRY_LIST_FAIL,
     COUNTRY_LIST_REQUEST,
     COUNTRY_LIST_SUCCESS,
-    
+
     DISTRICT_LIST_FAIL,
     DISTRICT_LIST_REQUEST,
     DISTRICT_LIST_SUCCESS,
-    
+
     DIVISION_LIST_FAIL,
     DIVISION_LIST_REQUEST,
     DIVISION_LIST_SUCCESS,
-    
+
     MARKET_LIST_FAIL,
     MARKET_LIST_REQUEST,
     MARKET_LIST_SUCCESS,
-    
+
     UNION_LIST_FAIL,
     UNION_LIST_REQUEST,
     UNION_LIST_SUCCESS,
-    
+
     UPOZILA_LIST_FAIL,
     UPOZILA_LIST_REQUEST,
     UPOZILA_LIST_SUCCESS
@@ -97,4 +100,26 @@ const listMarkets = (unionId) => async (dispatch) => {
     }
 }
 
-export { listCountries, listDivisions, listDistricts, listUpozilas, listUnions, listMarkets }
+
+
+const listAreaCode = () => async (dispatch) => {
+    try {
+        dispatch({ type: AREA_CODE_LIST_REQUEST });
+        const { data } = await axios.get("/api/address/GetAreaCode");
+        dispatch({ type: AREA_CODE_LIST_SUCCESS, payload: data });
+    }
+    catch (error) {
+        dispatch({ type: AREA_CODE_LIST_FAIL, payload: error.message });
+    }
+}
+
+
+export {
+    listCountries,
+    listDivisions,
+    listDistricts,
+    listUpozilas,
+    listUnions,
+    listMarkets,
+    listAreaCode
+}

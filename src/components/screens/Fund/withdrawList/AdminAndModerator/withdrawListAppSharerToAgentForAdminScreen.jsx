@@ -21,7 +21,7 @@ const defaultSorted = [
     },
 ];
 
-const WithdrawListAppSharerForAdminAndModeratorScreen = (props) => {
+const WithdrawListAppSharerToAgentForAdminAndModeratorScreen = (props) => {
 
     const [appSharerPhoneNumber, setAppSharerPhoneNumber] = useState('');
 
@@ -63,22 +63,7 @@ const WithdrawListAppSharerForAdminAndModeratorScreen = (props) => {
             dataField: "amount",
             text: "Amount",
             sort: true,
-        },
-        {
-            dataField: "link",
-            text: "Action",
-            formatter: (rowContent, row) => {
-                return (
-                    <div>
-                        <Link to={"marketdetails/" + row.id}>
-                            <Button color="dark" className="mr-2">
-                                <FontAwesomeIcon icon={faInfo} /> Detail
-                            </Button>
-                        </Link>
-                    </div>
-                );
-            },
-        },
+        }
     ];
 
     return (
@@ -139,4 +124,4 @@ const WithdrawListAppSharerForAdminAndModeratorScreen = (props) => {
     );
 };
 
-export default WithdrawListAppSharerForAdminAndModeratorScreen;
+export default WithdrawListAppSharerToAgentForAdminAndModeratorScreen;

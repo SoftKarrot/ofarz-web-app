@@ -3,17 +3,14 @@ import BootstrapTable from "react-bootstrap-table-next";
 import { Container, Button, Row, Col, Spinner, Label, Input, Form, FormGroup } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faInfo,
-    faEdit,
-    faTrash,
-    faUserPlus,
+    faInfo
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { listPayments, listPaymentsAgent } from '../../../../../actions/Fund/paymentActions';
+import { listWithdrawAppSharer, listWithdrawAppSharerToAgent, listWithdrawCeoToAgent } from '../../../../../actions/Fund/withdrawActions';
 
 const { SearchBar } = Search;
 
@@ -24,20 +21,16 @@ const defaultSorted = [
     },
 ];
 
+const WithdrawListCeoToAgentAdminAndModeratorScreen = (props) => {
 
-const PaymentListFullForAdminScreen = (props) => {
+    const [ceoPhoneNumber, setCeoPhoneNumber] = useState('');
 
-    const [agentPhnNumber, setAgentPhnNumber] = useState('');
-
-    const paymentListAgent = useSelector((state) => state.paymentListAgent)
-    const { payments } = paymentListAgent;
+    const withdraw = useSelector((state) => state.withdrawListCeoToAgent)
+    const { withdraws } = withdraw;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-
-
-
         return () => {
             //
         };
@@ -46,18 +39,13 @@ const PaymentListFullForAdminScreen = (props) => {
 
     const submitHandler = () => {
 
-        dispatch(listPaymentsAgent(agentPhnNumber))
+        dispatch(listWithdrawCeoToAgent(ceoPhoneNumber))
     }
 
     const columns = [
         {
-            dataField: "payerName",
-            text: "Payer Name",
-            sort: true,
-        },
-        {
-            dataField: "payerPhoneNumber",
-            text: "Payer Phone Number",
+            dataField: "userPhoneNumber",
+            text: "User Phone Number",
             sort: true,
         },
         {
@@ -66,35 +54,26 @@ const PaymentListFullForAdminScreen = (props) => {
             sort: true,
         },
         {
-            dataField: "productType.name",
-            text: "Product Type",
-            sort: true,
-        },
-        {
-            dataField: "paymentType.paymentTypeName",
-            text: "Payment Type",
-            sort: true,
-        },
-        {
             dataField: "paymentTime",
             text: "Payment Time",
             sort: true,
+            style: { 'width': '120px' }
         },
         {
-            dataField: "payer.applicationRole.name",
-            text: "User",
+            dataField: "amount",
+            text: "Amount",
             sort: true,
-        },
+        }
     ];
 
     return (
 
         <Container>
-            {payments ? (
+            {withdraws ? (
                 <ToolkitProvider
                     bootstrap4
                     keyField="id"
-                    data={payments}
+                    data={withdraws}
                     columns={columns}
                     defaultSorted={defaultSorted}
                     search
@@ -113,8 +92,8 @@ const PaymentListFullForAdminScreen = (props) => {
                                                         id="name"
                                                         placeholder="Enter Product Name"
                                                         size="lg"
-                                                        value={agentPhnNumber}
-                                                        onChange={(e) => setAgentPhnNumber(e.target.value)}
+                                                        value={ceoPhoneNumber}
+                                                        onChange={(e) => setCeoPhoneNumber(e.target.value)}
                                                     />
                                                 </FormGroup>
                                             </div>
@@ -145,4 +124,4 @@ const PaymentListFullForAdminScreen = (props) => {
     );
 };
 
-export default PaymentListFullForAdminScreen;
+export default WithdrawListCeoToAgentAdminAndModeratorScreen;

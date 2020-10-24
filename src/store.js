@@ -110,6 +110,7 @@ import {
     marketUpdateReducer
 } from './reducers/Area/marketReducers';
 import {
+    areaCodeListReducerad,
     countryListReducerad,
     districtListReducerad,
     divisionListReducerad,
@@ -169,6 +170,7 @@ import {
     withdrawKarrotReducer,
     withdrawKarrotToAgentReducer,
     withdrawKarrotToOfarzReducer,
+    withdrawListAgentFromUserReducer,
     withdrawListAgentReducer,
     withdrawListAgentToOfarzReducer,
     withdrawListAppSharerReducer,
@@ -180,6 +182,9 @@ import {
     withdrawListKarrotReducer,
     withdrawListKarrotToAgentReducer,
     withdrawListKarrotToOfarzReducer,
+    withdrawListOfarzFromAppSharerReducer,
+    withdrawListOfarzFromCeoReducer,
+    withdrawListOfarzFromKarrotReducer,
     withdrawListReducer
 } from './reducers/Fund/withdrawReducers';
 import {
@@ -200,6 +205,7 @@ import {
 import { karrotAddReducer, karrotProfileDetailsReducer, karrotUpdateReducer } from './reducers/Auth/karrotReducers';
 import { ceoAddReducer, ceoProfileDetailsReducer, ceoUpdateReducer } from './reducers/Auth/ceoReducers';
 import { ofarzAddReducer } from './reducers/Auth/ofarzReducers';
+import { subCategoryDeleteReducer, subCategoryDetailsReducer, subCategoryListReducer, subCategorySaveReducer, subCategoryUpdateReducer } from './reducers/Regular/subCategoryReducers';
 //#endregion
 
 const cartItems = Cookie.getJSON('cartItems') || [];
@@ -256,6 +262,7 @@ const reducer = combineReducers({
     upozilaListAd: upozilaListReducerad,
     unionListAd: unionListReducerad,
     marketListAd: marketListReducerad,
+    areaCodeList: areaCodeListReducerad,
     //#endregion
 
     //#region Regular
@@ -264,6 +271,12 @@ const reducer = combineReducers({
     categorySave: categorySaveReducer,
     categoryUpdate: categoryUpdateReducer,
     categoryDelete: categoryDeleteReducer,
+
+    subCategoryList: subCategoryListReducer,
+    subCategoryDetails: subCategoryDetailsReducer,
+    subCategorySave: subCategorySaveReducer,
+    subCategoryUpdate: subCategoryUpdateReducer,
+    subCategoryDelete: subCategoryDeleteReducer,
 
     productTypeList: productTypeListReducer,
     productTypeDetails: productTypeDetailsReducer,
@@ -375,10 +388,16 @@ const reducer = combineReducers({
 
     //#region Withdraw
     withdrawList: withdrawListReducer,
+
     withdrawListAgentToOfarz: withdrawListAgentToOfarzReducer,
+    withdrawListAgentFromUser: withdrawListAgentFromUserReducer,
 
     withdrawListAppSharerToAgent: withdrawListAppSharerToAgentReducer,
     withdrawListAppSharerToOfarz: withdrawListAppSharerToOfarzReducer,
+
+    withdrawListOfarzFromAppSharer: withdrawListOfarzFromAppSharerReducer,
+    withdrawListOfarzFromKarrot: withdrawListOfarzFromKarrotReducer,
+    withdrawListOfarzFromCeo: withdrawListOfarzFromCeoReducer,
 
     withdrawListKarrotToAgent: withdrawListKarrotToAgentReducer,
     withdrawListKarrotToOfarz: withdrawListKarrotToOfarzReducer,
@@ -406,7 +425,7 @@ const reducer = combineReducers({
     fundKarrot: fundListKarrotReducer,
     fundCeo: fundListCeoReducer,
     fundListOfarz: fundListOfarzReducer,
-    
+
 
     //#endregion
 

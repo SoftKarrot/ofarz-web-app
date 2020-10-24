@@ -73,24 +73,73 @@ function SideBar({ isOpen, toggle }) {
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink tag={Link} to={"/withdrawlistappSharer"}>
-                                Get All Withdraw Lists App Sharer
+                            <NavLink tag={Link} to={"/withdrawlistagenttoofarzforadmin"}>
+                                Get All Withdraw Lists Agent To Ofarz
+                            </NavLink>
+                        </NavItem>
+                        <p>_____________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistappSharertoagentforadmin"}>
+                                Get All Withdraw Lists App Sharer To Agent
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistappSharertoofarzforadmin"}>
+                                Get All Withdraw Lists App Sharer To Ofarz
+                            </NavLink>
+                        </NavItem>
+                        <p>_____________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistkarrottoagentforadmin"}>
+                                Get All Withdraw Lists Karrot To Agent
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistkarrottoofarzforadmin"}>
+                                Get All Withdraw Lists Karrot To Ofarz
+                            </NavLink>
+                        </NavItem>
+                        <p>_____________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistceotoagentforadmin"}>
+                                Get All Withdraw Lists CEO To Agent
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistceotoofarzforadmin"}>
+                                Get All Withdraw Lists CEO To Ofarz
                             </NavLink>
                         </NavItem>
                         <p>______________________________</p>
                         <NavItem>
-                            <NavLink tag={Link} to={"/fundlistagent"}>
+                            <NavLink tag={Link} to={"/fundlistagentforadmin"}>
                                 Get All Agents Fund Lists
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink tag={Link} to={"/fundlistappsharer"}>
+                            <NavLink tag={Link} to={"/fundlistappsharerforadmin"}>
                                 Get All App Sharer Fund Lists
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/fundlistshopperforadmin"}>
+                                Get All Shopper Fund Lists
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/fundagentforadmin"}>
+                                Get Agent Fund
                             </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/fundappsharerforadmin"}>
                                 Get App Sharer Fund
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/fundshopperforadmin"}>
+                                Get Shopper Fund
                             </NavLink>
                         </NavItem>
                         <NavItem>
@@ -162,6 +211,11 @@ function SideBar({ isOpen, toggle }) {
                             </NavLink>
                         </NavItem>
                         <NavItem>
+                            <NavLink tag={Link} to={"/subcategories"}>
+                                SubCategory
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
                             <NavLink tag={Link} to={"/producttypes"}>
                                 ProductType
                             </NavLink>
@@ -213,6 +267,11 @@ function SideBar({ isOpen, toggle }) {
                                 Market
                             </NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/areacodes"}>
+                                Area Codes
+                            </NavLink>
+                        </NavItem>
                     </Nav>
                 </div>
             ) : (
@@ -234,7 +293,12 @@ function SideBar({ isOpen, toggle }) {
                             </NavLink>
                         </NavItem>
                         <p>______________________________</p>
-
+                        <NavItem>
+                            <NavLink tag={Link} to={"/fundagentforagent"}>
+                                Get Agent Fund
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
                         <NavItem>
                             <NavLink tag={Link} to={"/agentptype"}>
                                 Agent Product List
@@ -247,6 +311,22 @@ function SideBar({ isOpen, toggle }) {
                             </NavLink>
                         </NavItem>
                         <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistagettoofarzforagent"}>
+                                Cash Out List To Ofarz
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/withdrawlistagefromforagent"}>
+                                Cash Out List From User
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/areacodes"}>
+                                Area Codes
+                            </NavLink>
+                        </NavItem>
                     </Nav>
 
                 </div>) :
@@ -370,6 +450,11 @@ function SideBar({ isOpen, toggle }) {
                             </NavLink>
                         </NavItem>
                         <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/areacodes"}>
+                                Area Codes
+                            </NavLink>
+                        </NavItem>
 
                     </Nav>
                 </div>) :
@@ -427,6 +512,11 @@ function SideBar({ isOpen, toggle }) {
                             </NavLink>
                         </NavItem>
                         <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/areacodes"}>
+                                Area Codes
+                            </NavLink>
+                        </NavItem>
 
                     </Nav>
 

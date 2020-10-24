@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Row, Col, Spinner } from "reactstrap";
+import { Container, Button, Row, Col, Spinner, Label, Input, Form, FormGroup } from "reactstrap";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
-import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { listFundsAppSharer, listFundsShoper } from '../../../../../actions/Fund/fundActions';
+import { listWithdrawAgentToOfarz } from '../../../../../actions/Fund/withdrawActions';
 
 const { SearchBar } = Search;
 
@@ -18,61 +17,62 @@ const defaultSorted = [
 ];
 
 
-const FundListShopperForAdminScreen = (props) => {
+const WithdrawListAgentToOfarzForAgentScreen = (props) => {
 
-    const fundListShoper = useSelector((state) => state.fundListShoper)
-    const { funds } = fundListShoper;
+    const userSignIn = useSelector((state) => state.userSignIn)
+    const { userInfo } = userSignIn;
+
+    const withdrawListAgentToOfarz = useSelector((state) => state.withdrawListAgentToOfarz)
+    const { withdraws } = withdrawListAgentToOfarz;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-
-        dispatch(listFundsShoper());
+        dispatch(listWithdrawAgentToOfarz(userInfo.item1.phoneNumber))
         return () => {
             //
         };
     }, []);
 
 
+
     const columns = [
         {
-            dataField: "shoperName",
-            text: "Shopper Name",
+            dataField: "userName",
+            text: "Payer Name",
             sort: true,
         },
         {
-            dataField: "shoperPhoneNumber",
-            text: "Shopper Phone Number",
+            dataField: "userPhoneNumber",
+            text: "Payer Phone Number",
             sort: true,
         },
         {
-            dataField: "backShoppingAccount",
-            text: "BackShoppingAccount",
+            dataField: "ofarzPhoneNumber",
+            text: "Ofarz Phone Number",
             sort: true,
         },
+        {
+            dataField: "amount",
+            text: "Amount",
+            sort: true,
+        }
     ];
 
     return (
 
         <Container>
-            {funds ? (
+            {withdraws ? (
                 <ToolkitProvider
                     bootstrap4
                     keyField="id"
-                    data={funds}
+                    data={withdraws}
                     columns={columns}
                     defaultSorted={defaultSorted}
                     search
                 >
                     {(props) => (
                         <div>
-                            <Row>
-                                <Col>
-                                    <div className="float-right">
-                                        <SearchBar {...props.searchProps} placeholder="Search .." />
-                                    </div>
-                                </Col>
-                            </Row>
                             <BootstrapTable
                                 {...props.baseProps}
                                 pagination={paginationFactory()}
@@ -93,4 +93,4 @@ const FundListShopperForAdminScreen = (props) => {
     );
 };
 
-export default FundListShopperForAdminScreen;
+export default WithdrawListAgentToOfarzForAgentScreen;

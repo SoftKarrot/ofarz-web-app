@@ -8,14 +8,16 @@ import {
 import { listCategories } from '../../../../actions/Regular/categoryActions';
 import { listProducttypes } from '../../../../actions/Regular/productTypeActions';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import { listSubCategories } from '../../../../actions/Regular/subCategoryActions';
 
 function ProductCreateScreen(props) {
-    
+
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [productCode, setProductCode] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [categoryId, setCategory] = useState('');
+    const [subCategoryId, setSubCategory] = useState('');
     const [productTypeId, setProductType] = useState('');
     const [countInStock, setCountInStock] = useState('');
     const [description, setDescription] = useState('');
@@ -24,7 +26,7 @@ function ProductCreateScreen(props) {
 
     const productSave = useSelector((state) => state.productSave);
     const {
- 
+
         success: successSave,
 
     } = productSave;
@@ -39,6 +41,9 @@ function ProductCreateScreen(props) {
     const categoryList = useSelector((state) => state.categoryList);
     const { categories } = categoryList;
 
+    const subCategoryList = useSelector((state) => state.subCategoryList);
+    const { subCategories } = subCategoryList;
+
     const productTypeList = useSelector((state) => state.productTypeList);
     const { productTypes } = productTypeList;
 
@@ -47,6 +52,7 @@ function ProductCreateScreen(props) {
     useEffect(() => {
         dispatch(listProducts());
         dispatch(listCategories());
+        dispatch(listSubCategories());
         dispatch(listProducttypes());
         return () => {
             //
@@ -62,6 +68,7 @@ function ProductCreateScreen(props) {
                 productCode,
                 imageUrl,
                 categoryId,
+                subCategoryId,
                 productTypeId,
                 countInStock,
                 description,
@@ -71,6 +78,9 @@ function ProductCreateScreen(props) {
     const saveCatHandler = (e) => {
         setCategory(e.target.value);
     }
+    const saveSubCatHandler = (e) => {
+        setCategory(e.target.value);
+    }
     const savePTypeHandler = (e) => {
         setProductType(e.target.value);
     }
@@ -78,7 +88,7 @@ function ProductCreateScreen(props) {
         const file = e.target.files[0];
         const bodyFormData = new FormData();
         bodyFormData.append('imageUrl', file);
-     
+
         axios
             .post('/api/products/savephoto', bodyFormData, {
                 headers: {
@@ -87,11 +97,11 @@ function ProductCreateScreen(props) {
             })
             .then((response) => {
                 setImageUrl(response.data);
-                
+
             })
             .catch((err) => {
                 console.log(err);
-                
+
             });
     };
     return (
@@ -162,7 +172,7 @@ function ProductCreateScreen(props) {
                         </div>
 
                         <div className="row">
-                            <div className="col col-lg-6">
+                            <div className="col col-lg-4">
                                 <FormGroup>
                                     <Label for="exampleSelect">Product Type</Label>
                                     <Input
@@ -182,7 +192,7 @@ function ProductCreateScreen(props) {
                                     </Input>
                                 </FormGroup>
                             </div>
-                            <div className="col col-lg-6">
+                            <div className="col col-lg-4">
                                 <FormGroup>
                                     <Label for="exampleSelect">Category</Label>
                                     <Input
@@ -196,6 +206,25 @@ function ProductCreateScreen(props) {
                                         {categories.map((category) => (
                                             <option value={category.id}>
                                                 {category.name}
+                                            </option>
+                                        ))}
+                                    </Input>
+                                </FormGroup>
+                            </div>
+                            <div className="col col-lg-4">
+                                <FormGroup>
+                                    <Label for="exampleSelect">SubCategory</Label>
+                                    <Input
+                                        type="select"
+                                        name="select"
+                                        id="exampleSelect"
+                                        size="lg"
+                                        onChange={saveSubCatHandler}
+                                    >
+                                        <option>Select SubCategory</option>
+                                        {subCategories.map((subCategory) => (
+                                            <option value={subCategory.id}>
+                                                {subCategory.name}
                                             </option>
                                         ))}
                                     </Input>

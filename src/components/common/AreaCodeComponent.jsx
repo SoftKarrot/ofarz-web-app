@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import BootstrapTable from "react-bootstrap-table-next";
 import { Container, Row, Col, Spinner } from "reactstrap";
+
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
-import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { listFundsAppSharer, listFundsShoper } from '../../../../../actions/Fund/fundActions';
+
+import { listAreaCode } from '../../actions/Area/addressActions';
 
 const { SearchBar } = Search;
 
@@ -17,17 +18,15 @@ const defaultSorted = [
     },
 ];
 
+const AreaCodeScreen = (props) => {
 
-const FundListShopperForAdminScreen = (props) => {
-
-    const fundListShoper = useSelector((state) => state.fundListShoper)
-    const { funds } = fundListShoper;
+    const areaCodeList = useSelector((state) => state.areaCodeList);
+    const { codes } = areaCodeList;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-
-        dispatch(listFundsShoper());
+        dispatch(listAreaCode());
         return () => {
             //
         };
@@ -36,18 +35,53 @@ const FundListShopperForAdminScreen = (props) => {
 
     const columns = [
         {
-            dataField: "shoperName",
-            text: "Shopper Name",
+            dataField: "unionOrWard.upozila.district.division.name",
+            text: "Division",
             sort: true,
         },
         {
-            dataField: "shoperPhoneNumber",
-            text: "Shopper Phone Number",
+            dataField: "unionOrWard.upozila.district.division.divisionCode",
+            text: "Division Code",
             sort: true,
         },
         {
-            dataField: "backShoppingAccount",
-            text: "BackShoppingAccount",
+            dataField: "unionOrWard.upozila.district.name",
+            text: "District",
+            sort: true,
+        },
+        {
+            dataField: "unionOrWard.upozila.district.districtCode",
+            text: "District Code",
+            sort: true,
+        },
+        {
+            dataField: "unionOrWard.upozila.name",
+            text: "Upozila",
+            sort: true,
+        },
+        {
+            dataField: "unionOrWard.upozila.upozilaCode",
+            text: "Upozila Code",
+            sort: true,
+        },
+        {
+            dataField: "unionOrWard.name",
+            text: "Union Or Ward",
+            sort: true,
+        },
+        {
+            dataField: "unionOrWard.unionOrWardCode",
+            text: "Union Or Ward Code",
+            sort: true,
+        },
+        {
+            dataField: "name",
+            text: "Market",
+            sort: true,
+        },
+        {
+            dataField: "marketCode",
+            text: "Market Code",
             sort: true,
         },
     ];
@@ -55,11 +89,11 @@ const FundListShopperForAdminScreen = (props) => {
     return (
 
         <Container>
-            {funds ? (
+            {codes ? (
                 <ToolkitProvider
                     bootstrap4
                     keyField="id"
-                    data={funds}
+                    data={codes}
                     columns={columns}
                     defaultSorted={defaultSorted}
                     search
@@ -73,6 +107,7 @@ const FundListShopperForAdminScreen = (props) => {
                                     </div>
                                 </Col>
                             </Row>
+
                             <BootstrapTable
                                 {...props.baseProps}
                                 pagination={paginationFactory()}
@@ -93,4 +128,4 @@ const FundListShopperForAdminScreen = (props) => {
     );
 };
 
-export default FundListShopperForAdminScreen;
+export default AreaCodeScreen;

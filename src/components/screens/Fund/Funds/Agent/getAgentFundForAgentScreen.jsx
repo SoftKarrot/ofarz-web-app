@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import BootstrapTable from "react-bootstrap-table-next";
 import { Container, Button, Row, Col, Spinner, Label, Input, Form, FormGroup } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faInfo
+} from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 
@@ -15,9 +19,11 @@ const defaultSorted = [
 ];
 
 
-const FundAgentForAdminAndModeratorscreen = (props) => {
+const FundAgentForAgentscreen = (props) => {
 
-    const [agentPhoneNumber, setAgentPhoneNumber] = useState('');
+    const userSignIn = useSelector((state) => state.userSignIn);
+    const { userInfo } = userSignIn;
+
 
     const fund = useSelector((state) => state.fundListAgent)
     const { funds } = fund;
@@ -26,16 +32,13 @@ const FundAgentForAdminAndModeratorscreen = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // dispatch(fundAgent(agentPhoneNumber))
+        dispatch(fundAgent(userInfo.item1.phoneNumber))
         return () => {
             //
         };
     }, []);
 
-    const submitHandler = () => {
 
-        dispatch(fundAgent(agentPhoneNumber))
-    }
 
     const columns = [
         {
@@ -62,30 +65,6 @@ const FundAgentForAdminAndModeratorscreen = (props) => {
                 >
                     {(props) => (
                         <div>
-                            <Row>
-                                <Col>
-                                    <div className="float-right">
-                                        <Form onSubmit={submitHandler}>
-                                            <div className="col col-lg-6">
-                                                <FormGroup>
-                                                    <Label for="name">Name</Label>
-                                                    <Input type="text"
-                                                        name="name"
-                                                        id="name"
-                                                        placeholder="agentPhoneNumber"
-                                                        size="lg"
-                                                        value={agentPhoneNumber}
-                                                        onChange={(e) => setAgentPhoneNumber(e.target.value)}
-                                                    />
-                                                </FormGroup>
-                                            </div>
-                                            <Button variant="primary" type="submit">
-                                                Submit
-                                            </Button>
-                                        </Form>
-                                    </div>
-                                </Col>
-                            </Row>
                             <BootstrapTable
                                 {...props.baseProps}
                                 pagination={paginationFactory()}
@@ -106,4 +85,4 @@ const FundAgentForAdminAndModeratorscreen = (props) => {
     );
 };
 
-export default FundAgentForAdminAndModeratorscreen
+export default FundAgentForAgentscreen

@@ -55,7 +55,7 @@ const listFundsAppSharer = () => async (dispatch) => {
 const listFundsShoper = () => async (dispatch) => {
     try {
         dispatch({ type: FUND_LIST_REQUEST_SHOPER });
-        const { data } = await axios.get("/api/funds/getAllPaymentListShoper");
+        const { data } = await axios.get("/api/funds/GetShoperFundList");
         dispatch({ type: FUND_LIST_SUCCESS_SHOPER, payload: data });
 
     }

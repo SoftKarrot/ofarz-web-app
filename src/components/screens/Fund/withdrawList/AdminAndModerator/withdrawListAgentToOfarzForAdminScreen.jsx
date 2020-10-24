@@ -3,17 +3,15 @@ import BootstrapTable from "react-bootstrap-table-next";
 import { Container, Button, Row, Col, Spinner, Label, Input, Form, FormGroup } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faInfo,
-    faEdit,
-    faTrash,
-    faUserPlus,
+    faInfo
 } from "@fortawesome/free-solid-svg-icons";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { listPayments, listPaymentsAgent } from '../../../../../actions/Fund/paymentActions';
+import { listPaymentsAppSharer } from '../../../../../actions/Fund/paymentActions';
+import { listWithdrawAgentToOfarz } from '../../../../../actions/Fund/withdrawActions';
 
 const { SearchBar } = Search;
 
@@ -25,19 +23,16 @@ const defaultSorted = [
 ];
 
 
-const PaymentListFullForAdminScreen = (props) => {
+const WithdrawListAgentToOfarzForAdminScreen = (props) => {
 
     const [agentPhnNumber, setAgentPhnNumber] = useState('');
 
-    const paymentListAgent = useSelector((state) => state.paymentListAgent)
-    const { payments } = paymentListAgent;
+    const withdrawListAgentToOfarz = useSelector((state) => state.withdrawListAgentToOfarz)
+    const { withdraws } = withdrawListAgentToOfarz;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-
-
-
         return () => {
             //
         };
@@ -46,55 +41,41 @@ const PaymentListFullForAdminScreen = (props) => {
 
     const submitHandler = () => {
 
-        dispatch(listPaymentsAgent(agentPhnNumber))
+        dispatch(listWithdrawAgentToOfarz(agentPhnNumber))
     }
 
     const columns = [
         {
-            dataField: "payerName",
+            dataField: "userName",
             text: "Payer Name",
             sort: true,
         },
         {
-            dataField: "payerPhoneNumber",
+            dataField: "userPhoneNumber",
             text: "Payer Phone Number",
             sort: true,
         },
         {
-            dataField: "agentPhnNumber",
-            text: "Agent Phone Number",
+            dataField: "ofarzPhoneNumber",
+            text: "Ofarz Phone Number",
             sort: true,
         },
         {
-            dataField: "productType.name",
-            text: "Product Type",
+            dataField: "amount",
+            text: "Amount",
             sort: true,
-        },
-        {
-            dataField: "paymentType.paymentTypeName",
-            text: "Payment Type",
-            sort: true,
-        },
-        {
-            dataField: "paymentTime",
-            text: "Payment Time",
-            sort: true,
-        },
-        {
-            dataField: "payer.applicationRole.name",
-            text: "User",
-            sort: true,
-        },
+        }
     ];
+
 
     return (
 
         <Container>
-            {payments ? (
+            {withdraws ? (
                 <ToolkitProvider
                     bootstrap4
                     keyField="id"
-                    data={payments}
+                    data={withdraws}
                     columns={columns}
                     defaultSorted={defaultSorted}
                     search
@@ -145,4 +126,4 @@ const PaymentListFullForAdminScreen = (props) => {
     );
 };
 
-export default PaymentListFullForAdminScreen;
+export default WithdrawListAgentToOfarzForAdminScreen;

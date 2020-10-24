@@ -16,6 +16,8 @@ import {
 
     WITHDRAW_LIST_FAIL,
 
+    WITHDRAW_LIST_FAIL_AGENT_FROM_USER,
+
     WITHDRAW_LIST_FAIL_AGENT_TO_OFARZ,
 
     WITHDRAW_LIST_FAIL_APPSHARER_TO_AGENT,
@@ -32,7 +34,15 @@ import {
 
     WITHDRAW_LIST_FAIL_KARROT_TO_OFARZ,
 
+    WITHDRAW_LIST_FAIL_OFARZ_FROM_APPSHARER,
+
+    WITHDRAW_LIST_FAIL_OFARZ_FROM_CEO,
+
+    WITHDRAW_LIST_FAIL_OFARZ_FROM_KARROT,
+
     WITHDRAW_LIST_REQUEST,
+
+    WITHDRAW_LIST_REQUEST_AGENT_FROM_USER,
 
     WITHDRAW_LIST_REQUEST_AGENT_TO_OFARZ,
 
@@ -50,7 +60,15 @@ import {
 
     WITHDRAW_LIST_REQUEST_KARROT_TO_OFARZ,
 
+    WITHDRAW_LIST_REQUEST_OFARZ_FROM_APPSHARER,
+
+    WITHDRAW_LIST_REQUEST_OFARZ_FROM_CEO,
+
+    WITHDRAW_LIST_REQUEST_OFARZ_FROM_KARROT,
+
     WITHDRAW_LIST_SUCCESS,
+
+    WITHDRAW_LIST_SUCCESS_AGENT_FROM_USER,
 
     WITHDRAW_LIST_SUCCESS_AGENT_TO_OFARZ,
 
@@ -68,6 +86,15 @@ import {
 
 
     WITHDRAW_LIST_SUCCESS_KARROT_TO_OFARZ,
+
+
+    WITHDRAW_LIST_SUCCESS_OFARZ_FROM_APPSHARER,
+
+
+    WITHDRAW_LIST_SUCCESS_OFARZ_FROM_CEO,
+
+
+    WITHDRAW_LIST_SUCCESS_OFARZ_FROM_KARROT,
 
 
     WITHDRAW_REQUEST_AGENT_TO_OFARZ,
@@ -111,12 +138,12 @@ const listWithdraw = () => async (dispatch) => {
 }
 
 //#region Withdraw list Agent
-const listWithdrawAgentToOfarz = () => async (dispatch) => {
+const listWithdrawAgentToOfarz = (agentPhoneNumber) => async (dispatch) => {
 
     try {
 
-        dispatch({ type: WITHDRAW_LIST_REQUEST_AGENT_TO_OFARZ });
-        const { data } = await axios.get("/api/funds/GetAgentWithdrawList");
+        dispatch({ type: WITHDRAW_LIST_REQUEST_AGENT_TO_OFARZ, payload: { agentPhoneNumber } });
+        const { data } = await axios.get("/api/funds/GetAgentWithdrawListToOfarz/" + agentPhoneNumber);
         dispatch({ type: WITHDRAW_LIST_SUCCESS_AGENT_TO_OFARZ, payload: data });
 
     }
@@ -124,6 +151,61 @@ const listWithdrawAgentToOfarz = () => async (dispatch) => {
         dispatch({ type: WITHDRAW_LIST_FAIL_AGENT_TO_OFARZ, payload: error.message });
     }
 }
+
+const listWithdrawAgentFromUser = (agentPhoneNumber) => async (dispatch) => {
+
+    try {
+        dispatch({ type: WITHDRAW_LIST_REQUEST_AGENT_FROM_USER, payload: { agentPhoneNumber } });
+        const { data } = await axios.get("/api/funds/GetAgentWithdrawListFromUser/" + agentPhoneNumber);
+        dispatch({ type: WITHDRAW_LIST_SUCCESS_AGENT_FROM_USER, payload: data });
+
+    }
+    catch (error) {
+        dispatch({ type: WITHDRAW_LIST_FAIL_AGENT_FROM_USER, payload: error.message });
+    }
+}
+//#endregion
+//#region Withdraw List Ofarz
+
+const listWithdrawOfarzFromAppSharer = (ofarzPhoneNumber) => async (dispatch) => {
+
+    try {
+        dispatch({ type: WITHDRAW_LIST_REQUEST_OFARZ_FROM_APPSHARER, payload: { ofarzPhoneNumber } });
+        const { data } = await axios.get("/api/funds/GetAgentWithdrawListFromUser/" + ofarzPhoneNumber);
+        dispatch({ type: WITHDRAW_LIST_SUCCESS_OFARZ_FROM_APPSHARER, payload: data });
+
+    }
+    catch (error) {
+        dispatch({ type: WITHDRAW_LIST_FAIL_OFARZ_FROM_APPSHARER, payload: error.message });
+    }
+}
+
+const listWithdrawOfarzFromKarrot = (ofarzPhoneNumber) => async (dispatch) => {
+
+    try {
+        dispatch({ type: WITHDRAW_LIST_REQUEST_OFARZ_FROM_KARROT, payload: { ofarzPhoneNumber } });
+        const { data } = await axios.get("/api/funds/GetAgentWithdrawListFromUser/" + ofarzPhoneNumber);
+        dispatch({ type: WITHDRAW_LIST_SUCCESS_OFARZ_FROM_KARROT, payload: data });
+
+    }
+    catch (error) {
+        dispatch({ type: WITHDRAW_LIST_FAIL_OFARZ_FROM_KARROT, payload: error.message });
+    }
+}
+
+const listWithdrawOfarzFromCeo = (ofarzPhoneNumber) => async (dispatch) => {
+
+    try {
+        dispatch({ type: WITHDRAW_LIST_REQUEST_OFARZ_FROM_CEO, payload: { ofarzPhoneNumber } });
+        const { data } = await axios.get("/api/funds/GetAgentWithdrawListFromUser/" + ofarzPhoneNumber);
+        dispatch({ type: WITHDRAW_LIST_SUCCESS_OFARZ_FROM_CEO, payload: data });
+
+    }
+    catch (error) {
+        dispatch({ type: WITHDRAW_LIST_FAIL_OFARZ_FROM_CEO, payload: error.message });
+    }
+}
+
 //#endregion
 
 //#region Withdraw List AppSharer
@@ -203,10 +285,10 @@ const listWithdrawCeoToOfarz = (ceoPhoneNumber) => async (dispatch) => {
 //#endregion
 
 //#region Withdraw Money Agent
-const withdrawAgentToOfarz = (agentPhoneNumber) => async (dispatch) => {
+const withdrawAgentToOfarz = (amount, ofarzPhoneNumber, agentId) => async (dispatch) => {
     try {
-        dispatch({ type: WITHDRAW_REQUEST_AGENT_TO_OFARZ, payload: { agentPhoneNumber } });
-        const { data } = await axios.get("/api/agent/WithdrawMoneyToOfarz/" + agentPhoneNumber);
+        dispatch({ type: WITHDRAW_REQUEST_AGENT_TO_OFARZ, payload: { amount, ofarzPhoneNumber, agentId } });
+        const { data } = await axios.post("/api/agent/WithdrawMoneyToOfarz/", { amount, ofarzPhoneNumber, agentId });
         dispatch({ type: WITHDRAW_SUCCESS_AGENT_TO_OFARZ, payload: data });
     }
     catch (error) {
@@ -298,6 +380,11 @@ export {
     listWithdraw,
 
     listWithdrawAgentToOfarz,
+    listWithdrawAgentFromUser,
+
+    listWithdrawOfarzFromAppSharer,
+    listWithdrawOfarzFromKarrot,
+    listWithdrawOfarzFromCeo,
 
     listWithdrawAppSharerToAgent,
     listWithdrawAppSharerToOfarz,

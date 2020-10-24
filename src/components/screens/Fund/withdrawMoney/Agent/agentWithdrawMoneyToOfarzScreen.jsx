@@ -30,9 +30,9 @@ function WithdrawMoneyAgentToOfarz(props) {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        const sharerId = userInfo.item1.id;
+        const agentId = userInfo.item1.id;
 
-        dispatch(withdrawAgentToOfarz(amount, ofarzPhnNumber, sharerId));
+        dispatch(withdrawAgentToOfarz(amount, ofarzPhnNumber, agentId));
 
 
     }
