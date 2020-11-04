@@ -3,6 +3,11 @@ import {
     FUND_LIST_FAIL_AGENT,
     FUND_LIST_FAIL_APPSHARER,
     FUND_LIST_FAIL_CEO,
+
+    FUND_REQUEST_AGENT,
+    FUND_SUCCESS_AGENT,
+    FUND_FAIL_AGENT,
+
     FUND_LIST_FAIL_KARROT,
     FUND_LIST_FAIL_OFARZ,
     FUND_LIST_FAIL_SHOPER,
@@ -41,6 +46,9 @@ function fundListAgentReducer(state = { funds: [] }, action) {
             return state;
     }
 }
+
+
+
 function fundListAppSharerReducer(state = { funds: [] }, action) {
     switch (action.type) {
         case FUND_LIST_REQUEST_APPSHARER:
@@ -76,7 +84,7 @@ function fundListKarrotReducer(state = { funds: [] }, action) {
         case FUND_LIST_FAIL_KARROT:
             return { loading: false, error: action.payload }
         default:
-            return state; 
+            return state;
     }
 }
 
@@ -108,6 +116,18 @@ function fundListOfarzReducer(state = { funds: [] }, action) {
 
 //#endregion
 
+function fundAgentReducer(state = { fund: {} }, action) {
+
+    switch (action.type) {
+        case FUND_SUCCESS_AGENT:
+            return { loading: false, fund: action.payload };
+        case FUND_FAIL_AGENT:
+            return { loading: false, erfundror: action.payload }
+        default:
+            return state;
+    }
+}
+
 
 //#region Export
 export {
@@ -117,7 +137,10 @@ export {
     fundListShoperReducer,
     fundListKarrotReducer,
     fundListCeoReducer,
-    fundListOfarzReducer
+    fundListOfarzReducer,
+
+    fundAgentReducer
+
 }
 
 //#endregion

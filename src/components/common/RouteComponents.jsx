@@ -171,7 +171,16 @@ import SubCategoryCreateScreen from "../screens/Regular/subCategory/subCategoryC
 import SubCategoryDetails from "../screens/Regular/subCategory/subCategoryDetailsScreen";
 import SubCategoryEditScreen from "../screens/Regular/subCategory/subCategoryEditScreen";
 import AreaCodeScreen from "./AreaCodeComponent";
-
+import AgentThirdScreen from "../screens/Regular/Agent/agentThirdScreen";
+import PlaceOrderScreen from "../screens/Order/placeOrderScreen";
+import AppSharerProfileUpdateScreen from "../screens/Auth/AppSharerScreens/appSharerProfileUpdateScreen";
+import AgentProfileDetailsForAgent from "../screens/Auth/AgentScreens/agentProfileDetailsForAgentScreen";
+import AgentListForAdmin from "../screens/Regular/Admin/getAllAgentList";
+import FindAgnetForAppSharer from "../screens/Regular/AppSharer/appSharerFindAgentScreen";
+import AppSarerProductTypeScreen from "../screens/Regular/AppSharer/appSharerProductTypeScreen";
+import AppSharerCategoriesScreen from "../screens/Regular/AppSharer/appSharerCategoryScreen";
+import AgentSubCategoriesScreen from "../screens/Regular/AppSharer/appSharerSubCategoryScreen";
+import AppSharerProductsScreen from "../screens/Regular/AppSharer/appSharerProductsScreen";
 
 //#endregion
 
@@ -211,6 +220,7 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/productedit/:id" exact component={ProductEditScreen} />
 
             <Route path="/cart/:id?" exact component={CartScreen} />
+            <Route path="/placeorder" exact component={PlaceOrderScreen} />
 
             <Route path="/applicationroles" exact component={ApplicationRoleHomeContainer} />
             <Route path="/applicationrolecreate" exact component={ApplicationRoleCreateContainer} />
@@ -228,12 +238,22 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/moderatoradd" exact component={ModeratorAddScreen} />
 
             <Route path="/agentadd" exact component={AgentAddScreen} />
+            <Route path="/agentprofiledetails" exact component={AgentProfileDetailsForAgent} />
+            <Route path="/agentlistforadmin" exact component={AgentListForAdmin} />
+
+            <Route path="/agentfindforcustomer" exact component={FindAgnetForAppSharer} />
+            <Route path="/customerProductTypes/:agentCode" exact component={AppSarerProductTypeScreen} />
+            <Route path="/customercategories/:agentCode,:id" exact component={AppSharerCategoriesScreen} />
+            <Route path="/customersubCategories/:agentCode,:ptype,:id" exact component={AgentSubCategoriesScreen} />
+            <Route path="/customerproductsscreen/:agentCode,:ptype,:categoryId,:id" exact component={AppSharerProductsScreen} />
+
 
             <Route path="/shoperregistration" exact component={ShoperRegistrationScreen} />
 
             <Route path="/agentptype" exact component={AgentFirtScreen} />
             <Route path="/agentcategories/:id" exact component={AgentSecondScreen} />
-            <Route path="/agentproductsscreen/:ptype,:id" exact component={AgentProductsScreen} />
+            <Route path="/agentsubCategories/:ptype,:id" exact component={AgentThirdScreen} />
+            <Route path="/agentproductsscreen/:ptype,:categoryId,:id" exact component={AgentProductsScreen} />
 
             <Route path="/countries" exact component={CountryScreen} />
             <Route path="/countrycreate" exact component={CountryCreateScreen} />
@@ -366,6 +386,7 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
 
             <Route path="/appsharerfirstdownlinelist" exact component={FirstDownlineListForAppSharerScreen} />
             <Route path="/appsharerprofiledetails" exact component={AppSharerProfileDetailsForAppSharer} />
+            <Route path="/appsharerprofileupdate" exact component={AppSharerProfileUpdateScreen} />
             <Route path="/appsharerdownlineprofiledetails/:id" exact component={AppSharerDownlineProfileDetailsForAppSharer} />
             <Route path="/appsharerseconddownlinelist/:id" exact component={SecondDownlineListForAppSharerScreen} />
             <Route path="/appsharerseconddownlinelist/appsharerthirddownlinelist/:id" exact component={ThirdDownlineListForAppSharerScreen} />

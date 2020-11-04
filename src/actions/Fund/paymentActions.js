@@ -397,10 +397,10 @@ const submitPaymentTableCashPromotional = (amount, agentPhnNumber, payerId) => a
 }
 
 
-const submitPaymentMainAccountOffer = (payment) => async (dispatch) => {
+const submitPaymentMainAccountOffer = (amount, agentPhnNumber, payerId) => async (dispatch) => {
     try {
-        dispatch({ type: PAYMENT_SUBMIT_MAINACCOUNT_OFFER_REQUEST, payload: payment });
-        const { data } = await axios.post('/api/appsharer/paymentSubmitMainAccounntOffer', payment)
+        dispatch({ type: PAYMENT_SUBMIT_MAINACCOUNT_OFFER_REQUEST, payload: { amount, agentPhnNumber, payerId} });
+        const { data } = await axios.post('/api/appsharer/paymentSubmitMainAccounntOffer', { amount, agentPhnNumber, payerId})
         dispatch({ type: PAYMENT_SUBMIT_MAINACCOUNT_OFFER_SUCCESS, payload: data });
     } catch (error) {
 

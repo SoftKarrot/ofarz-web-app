@@ -24,6 +24,7 @@ function PaymentMainAccountOffer(props) {
         e.preventDefault();
 
         const payerId = userInfo.item1.id;
+        
         dispatch(submitPaymentMainAccountOffer(amount, agentPhnNumber, payerId));
 
     }
@@ -31,7 +32,7 @@ function PaymentMainAccountOffer(props) {
         <form onSubmit={submitHandler} >
             <ul className="form-container">
                 <li>
-                    <p>Table Cash Offer {userInfo.item3.mainAccount}</p>
+                  
                 </li>
                 <li>
                     <label htmlFor="amount">

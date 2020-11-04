@@ -10,7 +10,9 @@ import {
 
     AGENT_LIST_REQUEST,
     AGENT_LIST_SUCCESS,
-    AGENT_LIST_FAIL
+    AGENT_LIST_FAIL,
+    FIND_AGENT_SUCCESS,
+    FIND_AGENT_FAIL
 } from "../../constants/Auth/agentConstants";
 
 
@@ -51,8 +53,22 @@ function agentAddReducer(state = {}, action) {
         default: return state;
     }
 }
+
+function agentFindReducer(state = { agent: {} }, action) {
+
+    switch (action.type) {
+        case FIND_AGENT_SUCCESS:
+            return { loading: false, agent: action.payload };
+        case FIND_AGENT_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+
 export {
     agentListReducer,
     agentAddReducer,
-    agentUpdateReducer
+    agentUpdateReducer,
+    agentFindReducer
 }

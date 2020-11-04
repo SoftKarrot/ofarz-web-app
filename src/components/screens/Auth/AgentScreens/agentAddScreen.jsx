@@ -60,79 +60,84 @@ function AgentAddScreen(props) {
             });
     };
 
-    return <div className="form">
-        <form onSubmit={submitHandler} >
-            <ul className="form-container">
-                <li>
-                    <h2>Create Account</h2>
-                </li>
-                <li>
-                    {loading && <div>Loading...</div>}
-                    {error && <div>{error}</div>}
-                </li>
-                <li>
-                    <label htmlFor="firstname">
-                        First Name
+    return<div className="container">
+        <div className="form">
+            <form onSubmit={submitHandler} >
+                <ul className="form-container">
+                    <li>
+                        <h2>Create Account</h2>
+                    </li>
+                    <li>
+                        {loading && <div>Loading...</div>}
+                        {error && <div>{error}</div>}
+                    </li>
+
+
+                    <li>
+                        <label htmlFor="firstname">
+                            First Name
                     </label>
-                    <input type="firstname" name="firstname" id="firstname" onChange={(e) => setFirstName(e.target.value)}>
-                    </input>
-                </li>
-                <li>
-                    <label htmlFor="lastname">
-                        Last Name
+                        <input type="firstname" name="firstname" id="firstname" onChange={(e) => setFirstName(e.target.value)}>
+                        </input>
+                    </li>
+                    <li>
+                        <label htmlFor="lastname">
+                            Last Name
                     </label>
-                    <input type="lastname" name="lastname" id="lastname" onChange={(e) => setLastName(e.target.value)}>
-                    </input>
-                </li>
-                <li>
-                    <label htmlFor="mobilenumber">
-                        Mobilenumber
+                        <input type="lastname" name="lastname" id="lastname" onChange={(e) => setLastName(e.target.value)}>
+                        </input>
+                    </li>
+                    <li>
+                        <label htmlFor="mobilenumber">
+                            Mobilenumber
                     </label>
-                    <input type="text" name="mobilenumber" id="mobilenumber" onChange={(e) => setMobilenumber(e.target.value)}>
-                    </input>
-                </li>
-                <li>
-                    <label htmlFor="nid_number">
-                        NID Number
+                        <input type="text" name="mobilenumber" id="mobilenumber" onChange={(e) => setMobilenumber(e.target.value)}>
+                        </input>
+                    </li>
+                    <li>
+                        <label htmlFor="nid_number">
+                            NID Number
                     </label>
-                    <input type="text" name="nid_number" id="nid_number" onChange={(e) => setNid_Number(e.target.value)}>
-                    </input>
-                </li>
-                <li>
-                    <label htmlFor="postalcode">
-                        Postal Code
+                        <input type="text" name="nid_number" id="nid_number" onChange={(e) => setNid_Number(e.target.value)}>
+                        </input>
+                    </li>
+                    <li>
+                        <label htmlFor="postalcode">
+                            Postal Code
                     </label>
-                    <input type="text" name="postalcode" id="postalcode" onChange={(e) => setPostalCode(e.target.value)}>
-                    </input>
-                </li>
-                <li>
-                    <label htmlFor="image">Profile Photo</label>
-                    <input
-                        type="text"
-                        name="image"
-                        value={profilePhoto}
-                        id="image"
-                        onChange={(e) => setProfilePhoto(e.target.value)}
-                    ></input>
-                    <input type="file" onChange={uploadFileHandler}></input>
-                    {uploading && <div>Uploading...</div>}
-                </li>
-                <li>
-                    <label htmlFor="password">Password</label>
-                    <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
-                    </input>
-                </li>
-                <li>
-                    <label htmlFor="confirmPassword">Re-Enter Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" onChange={(e) => setConfirmPassword(e.target.value)}>
-                    </input>
-                </li>
-                <li>
-                    <button type="submit" className="button primary">Register</button>
-                </li>
-            </ul>
-        </form>
+                        <input type="text" name="postalcode" id="postalcode" onChange={(e) => setPostalCode(e.target.value)}>
+                        </input>
+                    </li>
+                    <li>
+                        <label htmlFor="image">Profile Photo</label>
+                        <input
+                            type="text"
+                            name="image"
+                            value={profilePhoto}
+                            id="image"
+                            onChange={(e) => setProfilePhoto(e.target.value)}
+                        ></input>
+                        <input type="file" onChange={uploadFileHandler}></input>
+                        {uploading && <div>Uploading...</div>}
+                    </li>
+                    <li>
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
+                        </input>
+                    </li>
+                    <li>
+                        <label htmlFor="confirmPassword">Re-Enter Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" onChange={(e) => setConfirmPassword(e.target.value)}>
+                        </input>
+                    </li>
+                    <li>
+                        <button type="submit" className="button primary">Register</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
     </div>
+    
 }
 export default AgentAddScreen;
 

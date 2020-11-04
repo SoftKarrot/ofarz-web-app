@@ -41,6 +41,12 @@ function SideBar({ isOpen, toggle }) {
                         </NavItem>
                         <p>______________________________</p>
                         <NavItem>
+                            <NavLink tag={Link} to={"/agentlistforadmin"}>
+                                Agent List
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
                             <NavLink tag={Link} to={"/paymenttypes"}>
                                 Payment Types
                             </NavLink>
@@ -225,6 +231,11 @@ function SideBar({ isOpen, toggle }) {
                                 ProductList
                             </NavLink>
                         </NavItem>
+                         <NavItem>
+                            <NavLink tag={Link} to={"/productsadmin"}>
+                                Products
+                            </NavLink>
+                        </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/productcreate"}>
                                 Create Product
@@ -285,6 +296,12 @@ function SideBar({ isOpen, toggle }) {
                             <NavLink tag={Link} to={"/"}>
                                 <h3>Home</h3>
                             </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/agentprofiledetails"}>
+                                Profile
+                             </NavLink>
                         </NavItem>
                         <p>______________________________</p>
                         <NavItem>
@@ -365,18 +382,29 @@ function SideBar({ isOpen, toggle }) {
                              </NavLink>
                         </NavItem>
                         <NavItem>
+                            <NavLink tag={Link} to={"/appsharerprofileupdate"}>
+                                Update Profile
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
                             <NavLink tag={Link} to={"/passwordupdate"}>
                                 Change Password
                             </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/appshareradddownline"}>
-                                AppDownline
+                                AddDownline
                              </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to={"/appsharerfirstdownlinelist"}>
                                 First Downline List
+                             </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/agentfindforcustomer"}>
+                                Find Agent
                              </NavLink>
                         </NavItem>
                         <p>______________________________</p>

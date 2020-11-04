@@ -1,26 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner, Label, Input, Form, FormGroup } from "reactstrap";
+import React, { useEffect } from 'react';
+import { Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faInfo
 } from "@fortawesome/free-solid-svg-icons";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import paginationFactory from "react-bootstrap-table2-paginator";
+import { Search } from "react-bootstrap-table2-toolkit";
 import { Link } from "react-router-dom";
-
 import { useSelector, useDispatch } from 'react-redux';
 import { listPaymentsAppSharer } from '../../../../../actions/Fund/paymentActions';
-
-const { SearchBar } = Search;
-
-const defaultSorted = [
-    {
-        dataField: "id",
-        order: "asc",
-    },
-];
-
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 
 const PaymentListAppSharerForAppSharerScreen = (props) => {
 
@@ -41,91 +29,54 @@ const PaymentListAppSharerForAppSharerScreen = (props) => {
 
 
 
-    const columns = [
-        {
-            dataField: "payer.firstName",
-            text: "Payer Name",
-            sort: true,
-        },
-        {
-            dataField: "payerPhoneNumber",
-            text: "Payer Phone Number",
-            sort: true,
-        },
-        {
-            dataField: "agentPhnNumber",
-            text: "Agent Phone Number",
-            sort: true,
-        },
-        {
-            dataField: "productType.name",
-            text: "Product Type",
-            sort: true,
-        },
-        {
-            dataField: "paymentType.paymentTypeName",
-            text: "Payment Type",
-            sort: true,
-        },
-        {
-            dataField: "paymentTime",
-            text: "Payment Time",
-            sort: true,
-            style: { 'width': '120px' }
-        },
-        {
-            dataField: "amount",
-            text: "Amount",
-            sort: true,
-        },
-        {
-            dataField: "link",
-            text: "Action",
-            formatter: (rowContent, row) => {
-                return (
-                    <div>
-                        <Link to={"marketdetails/" + row.id}>
-                            <Button color="dark" className="mr-2">
-                                <FontAwesomeIcon icon={faInfo} /> Detail
-                            </Button>
-                        </Link>
-                    </div>
-                );
-            },
-        },
-    ];
+   
+    //     {
+    //         dataField: "link",
+    //         text: "Action",
+    //         formatter: (rowContent, row) => {
+    //             return (
+    //                 <div>
+    //                     <Link to={"marketdetails/" + row.id}>
+    //                         <Button color="dark" className="mr-2">
+    //                             <FontAwesomeIcon icon={faInfo} /> Detail
+    //                         </Button>
+    //                     </Link>
+    //                 </div>
+    //             );
+    //         },
+    //     },
+
 
     return (
-
-        <Container>
+        <div className="container">
+            <br />
+            <br />
+            <br />
+            <br />
             {payments ? (
-                <ToolkitProvider
-                    bootstrap4
-                    keyField="id"
-                    data={payments}
-                    columns={columns}
-                    defaultSorted={defaultSorted}
-                    search
-                >
-                    {(props) => (
-                        <div>
-                            <BootstrapTable
-                                {...props.baseProps}
-                                pagination={paginationFactory()}
-                            />
-                        </div>
-                    )}
-                </ToolkitProvider>
+                <div>
+                    {payments.map((pay) => (
+
+                        <Card key={pay.id} style={{ color: "#fff", backgroundColor: "#0C373A" }} >
+                            <Card.Body>
+                                <p style={{ color: "#06E2FF" }}>________________________________________________</p>
+                                <ListGroup className="list-group-flush">
+                                    <ListGroupItem style={{ backgroundColor: "#0C373A" }}>
+                                        <div className="row">
+                                            <div className="col-6"></div>
+                                            <div className="col-6"></div>
+                                        </div>
+                                    </ListGroupItem>
+                                </ListGroup>
+                            </Card.Body>
+                        </Card>
+                    ))}
+                </div>
+
             ) : (
-                    <div className="text-center">
-                        {props.errorCategoriesList ? (
-                            <h4>{props.errorCategoriesList}</h4>
-                        ) : (
-                                <Spinner color="dark" />
-                            )}
-                    </div>
+                    <h1>You dont hv any paymnt yet</h1>
                 )}
-        </Container>
+        </div>
     );
 };
 

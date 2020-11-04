@@ -15,12 +15,17 @@ import {
     APPSHARER_DOWNLINE_LIST_FAIL,
 } from "../../constants/Auth/appSharerConstants";
 
-function appSharerUpdateReducer(state = {}, action) {
+let initialState = {
+    userInfo: false
+
+}
+
+
+function appSharerUpdateReducer(state = initialState, action) {
     switch (action.type) {
-        case APPSHARER_PROFILE_UPDATE_REQUEST:
-            return { loading: true };
+
         case APPSHARER_PROFILE_UPDATE_SUCCESS:
-            return { loading: false, appSharerInfo: action.payload };
+            return { loading: false, userInfo: action.payload };
         case APPSHARER_PROFILE_UPDATE_FAIL:
             return { loading: false, error: action.payload };
         default: return state;

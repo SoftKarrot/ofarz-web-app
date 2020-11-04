@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { listCategories } from '../../../../actions/Regular/categoryActions';
-import { Card } from 'reactstrap';
+import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 
 
@@ -26,21 +26,40 @@ function AgentSecondScreen(props) {
             ) : error ? (
                 <div>{error}</div>
             ) : (
-                        <ul className="products">
-                            {categories.map((category) => (
-                                <li key={category.id}>
+                        <div className="container">
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <div className="row">
+                                <div className="col-3">
+                                </div>
+                                <div className="col-6">
                                     <div className="row">
-                                        <div className="product-name">                              
-                                            <Link to={`/agentproductsscreen/${ptype}` +`,`+category.id}>
-                                                <Card>
-                                                    {category.name} 
+                                        {categories.map((category) => (
+                                            <div className="col-6">
+                                                <Card key={category.id} style={{ color: "#fff", backgroundColor: "#0C373A" }} >
+                                                    <Card.Body>
+                                                        <p style={{ color: "#06E2FF" }}>___________________________</p>
+                                                        <Card.Title style={{
+                                                            textAlign: 'center'
+                                                        }}>
+                                                            <Link to={`/agentsubCategories/${ptype}` + `,` + category.id}>
+                                                                {category.name}
+                                                            </Link>
+                                                        </Card.Title>
+                                                    </Card.Body>
                                                 </Card>
-                                            </Link>
-                                        </div>
+                                                <br />
+                                                <br />
+                                            </div>
+                                        ))}
                                     </div>
-                                </li>
-                            ))}
-                        </ul>
+                                </div>
+                                <div className="col-3">
+                                </div>
+                            </div>
+                        </div>
                     )}
         </>
     );

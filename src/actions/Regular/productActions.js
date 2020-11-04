@@ -4,17 +4,26 @@ import {
     PRODUCT_DELETE_REQUEST,
     PRODUCT_DELETE_SUCCESS,
     PRODUCT_DETAILS_FAIL,
+
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_LIST_FAIL,
+
+    PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_FAIL,
+    PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_REQUEST,
+    PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_SUCCESS,
+
     PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_FAIL,
     PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_REQUEST,
-    PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_SUCCESS,
+    PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_SUCCESS, 
+
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS,
     PRODUCT_SAVE_FAIL,
+
     PRODUCT_SAVE_REQUEST,
     PRODUCT_SAVE_SUCCESS,
+
     PRODUCT_UPDATE_REQUEST,
     PRODUCT_UPDATE_SUCCESS
 } from '../../constants/Regular/productConstants';
@@ -31,15 +40,27 @@ const listProducts = () => async (dispatch) => {
     }
 }
 
-const listProductsByProductTypeCategory = (productTypeId, categoryId) => async (dispatch) => {
+const listProductsByProductTypeCategory = (productTypeId, categoryId, subCategoryId) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_REQUEST });
-        const { data } = await axios.get("/api/products/getproductsbyproducttypeandcategory/" + productTypeId + "/" + categoryId);
+        const { data } = await axios.get("/api/products/getproductsbyproducttypeandcategory/" + productTypeId + "/" + categoryId + "/" + subCategoryId);
         dispatch({ type: PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_SUCCESS, payload: data });
 
     }
     catch (error) {
         dispatch({ type: PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_FAIL, payload: error.message });
+    }
+}
+
+const listProductsForAppSharerAndShoper = (agentCode, productTypeId, categoryId, subCategoryId) => async (dispatch) => {
+    try {
+        dispatch({ type: PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_REQUEST });
+        const { data } = await axios.get("/api/products/GetProductsForCustomer/" + agentCode + "/" + productTypeId + "/" + categoryId + "/" + subCategoryId);
+        dispatch({ type: PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_SUCCESS, payload: data });
+
+    }
+    catch (error) {
+        dispatch({ type: PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_FAIL, payload: error.message });
     }
 }
 
@@ -56,7 +77,7 @@ const saveProduct = (product) => async (dispatch) => {
 }
 
 const updateProduct = (product, productId) => async (dispatch) => {
- 
+
     try {
         dispatch({ type: PRODUCT_UPDATE_REQUEST, payload: product });
         const { data } = await axios.put('/api/products/putasync/' + productId, product)
@@ -91,6 +112,14 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
     }
 }
 
-export { listProducts, listProductsByProductTypeCategory, detailsProduct, saveProduct, updateProduct, deleteProduct }
+export {
+    listProducts,
+    listProductsByProductTypeCategory,
+    listProductsForAppSharerAndShoper,
+    detailsProduct,
+    saveProduct,
+    updateProduct,
+    deleteProduct
+}
 
 

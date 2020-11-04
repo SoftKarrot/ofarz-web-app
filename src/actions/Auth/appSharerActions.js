@@ -17,22 +17,28 @@ import {
     APPSHARER_PROFILE_DETAILS_FAIL
 } from "../../constants/Auth/appSharerConstants";
 
-const appSharerUpdate = ({ userId, firstname, mobilenumber, password }) => async (dispatch, getState) => {
-    const { userSignIn: { userInfo } } = getState();
-    dispatch({ type: APPSHARER_PROFILE_UPDATE_REQUEST, payload: { userId, firstname, mobilenumber, password } });
-    try {
-        const { data } = await axios.put("/api/users/" + userId,
-            { firstname, mobilenumber, password }, {
-            headers: {
-                Authorization: 'Bearer ' + userInfo.token
+const appSharerUpdate = (currentUser, firstname, lastName, profilePhoto, nominee_PhonNumber, nominee_Name,
+    nominee_Relation, countryId, divisionId, districtId, upozilaId, unionOrWardId, postalCode) => async (dispatch, getState) => {
+
+        dispatch({
+            type: APPSHARER_PROFILE_UPDATE_REQUEST, payload: {
+                currentUser, firstname, lastName, profilePhoto, nominee_PhonNumber, nominee_Name,
+                nominee_Relation, countryId, divisionId, districtId, upozilaId, unionOrWardId, postalCode
             }
         });
-        dispatch({ type: APPSHARER_PROFILE_UPDATE_SUCCESS, payload: data });
-        Cookie.set('userInfo', JSON.stringify(data));
-    } catch (error) {
-        dispatch({ type: APPSHARER_PROFILE_UPDATE_FAIL, payload: error.message });
+        try {
+            const { data } = await axios.put("/api/appsharer/AppSharerProfileUpdate/" + currentUser, {
+                currentUser, firstname, lastName, profilePhoto, nominee_PhonNumber, nominee_Name,
+                nominee_Relation, countryId, divisionId, districtId, upozilaId, unionOrWardId, postalCode
+            });
+
+            Cookie.set('userInfo', JSON.stringify(data));
+            dispatch({ type: APPSHARER_PROFILE_UPDATE_SUCCESS, payload: data });
+        } catch (error) {
+            dispatch({ type: APPSHARER_PROFILE_UPDATE_FAIL, payload: error.message });
+        }
     }
-}
+
 const appSharerProfileDetails = (currentUserId) => async (dispatch) => {
     //debugger
     try {
@@ -44,6 +50,8 @@ const appSharerProfileDetails = (currentUserId) => async (dispatch) => {
         dispatch({ type: APPSHARER_PROFILE_DETAILS_FAIL, payload: error.message })
     }
 }
+
+
 const appSharerRegister = (firstname, mobilenumber, currentuser, password, confirmpassword) => async (dispatch, getState) => {
     const { userSignIn: { userInfo } } = getState();
     dispatch({

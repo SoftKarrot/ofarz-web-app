@@ -7,7 +7,7 @@ import {
 } from '../../../../actions/Regular/productActions';
 import { listCategories } from '../../../../actions/Regular/categoryActions';
 import { listProducttypes } from '../../../../actions/Regular/productTypeActions';
-import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, CustomInput, Form, FormGroup, Input, Label } from 'reactstrap';
 import { listSubCategories } from '../../../../actions/Regular/subCategoryActions';
 
 function ProductCreateScreen(props) {
@@ -79,7 +79,7 @@ function ProductCreateScreen(props) {
         setCategory(e.target.value);
     }
     const saveSubCatHandler = (e) => {
-        setCategory(e.target.value);
+        setSubCategory(e.target.value);
     }
     const savePTypeHandler = (e) => {
         setProductType(e.target.value);
@@ -105,19 +105,28 @@ function ProductCreateScreen(props) {
             });
     };
     return (
-        <div className="content content-margined">
+        <div className="content" style={{ backgroundColor: "#0C373A" }}>
             {categories && productTypes && (
 
-                <div className="container">
-
+                <div className="container" style={{ width: 850, backgroundColor: "#0C373A" }}>
+                    <p style={{ color: "#06E2FF", textAlign: "center" }}>___________________________________________________________</p>
+                    <h1 style={{ color: "#06E2FF", textAlign: "center" }}>Product Upload</h1>
+                    <p style={{ color: "#06E2FF", textAlign: "center" }}>___________________________________________________________</p>
                     <Form onSubmit={submitHandler}>
                         <div className="row">
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="name">Name</Label>
-                                    <Input type="text"
+                                    <Label
+                                        for="name"
+                                        style={{ color: "#06E2FF" }}
+                                    >
+                                        Name
+                                    </Label>
+                                    <Input
+                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
+                                        type="text"
                                         name="name"
-                                        id="name"
+                                        color="06E2FF"
                                         placeholder="Enter Product Name"
                                         size="lg"
                                         value={name}
@@ -127,8 +136,15 @@ function ProductCreateScreen(props) {
                             </div>
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="price">Price</Label>
-                                    <Input type="text"
+                                    <Label
+                                        for="price"
+                                        style={{ color: "#06E2FF" }}
+                                    >
+                                        Price
+                                    </Label>
+                                    <Input
+                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
+                                        type="text"
                                         name="price"
                                         id="price"
                                         placeholder="Enter Product Price"
@@ -143,8 +159,14 @@ function ProductCreateScreen(props) {
                         <div className="row">
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="countInStock">In Stock</Label>
+                                    <Label
+                                        for="countInStock"
+                                        style={{ color: "#06E2FF" }}
+                                    >
+                                        In Stock
+                                    </Label>
                                     <Input
+                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
                                         type="text"
                                         name="countInStock"
                                         id="countInStock"
@@ -157,8 +179,14 @@ function ProductCreateScreen(props) {
                             </div>
                             <div className="col col-lg-6">
                                 <FormGroup>
-                                    <Label for="countInStock">Product Code</Label>
+                                    <Label
+                                        for="countInStock"
+                                        style={{ color: "#06E2FF" }}
+                                    >
+                                        Product Code
+                                    </Label>
                                     <Input
+                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
                                         type="text"
                                         name="productCode"
                                         id="productCode"
@@ -174,8 +202,14 @@ function ProductCreateScreen(props) {
                         <div className="row">
                             <div className="col col-lg-4">
                                 <FormGroup>
-                                    <Label for="exampleSelect">Product Type</Label>
+                                    <Label
+                                        for="exampleSelect"
+                                        style={{ color: "#06E2FF" }}
+                                    >
+                                        Product Type
+                                    </Label>
                                     <Input
+                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
                                         type="select"
                                         name="select"
                                         id="exampleSelect"
@@ -194,8 +228,14 @@ function ProductCreateScreen(props) {
                             </div>
                             <div className="col col-lg-4">
                                 <FormGroup>
-                                    <Label for="exampleSelect">Category</Label>
+                                    <Label
+                                        for="exampleSelect"
+                                        style={{ color: "#06E2FF" }}
+                                    >
+                                        Category
+                                    </Label>
                                     <Input
+                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
                                         type="select"
                                         name="select"
                                         id="exampleSelect"
@@ -213,8 +253,14 @@ function ProductCreateScreen(props) {
                             </div>
                             <div className="col col-lg-4">
                                 <FormGroup>
-                                    <Label for="exampleSelect">SubCategory</Label>
+                                    <Label
+                                        for="exampleSelect"
+                                        style={{ color: "#06E2FF" }}
+                                    >
+                                        SubCategory
+                                    </Label>
                                     <Input
+                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
                                         type="select"
                                         name="select"
                                         id="exampleSelect"
@@ -235,8 +281,16 @@ function ProductCreateScreen(props) {
                         <div className="row">
                             <div className="col col-lg-12">
                                 <FormGroup>
-                                    <Label for="image">Image Name</Label>
-                                    <Input type="text"
+                                    <Label
+                                        for="image"
+                                        style={{ color: "#06E2FF" }}
+                                    >
+                                        Image Name
+                                    </Label>
+
+                                    <Input
+                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
+                                        type="text"
                                         name="image"
                                         id="image"
                                         placeholder="Image Name"
@@ -245,20 +299,25 @@ function ProductCreateScreen(props) {
                                         onChange={(e) => setImageUrl(e.target.value)}
                                     />
                                     <Input
+                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
                                         type="file"
+                                        label="Yo, pick a file!"
                                         onChange={uploadFileHandler}
                                     />
                                 </FormGroup>
                             </div>
                         </div>
-
-
-
                         <div className="row">
                             <div className="col col-lg-12">
                                 <FormGroup>
-                                    <Label for="exampleText">Description</Label>
+                                    <Label
+                                        for="exampleText"
+                                        style={{ color: "#06E2FF" }}
+                                    >
+                                        Description
+                                        </Label>
                                     <Input
+                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
                                         type="textarea"
                                         name="text"
                                         id="exampleText"
@@ -271,7 +330,9 @@ function ProductCreateScreen(props) {
                             </div>
                         </div>
 
-                        <Button variant="primary" type="submit">
+                        <Button style={{
+                            color: "#06E2FF"
+                        }} outline color="primary" size="lg" block type="submit">
                             Submit
                        </Button>
 

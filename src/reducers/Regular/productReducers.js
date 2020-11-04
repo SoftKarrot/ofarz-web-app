@@ -7,6 +7,9 @@ import {
     PRODUCT_DETAILS_SUCCESS,
 
     PRODUCT_LIST_FAIL,
+    PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_FAIL,
+    PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_REQUEST,
+    PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_SUCCESS,
     PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_FAIL,
     PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_REQUEST,
     PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_SUCCESS,
@@ -53,6 +56,21 @@ function productListByProductTypeCategoryReducer(state = { products: [] }, actio
             return state;
     }
 }
+
+function productListForAppSharerAndShoperReducer(state = { products: [] }, action) {
+
+    switch (action.type) {
+        case PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_REQUEST:
+            return { loading: true };
+        case PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_SUCCESS:
+            return { loading: false, products: action.payload };
+        case PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+
 
 function productDetailsReducer(state = { product: false }, action) {
 
@@ -110,4 +128,12 @@ function productUpdateReducer(state = initialState, action) {
     }
 }
 
-export { productListReducer, productListByProductTypeCategoryReducer, productDetailsReducer, productDeleteReducer, productUpdateReducer, productSaveReducer }
+export {
+    productListReducer,
+    productListByProductTypeCategoryReducer,
+    productListForAppSharerAndShoperReducer,
+    productDetailsReducer,
+    productDeleteReducer,
+    productUpdateReducer,
+    productSaveReducer
+}

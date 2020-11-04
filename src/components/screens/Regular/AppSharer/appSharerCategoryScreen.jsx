@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { listProducttypes } from '../../../../actions/Regular/productTypeActions';
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { listSubCategories } from '../../../../actions/Regular/subCategoryActions';
+import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { listCategories } from '../../../../actions/Regular/categoryActions';
 
-function AgentFirstScreen(props) {
 
-    const productTypeList = useSelector((state) => state.productTypeList);
-    const { productTypes, loading, error } = productTypeList;
+function AppSharerCategoriesScreen(props) {
+
+    const agentCode = props.match.params.agentCode;
+    const ptype = props.match.params.id;
+
+    const categoryList = useSelector((state) => state.categoryList);
+    const { categories, loading, error } = categoryList;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(listProducttypes());
-
+        dispatch(listCategories());
         return () => {
             //
         };
@@ -25,7 +29,6 @@ function AgentFirstScreen(props) {
             ) : error ? (
                 <div>{error}</div>
             ) : (
-
                         <div className="container">
                             <br />
                             <br />
@@ -33,20 +36,19 @@ function AgentFirstScreen(props) {
                             <br />
                             <div className="row">
                                 <div className="col-3">
-
                                 </div>
                                 <div className="col-6">
                                     <div className="row">
-                                        {productTypes.map((ptype) => (
+                                        {categories.map((category) => (
                                             <div className="col-6">
-                                                <Card key={ptype.id} style={{ color: "#fff", backgroundColor: "#0C373A" }} >
+                                                <Card key={category.id} style={{ color: "#fff", backgroundColor: "#0C373A" }} >
                                                     <Card.Body>
                                                         <p style={{ color: "#06E2FF" }}>___________________________</p>
                                                         <Card.Title style={{
                                                             textAlign: 'center'
                                                         }}>
-                                                            <Link to={'/agentcategories/' + ptype.id}>
-                                                                {ptype.name}
+                                                            <Link to={`/customersubCategories/${agentCode}` + `,` + `${ptype}` + `,` + category.id}>
+                                                                {category.name}
                                                             </Link>
                                                         </Card.Title>
                                                     </Card.Body>
@@ -58,14 +60,12 @@ function AgentFirstScreen(props) {
                                     </div>
                                 </div>
                                 <div className="col-3">
-
                                 </div>
                             </div>
-
                         </div>
-
                     )}
         </>
     );
 }
-export default AgentFirstScreen;
+
+export default AppSharerCategoriesScreen;

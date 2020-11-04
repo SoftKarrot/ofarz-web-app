@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { appSharerRegister } from '../../../../actions/Auth/appSharerActions';
+import { appSharerProfileDetails, appSharerRegister } from '../../../../actions/Auth/appSharerActions';
 
 function AppSharerAddDownlineScreen(props) {
 
@@ -12,12 +12,18 @@ function AppSharerAddDownlineScreen(props) {
     const Register = useSelector(state => state.appSharerAddDownline);
     const { loading, error } = Register;
 
+
+
     const userSignIn = useSelector((state) => state.userSignIn);
     const { userInfo } = userSignIn;
 
+
+    const profileDetails = useSelector((state) => state.appSharerProfileDetails);
+    const { sharer } = profileDetails;
+
     const downlineCount = userInfo.item1.downlineCount;
 
-
+    debugger
 
 
 
@@ -26,7 +32,7 @@ function AppSharerAddDownlineScreen(props) {
     const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
 
     useEffect(() => {
-        //dispatch(appSharerProfileDetail(userInfo.item1.id));
+        dispatch(appSharerProfileDetails(userInfo.item1.id));
         return () => {
             //
         };
@@ -41,13 +47,13 @@ function AppSharerAddDownlineScreen(props) {
 
     }
     return <div className="form">
-        {downlineCount >= 5 ? (
+        {sharer.firstLevelDownlineCount >= 5 && sharer ? (
             <h1>Your DownLine Limition is Over</h1>
         ) : (
                 <form onSubmit={submitHandler} >
                     <ul className="form-container">
                         <li>
-                            <h5>You Can share your app more {5 - downlineCount} people</h5>
+                            <h5>You Can share your app more {5 - sharer.firstLevelDownlineCount} people</h5>
                         </li>
                         <li>
                             {loading && <div>Loading...</div>}

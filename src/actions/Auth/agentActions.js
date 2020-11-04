@@ -12,24 +12,21 @@ import {
 
     AGENT_LIST_REQUEST,
     AGENT_LIST_SUCCESS,
-    AGENT_LIST_FAIL
+    AGENT_LIST_FAIL,
+    FIND_AGENT_REQUEST,
+    FIND_AGENT_SUCCESS,
+    FIND_AGENT_FAIL
 } from "../../constants/Auth/agentConstants";
 
 const agentsList = () => async (dispatch) => {
-
-
     try {
         dispatch({ type: AGENT_LIST_REQUEST });
         const { data } = await axios.get("/api/agent/GetAllAgents");
         dispatch({ type: AGENT_LIST_SUCCESS, payload: data });
-
-
     }
     catch (error) {
         dispatch({ type: AGENT_LIST_FAIL, payload: error.message });
     }
-
-
 }
 
 const agentUpdate = (userId, firstname, mobilenumber, password) => async (dispatch, getState) => {
@@ -67,4 +64,22 @@ const agentRegister = (firstname, lastname, mobilenumber, nid_number, postalcode
 }
 
 
-export { agentsList, agentUpdate, agentRegister };
+const agentFind = (agentCode) => async (dispatch) => {
+
+    try {
+        dispatch({ type: FIND_AGENT_REQUEST, payload: agentCode });
+        const { data } = await axios.get("/api/agent/FindAgent/" + agentCode )
+        dispatch({ type: FIND_AGENT_SUCCESS, payload: data });
+    }
+    catch (error) {
+        dispatch({ type: FIND_AGENT_FAIL, payload: error.message })
+    }
+}
+
+
+export {
+    agentsList,
+    agentUpdate,
+    agentRegister,
+    agentFind
+};

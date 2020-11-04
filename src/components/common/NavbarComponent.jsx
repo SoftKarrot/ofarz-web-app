@@ -38,9 +38,10 @@ const NavbarComponent = ({ toggleSidebar, props }) => {
     }
     return (
         <Navbar
-            color="light"
+            color="#06E2FF"
+            style={{ backgroundColor: "#0C373A", height:"60px" }}
             light
-            className="navbar shadow-sm p-3 mb-5 bg-white rounded"
+            className="navbar"
             expand="md"
             fixed="top"
         >
@@ -51,30 +52,14 @@ const NavbarComponent = ({ toggleSidebar, props }) => {
             <Collapse isOpen={topbarIsOpen} navbar>
                 <Nav className="ml-auto" navbar>
                     {userInfo ? (
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink tag={Link} to={"/"}>
-                                    {userInfo.item1.phoneNumber}
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink
-                                    tag={Link}
-                                    to={"/signin"}
-                                    onClick={handleLogout}
-                                >
-                                    Logout
-                                </NavLink>
-                            </NavItem>
+                        <Nav>
+                            <a href="/" style={{ color: "#06E2FF" }} >{userInfo.item1.phoneNumber}</a>
+                            <a href="/signin" style={{ color: "#06E2FF" }} onClick={handleLogout}>Log Out</a>
                         </Nav>
                     ) : (
-                            <Nav>
-                                <NavItem>
-                                    <NavLink tag={Link} to={"/signin"}>
-                                        SignIn
-                                    </NavLink>
-                                </NavItem>
-                            </Nav>
+                        <Nav>
+                            <a href="/signin" style={{ color: "#06E2FF" }}>SignIn</a>
+                        </Nav>
                         )}
                 </Nav>
             </Collapse>

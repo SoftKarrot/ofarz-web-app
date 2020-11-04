@@ -26,18 +26,14 @@ import {
     productDeleteReducer,
     productDetailsReducer,
     productListByProductTypeCategoryReducer,
+    productListForAppSharerAndShoperReducer,
     productListReducer,
     productSaveReducer,
     productUpdateReducer
 } from './reducers/Regular/productReducers';
 import {
     appSharerAddDownlineReducer,
-    appSharerGetFifthDownlineCountReducer,
-    appSharerGetFirstDownlineCountReducer,
     appSharerGetFirstDownlineListReducer,
-    appSharerGetFourthDownlineCountReducer,
-    appSharerGetSecondDownlineCountReducer,
-    appSharerGetThirdDownlineCountReducer,
     appSharerProfileDetailsReducer,
     appSharerUpdateReducer
 } from './reducers/Auth/appSharerReducers';
@@ -61,6 +57,7 @@ import {
 } from './reducers/Auth/moderatorReducers';
 import {
     agentAddReducer,
+    agentFindReducer,
     agentListReducer,
     agentUpdateReducer
 } from './reducers/Auth/agentReducers';
@@ -159,27 +156,19 @@ import {
     paymentSubmitTableCashPromotionalReducer
 } from './reducers/Fund/paymentReducers';
 import {
-    withdrawAgentReducer,
     withdrawAgentToOfarzReducer,
-    withdrawAppSharerReducer,
     withdrawAppSharerToAgentReducer,
     withdrawAppSharerToOfarzReducer,
-    withdrawCeoReducer,
     withdrawCeoToAgentReducer,
     withdrawCeoToOfarzReducer,
-    withdrawKarrotReducer,
     withdrawKarrotToAgentReducer,
     withdrawKarrotToOfarzReducer,
     withdrawListAgentFromUserReducer,
-    withdrawListAgentReducer,
     withdrawListAgentToOfarzReducer,
-    withdrawListAppSharerReducer,
     withdrawListAppSharerToAgentReducer,
     withdrawListAppSharerToOfarzReducer,
-    withdrawListCeoReducer,
     withdrawListCeoToAgentReducer,
     withdrawListCeoToOfarzReducer,
-    withdrawListKarrotReducer,
     withdrawListKarrotToAgentReducer,
     withdrawListKarrotToOfarzReducer,
     withdrawListOfarzFromAppSharerReducer,
@@ -189,9 +178,6 @@ import {
 } from './reducers/Fund/withdrawReducers';
 import {
     fundAgentReducer,
-    fundAppSharerReducer,
-    fundCeoReducer,
-    fundKarrotReducer,
     fundListAgentReducer,
     fundListAppSharerReducer,
     fundListCeoReducer,
@@ -202,20 +188,40 @@ import {
 import {
     SigninReducer
 } from './reducers/Auth/signInReducers';
-import { karrotAddReducer, karrotProfileDetailsReducer, karrotUpdateReducer } from './reducers/Auth/karrotReducers';
-import { ceoAddReducer, ceoProfileDetailsReducer, ceoUpdateReducer } from './reducers/Auth/ceoReducers';
+import {
+    karrotAddReducer,
+    karrotProfileDetailsReducer,
+    karrotUpdateReducer
+} from './reducers/Auth/karrotReducers';
+import {
+    ceoAddReducer,
+    ceoProfileDetailsReducer,
+    ceoUpdateReducer
+} from './reducers/Auth/ceoReducers';
 import { ofarzAddReducer } from './reducers/Auth/ofarzReducers';
-import { subCategoryDeleteReducer, subCategoryDetailsReducer, subCategoryListReducer, subCategorySaveReducer, subCategoryUpdateReducer } from './reducers/Regular/subCategoryReducers';
+import {
+    subCategoryDeleteReducer,
+    subCategoryDetailsReducer,
+    subCategoryListReducer,
+    subCategorySaveReducer,
+    subCategoryUpdateReducer
+} from './reducers/Regular/subCategoryReducers';
+import {
+    myOrderListReducer,
+    orderCreateReducer,
+    orderDeleteReducer,
+    orderDetailsReducer,
+    orderListReducer,
+    orderPayReducer
+} from './reducers/Regular/orderReducers';
 //#endregion
 
 const cartItems = Cookie.getJSON('cartItems') || [];
 const userInfo = Cookie.getJSON('userInfo') || null;
 
-
 const initialState = {
     cart: { cartItems },
     userSignIn: { userInfo },
-
 };
 
 const reducer = combineReducers({
@@ -286,12 +292,20 @@ const reducer = combineReducers({
 
     productList: productListReducer,
     productListByProductTypeCategory: productListByProductTypeCategoryReducer,
+    productListForAppSharerAndShoper: productListForAppSharerAndShoperReducer,
     productDetails: productDetailsReducer,
     productSave: productSaveReducer,
     productUpdate: productUpdateReducer,
     productDelete: productDeleteReducer,
 
     cart: cartReducer,
+
+    orderCreate: orderCreateReducer,
+    orderDetails: orderDetailsReducer,
+    orderPay: orderPayReducer,
+    myOrderList: myOrderListReducer,
+    orderList: orderListReducer,
+    orderDelete: orderDeleteReducer,
     //#endregion
 
     //#region Auth
@@ -320,6 +334,7 @@ const reducer = combineReducers({
     agentList: agentListReducer,
     agentAdd: agentAddReducer,
     agentUpdate: agentUpdateReducer,
+    agentFind: agentFindReducer,
 
     karrotProfileDetails: karrotProfileDetailsReducer,
     karrotAdd: karrotAddReducer,
@@ -426,6 +441,7 @@ const reducer = combineReducers({
     fundCeo: fundListCeoReducer,
     fundListOfarz: fundListOfarzReducer,
 
+    fundAgent: fundAgentReducer,
 
     //#endregion
 

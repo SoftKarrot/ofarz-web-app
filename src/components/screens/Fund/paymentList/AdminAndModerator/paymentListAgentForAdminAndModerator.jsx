@@ -35,9 +35,6 @@ const PaymentListFullForAdminScreen = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-
-
-
         return () => {
             //
         };

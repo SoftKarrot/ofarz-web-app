@@ -6,6 +6,10 @@ import {
     FUND_LIST_SUCCESS_AGENT,
     FUND_LIST_FAIL_AGENT,
 
+    FUND_REQUEST_AGENT,
+    FUND_SUCCESS_AGENT,
+    FUND_FAIL_AGENT,
+
     FUND_LIST_REQUEST_APPSHARER,
     FUND_LIST_SUCCESS_APPSHARER,
     FUND_LIST_FAIL_APPSHARER,
@@ -111,13 +115,13 @@ const fundAgent = (agentPhoneNumber) => async (dispatch) => {
 
     try {
 
-        dispatch({ type: FUND_LIST_REQUEST_AGENT, payload: { agentPhoneNumber } });
+        dispatch({ type: FUND_REQUEST_AGENT, payload: { agentPhoneNumber } });
         const { data } = await axios.get("/api/funds/GetAgentFund/" + agentPhoneNumber);
-        dispatch({ type: FUND_LIST_SUCCESS_AGENT, payload: data });
+        dispatch({ type: FUND_SUCCESS_AGENT, payload: data });
 
     }
     catch (error) {
-        dispatch({ type: FUND_LIST_FAIL_AGENT, payload: error.message });
+        dispatch({ type: FUND_FAIL_AGENT, Tayload: error.message });
     }
 }
 const fundAppSharers = (appSharerPhoneNumber) => async (dispatch) => {

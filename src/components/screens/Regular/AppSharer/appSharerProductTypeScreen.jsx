@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducttypes } from '../../../../actions/Regular/productTypeActions';
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 
-function AgentFirstScreen(props) {
+function AppSarerProductTypeScreen(props) {
+
+    const agentCode = props.match.params.agentCode;
+    debugger
 
     const productTypeList = useSelector((state) => state.productTypeList);
     const { productTypes, loading, error } = productTypeList;
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(listProducttypes());
-
         return () => {
             //
         };
@@ -45,7 +48,7 @@ function AgentFirstScreen(props) {
                                                         <Card.Title style={{
                                                             textAlign: 'center'
                                                         }}>
-                                                            <Link to={'/agentcategories/' + ptype.id}>
+                                                            <Link to={`/customercategories/${agentCode}` + `,` + ptype.id}>
                                                                 {ptype.name}
                                                             </Link>
                                                         </Card.Title>
@@ -68,4 +71,4 @@ function AgentFirstScreen(props) {
         </>
     );
 }
-export default AgentFirstScreen;
+export default AppSarerProductTypeScreen;

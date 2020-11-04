@@ -5,19 +5,19 @@ import {
     SIGNIN_SUCCESS,
     SIGNIN_FAIL, LOGOUT
 }
-from "../../constants/Auth/signInConstants";
+    from "../../constants/Auth/signInConstants";
 
 const SignIn = (mobilenumber, password) => async (dispatch, getState) => {
     const { userSignIn: { userInfo } } = getState();
     dispatch({ type: SIGNIN_REQUEST, payload: { mobilenumber, password } });
     try {
-       
+
         const { data } = await axios.post("/api/admin/signin", { mobilenumber, password });
         Cookie.set('userInfo', JSON.stringify(data));
-        debugger
+
         dispatch({ type: SIGNIN_SUCCESS, payload: data });
-      
-  
+
+
     } catch (error) {
         dispatch({ type: SIGNIN_FAIL, payload: error.message });
     }
