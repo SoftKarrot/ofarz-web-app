@@ -10,6 +10,8 @@ import HomeScreen from './HomeScreenComponent';
 import ProductHomeScreen from '../screens/Regular/Product/ProductHomeScreen';
 import ProductCreateScreen from '../screens/Regular/Product/ProductCreateScreen';
 import ProductDetailsScreen from '../screens/Regular/Product/ProductDetailScreen';
+import AgentProductGalleryScreen from '../screens/Regular/Agent/agentProductGalleryScreen';
+
 
 import CategoryHomeContainer from '../../containers/Reguler/categoryContainers/CategoryHomeContainer';
 import CategoryCreateContainer from '../../containers/Reguler/categoryContainers/CategoryCreateContainer';
@@ -181,6 +183,11 @@ import AppSarerProductTypeScreen from "../screens/Regular/AppSharer/appSharerPro
 import AppSharerCategoriesScreen from "../screens/Regular/AppSharer/appSharerCategoryScreen";
 import AgentSubCategoriesScreen from "../screens/Regular/AppSharer/appSharerSubCategoryScreen";
 import AppSharerProductsScreen from "../screens/Regular/AppSharer/appSharerProductsScreen";
+import CartScreenTwo from "../screens/Regular/cart/Agent/agentCartScreen";
+import OrderListForAgentScreen from "../screens/Order/Agent/orderListForAgentScreen";
+import OrderDetailsForAgent from "../screens/Order/Agent/orderDetailsForAgentScreen";
+import AppSharerVireDirectAgentGalleryScreen from "../screens/Regular/AppSharer/appSharerViewDirectAgentGalleryScreen";
+import AgentProfileDetailsForAdmin from "../screens/Regular/Admin/getAgentProfileDetailsForAdmin";
 
 //#endregion
 
@@ -220,7 +227,11 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/productedit/:id" exact component={ProductEditScreen} />
 
             <Route path="/cart/:id?" exact component={CartScreen} />
+            <Route path="/cart" exact component={CartScreenTwo} />
             <Route path="/placeorder" exact component={PlaceOrderScreen} />
+            <Route path="/agentOrderList" exact component={OrderListForAgentScreen} />
+            <Route path="/agentOrderDeatils/:id" exact component={OrderDetailsForAgent} />
+            <Route path="/agnetProductGalleryForCustomer" exact component={AgentProductGalleryScreen} />
 
             <Route path="/applicationroles" exact component={ApplicationRoleHomeContainer} />
             <Route path="/applicationrolecreate" exact component={ApplicationRoleCreateContainer} />
@@ -239,6 +250,8 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
 
             <Route path="/agentadd" exact component={AgentAddScreen} />
             <Route path="/agentprofiledetails" exact component={AgentProfileDetailsForAgent} />
+            <Route path="/agentprofiledetailsforadmin/:id" exact component={AgentProfileDetailsForAdmin} />
+            
             <Route path="/agentlistforadmin" exact component={AgentListForAdmin} />
 
             <Route path="/agentfindforcustomer" exact component={FindAgnetForAppSharer} />
@@ -246,6 +259,7 @@ const RouteComponemt = ({ sidebarIsOpen, toggleSidebar }) => (
             <Route path="/customercategories/:agentCode,:id" exact component={AppSharerCategoriesScreen} />
             <Route path="/customersubCategories/:agentCode,:ptype,:id" exact component={AgentSubCategoriesScreen} />
             <Route path="/customerproductsscreen/:agentCode,:ptype,:categoryId,:id" exact component={AppSharerProductsScreen} />
+            <Route path="/appsharerviewfullagentgallery" exact component={AppSharerVireDirectAgentGalleryScreen} />
 
 
             <Route path="/shoperregistration" exact component={ShoperRegistrationScreen} />

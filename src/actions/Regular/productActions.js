@@ -1,5 +1,8 @@
 import axios from 'axios'
 import {
+    PRODUCT_DELETE_AGENT_FAIL,
+    PRODUCT_DELETE_AGENT_REQUEST,
+    PRODUCT_DELETE_AGENT_SUCCESS,
     PRODUCT_DELETE_FAIL,
     PRODUCT_DELETE_REQUEST,
     PRODUCT_DELETE_SUCCESS,
@@ -7,6 +10,9 @@ import {
 
     PRODUCT_DETAILS_REQUEST,
     PRODUCT_DETAILS_SUCCESS,
+    PRODUCT_GALERY_FOR_AGENT_AND_CUSTOMER_FAIL,
+    PRODUCT_GALERY_FOR_AGENT_AND_CUSTOMER_REQUEST,
+    PRODUCT_GALERY_FOR_AGENT_AND_CUSTOMER_SUCCESS,
     PRODUCT_LIST_FAIL,
 
     PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_FAIL,
@@ -15,7 +21,7 @@ import {
 
     PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_FAIL,
     PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_REQUEST,
-    PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_SUCCESS, 
+    PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_SUCCESS,
 
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS,
@@ -40,12 +46,23 @@ const listProducts = () => async (dispatch) => {
     }
 }
 
+const listProductsAgentAndCustomer = (agentCode) => async (dispatch) => {
+    try {
+        dispatch({ type: PRODUCT_GALERY_FOR_AGENT_AND_CUSTOMER_REQUEST, payload: { agentCode } });
+        const { data } = await axios.get("/api/products/GetProductsForAgentAndCustomer/" + agentCode);
+        dispatch({ type: PRODUCT_GALERY_FOR_AGENT_AND_CUSTOMER_SUCCESS, payload: data });
+
+    }
+    catch (error) {
+        dispatch({ type: PRODUCT_GALERY_FOR_AGENT_AND_CUSTOMER_FAIL, payload: error.message });
+    }
+}
+
 const listProductsByProductTypeCategory = (productTypeId, categoryId, subCategoryId) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_REQUEST });
         const { data } = await axios.get("/api/products/getproductsbyproducttypeandcategory/" + productTypeId + "/" + categoryId + "/" + subCategoryId);
         dispatch({ type: PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_SUCCESS, payload: data });
-
     }
     catch (error) {
         dispatch({ type: PRODUCT_LIST_PRODUCTTYPE_CATEGORY_AGENT_FAIL, payload: error.message });
@@ -89,7 +106,7 @@ const updateProduct = (product, productId) => async (dispatch) => {
 }
 
 const detailsProduct = (productId) => async (dispatch) => {
-    //debugger
+
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId });
         const { data } = await axios.get("/api/products/getoneasync/" + productId)
@@ -100,11 +117,11 @@ const detailsProduct = (productId) => async (dispatch) => {
     }
 }
 
-const deleteProduct = (productId) => async (dispatch, getState) => {
-    debugger
+const deleteProduct = (id) => async (dispatch, getState) => {
+
     try {
-        dispatch({ type: PRODUCT_DELETE_REQUEST, payload: productId });
-        const { data } = await axios.delete("/api/products/deleteasync/" + productId)
+        dispatch({ type: PRODUCT_DELETE_REQUEST, payload: id });
+        const { data } = await axios.delete("/api/products/deleteasync/" + id)
         dispatch({ type: PRODUCT_DELETE_SUCCESS, payload: data, success: true });
     } catch (error) {
         dispatch({ type: PRODUCT_DELETE_FAIL, payload: error.message });
@@ -112,14 +129,28 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
     }
 }
 
+const deleteAgentProduct = (id) => async (dispatch) => {
+    debugger
+    try {
+        dispatch({ type: PRODUCT_DELETE_AGENT_REQUEST, payload: id });
+        const { data } = await axios.delete("/api/products/RemoveAgentProduct/" + id)
+        dispatch({ type: PRODUCT_DELETE_AGENT_SUCCESS, payload: data, success: true });
+    } catch (error) {
+        dispatch({ type: PRODUCT_DELETE_AGENT_FAIL, payload: error.message });
+
+    }
+}
+
 export {
     listProducts,
+    listProductsAgentAndCustomer,
     listProductsByProductTypeCategory,
     listProductsForAppSharerAndShoper,
     detailsProduct,
     saveProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    deleteAgentProduct
 }
 
 

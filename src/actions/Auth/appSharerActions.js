@@ -1,6 +1,7 @@
 import axios from "axios";
 import Cookie from 'js-cookie';
 import {
+
     APPSHARER_REGISTER_FAIL,
     APPSHARER_REGISTER_REQUEST,
     APPSHARER_REGISTER_SUCCESS,
@@ -52,13 +53,13 @@ const appSharerProfileDetails = (currentUserId) => async (dispatch) => {
 }
 
 
-const appSharerRegister = (firstname, mobilenumber, currentuser, password, confirmpassword) => async (dispatch, getState) => {
+const appSharerRegister = (mobilenumber, nid_Number, currentuser, password, confirmpassword) => async (dispatch, getState) => {
     const { userSignIn: { userInfo } } = getState();
     dispatch({
-        type: APPSHARER_REGISTER_REQUEST, payload: { firstname, mobilenumber, currentuser, password, confirmpassword }
+        type: APPSHARER_REGISTER_REQUEST, payload: { mobilenumber, nid_Number, currentuser, password, confirmpassword }
     });
     try {
-        const { data } = await axios.post("/api/appsharer/adddownline", { firstname, mobilenumber, currentuser, password, confirmpassword }, {
+        const { data } = await axios.post("/api/appsharer/adddownline", { mobilenumber, nid_Number, currentuser, password, confirmpassword }, {
             headers: {
                 Authorization: 'Bearer ' + userInfo.item3
             }

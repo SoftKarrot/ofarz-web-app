@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { addToCart, removeFromCart } from '../../../../actions/Regular/cartActions';
+import { addToCart, removeFromCart } from '../../../../../actions/Regular/cartActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fundAgent } from '../../../../actions/Fund/fundActions';
+import { fundAgent } from '../../../../../actions/Fund/fundActions';
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { Button, Input } from 'reactstrap';
 
 
-function CartScreen(props) {
+function CartScreenTwo(props) {
 
     const userSignIn = useSelector((state) => state.userSignIn);
     const { userInfo } = userSignIn;
@@ -18,8 +18,8 @@ function CartScreen(props) {
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
 
-    const productId = props.match.params.id;
-    const qty = props.location.search ? Number(props.location.search.split("=")[1]) : 1;
+    // const productId = props.match.params.id;
+    // const qty = props.location.search ? Number(props.location.search.split("=")[1]) : 1;
 
     const dispatch = useDispatch();
 
@@ -29,9 +29,22 @@ function CartScreen(props) {
 
     useEffect(() => {
         dispatch(fundAgent(userInfo.item1.phoneNumber))
-        if (productId) {
-            dispatch(addToCart(productId, qty));
+        
+        if (2 > 1) {
+            {
+                cartItems.map(item => (
+                    dispatch(addToCart(item.id, item.qty))
+                ))
+            }
+
+
+
+
         }
+
+        // if (productId) {
+        //     dispatch(addToCart(productId, qty));
+        // }
     }, []);
 
     const checkoutHandler = () => {
@@ -117,7 +130,7 @@ function CartScreen(props) {
                                 <ListGroupItem style={{ color: "#000", backgroundColor: "#fff", textAlign: "center" }}>
                                     <h4>Main Account Balance: {fund.mainAccount} Taka</h4>
                                 </ListGroupItem>
-                                {fund.mainAccount > cartItems.reduce((a, c) => a + c.price * c.qty, 0) &&  cartItems.reduce((a, c) => a + c.qty * 1, 0) > 0 ? (
+                                {fund.mainAccount > cartItems.reduce((a, c) => a + c.price * c.qty, 0) ? (
                                     <ListGroupItem style={{ color: "#000", backgroundColor: "#fff", textAlign: "center" }}>
                                         <Button
                                             style={{ color: "#fff", }}
@@ -152,7 +165,7 @@ function CartScreen(props) {
     </div >)
 }
 
-export default CartScreen;
+export default CartScreenTwo;
 
 
 

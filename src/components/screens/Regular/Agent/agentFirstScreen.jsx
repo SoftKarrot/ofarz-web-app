@@ -39,14 +39,17 @@ function AgentFirstScreen(props) {
                                     <div className="row">
                                         {productTypes.map((ptype) => (
                                             <div className="col-6">
-                                                <Card key={ptype.id} style={{ color: "#fff", backgroundColor: "#0C373A" }} >
+                                                <Card key={ptype.id} style={{ color: "#fff", backgroundColor: "#fff", borderColor: "#5cb85c" }} >
                                                     <Card.Body>
-                                                        <p style={{ color: "#06E2FF" }}>___________________________</p>
+
                                                         <Card.Title style={{
-                                                            textAlign: 'center'
+                                                            textAlign: 'center',
+                                                            justifyContent: "center",
+
                                                         }}>
-                                                            <Link to={'/agentcategories/' + ptype.id}>
-                                                                {ptype.name}
+                                                            <Link to={'/agentcategories/' + ptype.id} style={{ textAlign: 'center', justifyContent: "center",
+                                                            }}>
+                                                                <Card style={{ height: "60px", justifyContent: "center", color: "#5cb85c" }}>{ptype.name}</Card>
                                                             </Link>
                                                         </Card.Title>
                                                     </Card.Body>

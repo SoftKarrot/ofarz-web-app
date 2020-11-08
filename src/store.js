@@ -23,8 +23,10 @@ import {
     productTypeUpdateReducer
 } from './reducers/Regular/productTypeReducers';
 import {
+    productDeleteAgentReducer,
     productDeleteReducer,
     productDetailsReducer,
+    productLisForAgentAndCustomerReducer,
     productListByProductTypeCategoryReducer,
     productListForAppSharerAndShoperReducer,
     productListReducer,
@@ -178,12 +180,17 @@ import {
 } from './reducers/Fund/withdrawReducers';
 import {
     fundAgentReducer,
+    fundAppSharerReducer,
+    fundCEOReducer,
+    fundKarrotReducer,
     fundListAgentReducer,
     fundListAppSharerReducer,
     fundListCeoReducer,
     fundListKarrotReducer,
     fundListOfarzReducer,
-    fundListShoperReducer
+    fundListShoperReducer,
+    fundOfarzReducer,
+    fundShoperReducer
 } from './reducers/Fund/fundReducers';
 import {
     SigninReducer
@@ -291,12 +298,14 @@ const reducer = combineReducers({
     productTypeDelete: productTypeDeleteReducer,
 
     productList: productListReducer,
+    productLisForAgentAndCustomer: productLisForAgentAndCustomerReducer,
     productListByProductTypeCategory: productListByProductTypeCategoryReducer,
     productListForAppSharerAndShoper: productListForAppSharerAndShoperReducer,
     productDetails: productDetailsReducer,
     productSave: productSaveReducer,
     productUpdate: productUpdateReducer,
     productDelete: productDeleteReducer,
+    productDeleteAgent: productDeleteAgentReducer,
 
     cart: cartReducer,
 
@@ -437,12 +446,14 @@ const reducer = combineReducers({
     fundListAgent: fundListAgentReducer,
     fundListAppSharer: fundListAppSharerReducer,
     fundListShoper: fundListShoperReducer,
-    fundKarrot: fundListKarrotReducer,
-    fundCeo: fundListCeoReducer,
     fundListOfarz: fundListOfarzReducer,
 
     fundAgent: fundAgentReducer,
-
+    fundAppSharer: fundAppSharerReducer,
+    fundShoper: fundShoperReducer,
+    fundKarrot: fundKarrotReducer,
+    fundCEO: fundCEOReducer,
+    fundOfarz: fundOfarzReducer,
     //#endregion
 
     form: formReducer

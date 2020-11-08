@@ -1,25 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner, Label, Input, Form, FormGroup } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faInfo
-} from "@fortawesome/free-solid-svg-icons";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import { Link } from "react-router-dom";
-
+import React, { useEffect } from 'react';
+import { Card } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux';
-import { listPaymentsAppSharer, listPaymentsBackShoppingOfferAppSharer } from '../../../../../actions/Fund/paymentActions';
-
-const { SearchBar } = Search;
-
-const defaultSorted = [
-    {
-        dataField: "id",
-        order: "asc",
-    },
-];
+import { listPaymentsBackShoppingOfferAppSharer } from '../../../../../actions/Fund/paymentActions';
 
 
 const PaymentListBackShoppingOfferForAppSharerScreen = (props) => {
@@ -41,91 +23,87 @@ const PaymentListBackShoppingOfferForAppSharerScreen = (props) => {
 
 
 
-    const columns = [
-        {
-            dataField: "payer.firstName",
-            text: "Payer Name",
-            sort: true,
-        },
-        {
-            dataField: "payerPhoneNumber",
-            text: "Payer Phone Number",
-            sort: true,
-        },
-        {
-            dataField: "agentPhnNumber",
-            text: "Agent Phone Number",
-            sort: true,
-        },
-        {
-            dataField: "productType.name",
-            text: "Product Type",
-            sort: true,
-        },
-        {
-            dataField: "paymentType.paymentTypeName",
-            text: "Payment Type",
-            sort: true,
-        },
-        {
-            dataField: "paymentTime",
-            text: "Payment Time",
-            sort: true,
-            style: { 'width': '120px' }
-        },
-        {
-            dataField: "amount",
-            text: "Amount",
-            sort: true,
-        },
-        {
-            dataField: "link",
-            text: "Action",
-            formatter: (rowContent, row) => {
-                return (
-                    <div>
-                        <Link to={"marketdetails/" + row.id}>
-                            <Button color="dark" className="mr-2">
-                                <FontAwesomeIcon icon={faInfo} /> Detail
-                            </Button>
-                        </Link>
-                    </div>
-                );
-            },
-        },
-    ];
-
     return (
-
-        <Container>
+        <div className="container" style={{ width: "876px", justifyContent: "center", alignItems: "center", textAlign: "center", marginTop: "60px" }}>
+            <br />
+            <br />
+            <br />
+            <br />
             {payments ? (
-                <ToolkitProvider
-                    bootstrap4
-                    keyField="id"
-                    data={payments}
-                    columns={columns}
-                    defaultSorted={defaultSorted}
-                    search
-                >
-                    {(props) => (
-                        <div>
-                            <BootstrapTable
-                                {...props.baseProps}
-                                pagination={paginationFactory()}
-                            />
-                        </div>
-                    )}
-                </ToolkitProvider>
-            ) : (
-                    <div className="text-center">
-                        {props.errorCategoriesList ? (
-                            <h4>{props.errorCategoriesList}</h4>
-                        ) : (
-                                <Spinner color="dark" />
-                            )}
+
+                <div className="row">
+                    <div className="col-2">
+
                     </div>
+                    <div className="col-8">
+                        {payments.map((payment) => (
+                            <Card>
+                                <div>
+                                    <Card key={payment.id} style={{
+                                        color: "#fff",
+                                        backgroundColor: "#fff",
+                                        borderColor: "#5cb85c"
+                                    }} >
+                                        <Card.Body style={{ alignItems: "center", justifyContent: "center" }}>
+                                            <div className="row">
+                                                <div className="col-6">
+                                                    <div className="row">
+                                                        <div className="col-12">
+                                                            <Card style={{ padding: "10px", borderColor: "#5cb85c" }}>
+                                                                <h5 style={{ color: "#5cb85c" }}>Agent PhoneNumber:-{payment.agentPhnNumber}</h5>
+                                                            </Card>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div className="row">
+                                                        <div className="col-12">
+                                                            <Card style={{ padding: "10px", borderColor: "#5cb85c" }}>
+                                                                <h5 style={{ color: "#5cb85c" }}>Payment Time:-{payment.paymentTime}</h5>
+                                                            </Card>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <div className="col-6">
+                                                    <div className="row">
+                                                        <div className="col-12">
+                                                            <Card style={{ padding: "10px", borderColor: "#5cb85c" }}>
+                                                                <h5 style={{ color: "#5cb85c" }}>Amount:-{payment.amount}</h5>
+                                                            </Card>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div className="row">
+                                                        <div className="col-12">
+                                                            <Card style={{ padding: "10px", borderColor: "#5cb85c" }}>
+                                                                <h5 style={{ color: "#5cb85c" }}>Payment Type:-{payment.paymentType.paymentTypeName}</h5>
+                                                            </Card>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </Card.Body>
+                                    </Card>
+                                    <br />
+                                    <br />
+                                </div>
+                            </Card>
+
+
+                        ))}
+                    </div>
+                    <div className="col-2">
+
+                    </div>
+                </div>
+
+
+            ) : (
+                    <h1>You dont hv any paymnt yet</h1>
                 )}
-        </Container>
+        </div>
     );
 };
 

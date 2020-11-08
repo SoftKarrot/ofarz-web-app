@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner } from "reactstrap";
+import { Container, Button, Row, Col, Spinner, Card } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faInfo,
@@ -69,13 +69,9 @@ const PaymentTypeScreen = (props) => {
             sort: true,
         },
         {
-            dataField: "paymentTypeDescription",
-            text: "Description",
-            sort: true,
-        },
-        {
             dataField: "link",
             text: "Action",
+            style: { width: "20px" },
             formatter: (rowContent, row) => {
                 return (
                     <div>
@@ -84,11 +80,32 @@ const PaymentTypeScreen = (props) => {
                                 <FontAwesomeIcon icon={faInfo} /> Detail
                             </Button>
                         </Link>
+                    </div>
+
+                );
+            },
+        },
+        {
+            dataField: "link",
+            text: "Action",
+            formatter: (rowContent, row) => {
+                return (
+                    <div>
                         <Link to={"paymenttypeupdate/" + row.id}>
                             <Button color="dark" className="mr-2">
                                 <FontAwesomeIcon icon={faEdit} /> Edit
                             </Button>
                         </Link>
+                    </div>
+                );
+            },
+        },
+        {
+            dataField: "link",
+            text: "Action",
+            formatter: (rowContent, row) => {
+                return (
+                    <div>
                         <Button color="dark" className="mr-2" onClick={() => handleClick(dispatch, row.id)}>
                             <FontAwesomeIcon icon={faTrash} /> Delete
                         </Button>
@@ -99,51 +116,69 @@ const PaymentTypeScreen = (props) => {
     ];
 
     return (
+        <div className="container">
+            <br />
+            <br />
+            <br />
+            <br />
+            <div className="row">
+                <div className="col-2">
 
-        <Container>
-            {paymentTypes ? (
-                <ToolkitProvider
-                    bootstrap4
-                    keyField="id"
-                    data={paymentTypes}
-                    columns={columns}
-                    defaultSorted={defaultSorted}
-                    search
-                >
-                    {(props) => (
-                        <div>
-                            <Row>
-                                <Col>
-                                    <Link to="/paymenttypecreate">
-                                        <Button color="dark" className="mr-2">
-                                            <FontAwesomeIcon icon={faUserPlus} /> Create PaymentType
+                </div>
+                <div className="col-8">
+                    <Card style={{ width: "876px", padding:"20px", borderColor:"#000" }}>
+                        <Container>
+                            {paymentTypes ? (
+                                <ToolkitProvider
+                                    bootstrap4
+                                    keyField="id"
+                                    data={paymentTypes}
+                                    columns={columns}
+                                    defaultSorted={defaultSorted}
+                                    search
+                                >
+                                    {(props) => (
+                                        <div>
+                                            <Row>
+                                                <Col>
+                                                    <Link to="/paymenttypecreate">
+                                                        <Button color="dark" className="mr-2">
+                                                            <FontAwesomeIcon icon={faUserPlus} /> Create PaymentType
                                         </Button>
-                                    </Link>
-                                </Col>
-                                <Col>
-                                    <div className="float-right">
-                                        <SearchBar {...props.searchProps} placeholder="Search .." />
-                                    </div>
-                                </Col>
-                            </Row>
+                                                    </Link>
+                                                </Col>
+                                                <Col>
+                                                    <div className="float-right">
+                                                        <SearchBar {...props.searchProps} placeholder="Search .." />
+                                                    </div>
+                                                </Col>
+                                            </Row>
 
-                            <BootstrapTable
-                                {...props.baseProps}
-                                pagination={paginationFactory()}
-                            />
-                        </div>
-                    )}
-                </ToolkitProvider>
-            ) : (
-                    <div className="text-center">
-                        {props.errorCategoriesList ? (
-                            <h4>{props.errorCategoriesList}</h4>
-                        ) : (
-                                <Spinner color="dark" />
-                            )}
-                    </div>
-                )}
-        </Container>
+                                            <BootstrapTable
+                                                {...props.baseProps}
+                                                pagination={paginationFactory()}
+                                            />
+                                        </div>
+                                    )}
+                                </ToolkitProvider>
+                            ) : (
+                                    <div className="text-center">
+                                        {props.errorCategoriesList ? (
+                                            <h4>{props.errorCategoriesList}</h4>
+                                        ) : (
+                                                <Spinner color="dark" />
+                                            )}
+                                    </div>
+                                )}
+                        </Container>
+
+                    </Card>
+                </div>
+                <div className="col-2">
+
+                </div>
+            </div>
+        </div>
     );
 };
 

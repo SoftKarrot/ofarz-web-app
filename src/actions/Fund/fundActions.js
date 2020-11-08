@@ -27,11 +27,26 @@ import {
     FUND_LIST_FAIL_CEO,
     FUND_LIST_REQUEST_OFARZ,
     FUND_LIST_SUCCESS_OFARZ,
-    FUND_LIST_FAIL_OFARZ
+    FUND_LIST_FAIL_OFARZ,
+    FUND_REQUEST_APPSHARER,
+    FUND_SUCCESS_APPSHARER,
+    FUND_FAIL_APPSHARER,
+    FUND_REQUEST_SHOPER,
+    FUND_SUCCESS_SHOPER,
+    FUND_FAIL_SHOPER,
+    FUND_REQUEST_KARROT,
+    FUND_SUCCESS_KARROT,
+    FUND_FAIL_KARROT,
+    FUND_REQUEST_CEO,
+    FUND_SUCCESS_CEO,
+    FUND_FAIL_CEO,
+    FUND_REQUEST_OFARZ,
+    FUND_SUCCESS_OFARZ,
+    FUND_FAIL_OFARZ
 } from '../../constants/Fund/fundConstants';
 //#endregion
 
-
+//#region Fund list
 const listFundsAgent = () => async (dispatch) => {
 
     try {
@@ -112,66 +127,62 @@ const listFundOfarz = () => async (dispatch) => {
 
 //#region Get One Fund
 const fundAgent = (agentPhoneNumber) => async (dispatch) => {
-
     try {
-
         dispatch({ type: FUND_REQUEST_AGENT, payload: { agentPhoneNumber } });
         const { data } = await axios.get("/api/funds/GetAgentFund/" + agentPhoneNumber);
         dispatch({ type: FUND_SUCCESS_AGENT, payload: data });
-
     }
     catch (error) {
         dispatch({ type: FUND_FAIL_AGENT, Tayload: error.message });
     }
 }
+
 const fundAppSharers = (appSharerPhoneNumber) => async (dispatch) => {
     try {
-
-        dispatch({ type: FUND_LIST_REQUEST_APPSHARER, payload: { appSharerPhoneNumber } });
+        dispatch({ type: FUND_REQUEST_APPSHARER, payload: { appSharerPhoneNumber } });
         const { data } = await axios.get("/api/funds/GetAppSharerFund/" + appSharerPhoneNumber);
-        dispatch({ type: FUND_LIST_SUCCESS_APPSHARER, payload: data });
+        dispatch({ type: FUND_SUCCESS_APPSHARER, payload: data });
     }
     catch (error) {
-        dispatch({ type: FUND_LIST_FAIL_APPSHARER, payload: error.message });
+        dispatch({ type: FUND_FAIL_APPSHARER, payload: error.message });
     }
 }
 const fundShoper = (shoperPhoneNumber) => async (dispatch) => {
 
     try {
 
-        dispatch({ type: FUND_LIST_REQUEST_SHOPER, payload: { shoperPhoneNumber } });
+        dispatch({ type: FUND_REQUEST_SHOPER, payload: { shoperPhoneNumber } });
         const { data } = await axios.get("/api/funds/GetShoperFund/" + shoperPhoneNumber);
-        dispatch({ type: FUND_LIST_SUCCESS_SHOPER, payload: data });
-
+        dispatch({ type: FUND_SUCCESS_SHOPER, payload: data });
     }
     catch (error) {
-        dispatch({ type: FUND_LIST_FAIL_SHOPER, payload: error.message });
+        dispatch({ type: FUND_FAIL_SHOPER, Rayload: error.message });
     }
 }
 const fundKarrot = (karrotPhoneNumber) => async (dispatch) => {
 
     try {
 
-        dispatch({ type: FUND_LIST_REQUEST_KARROT, payload: { karrotPhoneNumber } });
+        dispatch({ type: FUND_REQUEST_KARROT, payload: { karrotPhoneNumber } });
         const { data } = await axios.get("/api/funds/GetKarrotFund/" + karrotPhoneNumber);
-        dispatch({ type: FUND_LIST_SUCCESS_KARROT, payload: data });
+        dispatch({ type: FUND_SUCCESS_KARROT, payload: data });
 
     }
     catch (error) {
-        dispatch({ type: FUND_LIST_FAIL_KARROT, payload: error.message });
+        dispatch({ type: FUND_FAIL_KARROT, payload: error.message });
     }
 }
 const fundCeo = (ceoPhoneNumber) => async (dispatch) => {
 
     try {
 
-        dispatch({ type: FUND_LIST_REQUEST_CEO, payload: { ceoPhoneNumber } });
+        dispatch({ type: FUND_REQUEST_CEO, payload: { ceoPhoneNumber } });
         const { data } = await axios.get("/api/funds/GetCeoFund/" + ceoPhoneNumber);
-        dispatch({ type: FUND_LIST_SUCCESS_CEO, payload: data });
+        dispatch({ type: FUND_SUCCESS_CEO, payload: data });
 
     }
     catch (error) {
-        dispatch({ type: FUND_LIST_FAIL_CEO, payload: error.message });
+        dispatch({ type: FUND_FAIL_CEO, payload: error.message });
     }
 }
 
@@ -179,12 +190,12 @@ const fundOfarz = (ofarzPhonNumber) => async (dispatch) => {
 
     try {
         debugger
-        dispatch({ type: FUND_LIST_REQUEST_OFARZ, payload: { ofarzPhonNumber } });
+        dispatch({ type: FUND_REQUEST_OFARZ, payload: { ofarzPhonNumber } });
         const { data } = await axios.get("/api/funds/GetOfarzFund/" + ofarzPhonNumber);
-        dispatch({ type: FUND_LIST_SUCCESS_OFARZ, payload: data });
+        dispatch({ type: FUND_SUCCESS_OFARZ, payload: data });
     }
     catch (error) {
-        dispatch({ type: FUND_LIST_FAIL_OFARZ, payload: error.message });
+        dispatch({ type: FUND_FAIL_OFARZ, payload: error.message });
     }
 }
 //#endregion
@@ -205,5 +216,4 @@ export {
     fundCeo,
     fundOfarz
 }
-
 //#endregion

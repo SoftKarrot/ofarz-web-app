@@ -11,23 +11,13 @@ import {
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link } from "react-router-dom";
-
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux';
-
 import { appSharerFirstDownlineList } from '../../../../actions/Auth/appSharerActions';
 
-const { SearchBar } = Search;
-
-const defaultSorted = [
-    {
-        dataField: "id",
-        order: "asc",
-    },
-];
 
 
 const ThirdDownlineListForAppSharerScreen = (props) => {
-
 
     const id = props.match.params.id;
 
@@ -47,78 +37,112 @@ const ThirdDownlineListForAppSharerScreen = (props) => {
     }, [id]);
 
 
-
-    const columns = [
-        {
-            dataField: "firstName",
-            text: "FirstName",
-            sort: true,
-        },
-        {
-            dataField: "lastName",
-            text: "Last Name",
-            sort: true,
-        },
-        {
-            dataField: "phoneNumber",
-            text: "Phone Number",
-            sort: true,
-        },
-        {
-            dataField: "reffrer.phoneNumber",
-            text: "Reffer Phone Number",
-            sort: true,
-        },
-        {
-            dataField: "link",
-            text: "Action",
-            formatter: (rowContent, row) => {
-                return (
-                    <div>
-                        <Link to={"appsharerfourthdownlinelist/" + row.id}>
-                            <Button color="dark" className="mr-2">
-                                <FontAwesomeIcon icon={faInfo} /> Detail
-                            </Button>
-                        </Link>
-                    </div>
-                );
-            },
-        },
-    ];
+    const handleProfileDetails = (id) => {
+        props.history.push('/appsharerdownlineprofiledetails/' + id);
+    }
 
     return (
-        <div>
-            <h1>Third Downline</h1>
-            <Container>
+        <>
+            <div className="container" style={{ width: "876px", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
+                <br />
+                <br />
+                <br />
+
+                <div className="container">
+                    <div className="row">
+                        <div className="col-4"></div>
+                        <div className="col-4">
+                            <Card style={{ height: "50px", justifyContent: "center", alignItems: "center", color: "#fff", backgroundColor: "#5cb85c" }}>
+                                Third Level
+                            </Card>
+                        </div>
+                        <div className="col-4"></div>
+                    </div>
+                </div>
+                <br />
+                <br />
                 {downlines ? (
-                    <ToolkitProvider
-                        bootstrap4
-                        keyField="id"
-                        data={downlines}
-                        columns={columns}
-                        defaultSorted={defaultSorted}
-                        search
-                    >
-                        {(props) => (
-                            <div>
-                                <BootstrapTable
-                                    {...props.baseProps}
-                                    pagination={paginationFactory()}
-                                />
-                            </div>
-                        )}
-                    </ToolkitProvider>
+                    <Card>
+                        <div className="row">
+                            {downlines.map((downline) => (
+                                <div className="col-4">
+                                    <Card style={{ color: "#000", backgroundColor: "#fff", borderColor: "#5cb85c" }} height="200px">
+                                        <div className="row">
+                                            <div className="container">
+                                                <Card.Img variant="top" width="160px" height="200px" src={downline.profilePhoto} />
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <Card >
+                                                    <Card.Body>
+                                                        <ListGroup className="list-group-flush">
+                                                            <ListGroupItem style={{ backgroundColor: "#fff", textAlign: "center" }}><h4> {downline.firstName} {downline.lastName}</h4></ListGroupItem>
+                                                            <ListGroupItem style={{ backgroundColor: "#fff", textAlign: "center" }}><h4> {downline.phoneNumber}</h4></ListGroupItem>
+                                                        </ListGroup>
+                                                    </Card.Body>
+                                                </Card>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <Card>
+                                                    <Card.Body>
+                                                        <Button
+                                                            style={{
+                                                                color: "#06E2FF",
+                                                            }}
+                                                            outline color="info" size="lg" block type="submit"
+                                                            onClick={() => handleProfileDetails(downline.id)}
+                                                        >
+                                                            Profile
+                                                        </Button>
+                                                    </Card.Body>
+                                                </Card>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <Card>
+                                                    <Card.Body>
+                                                        <Link to={"appsharerseconddownlinelist/" + downline.id}>
+                                                            <Button
+                                                                style={{
+                                                                    color: "#06E2FF",
+                                                                }}
+                                                                outline color="success" size="lg" block type="submit"
+                                                            >
+                                                                Downlines
+                                                        </Button>
+                                                        </Link>
+                                                    </Card.Body>
+                                                </Card>
+                                            </div>
+                                        </div>
+                                    </Card>
+                                    <br />
+                                    <br />
+                                </div>
+                            ))}
+                        </div>
+                    </Card>
+
+
                 ) : (
-                        <div className="text-center">
-                            {props.errorCategoriesList ? (
-                                <h4>{props.errorCategoriesList}</h4>
-                            ) : (
-                                    <Spinner color="dark" />
-                                )}
+                        <div className="container">
+                            {/* <div className="row">
+                                <div className="col-4"></div>
+                                <div className="col-4">
+                                    <Card style={{ height: "50px", justifyContent: "center", alignItems: "center", color: "#fff", backgroundColor: "#5cb85c" }}>
+                                        Your Third Level Still Empty
+                                    </Card>
+                                </div>
+                                <div className="col-4"></div>
+                            </div> */}
                         </div>
                     )}
-            </Container>
-        </div>
+            </div>
+        </>
 
     );
 };

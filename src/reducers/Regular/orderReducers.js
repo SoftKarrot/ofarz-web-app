@@ -43,16 +43,8 @@ function orderCreateReducer(state = initialState, action) {
     }
 }
 
-function orderDetailsReducer(state = {
-    order: {
-        orderItems: [],
-        shipping: {},
-        payment: {}
-    }
-}, action) {
+function orderDetailsReducer(state = { order: [] }, action) {
     switch (action.type) {
-        case ORDER_DETAILS_REQUEST:
-            return { loading: true };
         case ORDER_DETAILS_SUCCESS:
             return { loading: false, order: action.payload };
         case ORDER_DETAILS_FAIL:
@@ -61,9 +53,7 @@ function orderDetailsReducer(state = {
     }
 }
 
-function myOrderListReducer(state = {
-    orders: []
-}, action) {
+function myOrderListReducer(state = { orders: [] }, action) {
     switch (action.type) {
         case MY_ORDER_LIST_REQUEST:
             return { loading: true };
@@ -75,9 +65,7 @@ function myOrderListReducer(state = {
     }
 }
 
-function orderListReducer(state = {
-    orders: []
-}, action) {
+function orderListReducer(state = { orders: [] }, action) {
     switch (action.type) {
         case ORDER_LIST_REQUEST:
             return { loading: true };
@@ -89,13 +77,7 @@ function orderListReducer(state = {
     }
 }
 
-function orderPayReducer(state = {
-    order: {
-        orderItems: [],
-        shipping: {},
-        payment: {}
-    }
-}, action) {
+function orderPayReducer(state = { order: { orderItems: [], shipping: {}, payment: {} } }, action) {
     switch (action.type) {
         case ORDER_PAY_REQUEST:
             return { loading: true };

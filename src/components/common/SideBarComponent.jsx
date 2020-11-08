@@ -11,8 +11,6 @@ function SideBar({ isOpen, toggle }) {
     const userSignIn = useSelector((state) => state.userSignIn);
     const { userInfo } = userSignIn;
 
-
-
     useEffect(() => {
 
         return () => {
@@ -231,7 +229,7 @@ function SideBar({ isOpen, toggle }) {
                                 ProductList
                             </NavLink>
                         </NavItem>
-                         <NavItem>
+                        <NavItem>
                             <NavLink tag={Link} to={"/productsadmin"}>
                                 Products
                             </NavLink>
@@ -295,6 +293,22 @@ function SideBar({ isOpen, toggle }) {
                         <NavItem>
                             <NavLink tag={Link} to={"/"}>
                                 <h3>Home</h3>
+                            </NavLink>
+                        </NavItem>
+                        <p>______________________________</p>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/cart"}>
+                                Cart
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/agentOrderList"}>
+                                My Order List
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/agnetProductGalleryForCustomer"}>
+                                Own Product Gallery
                             </NavLink>
                         </NavItem>
                         <p>______________________________</p>
@@ -405,6 +419,11 @@ function SideBar({ isOpen, toggle }) {
                         <NavItem>
                             <NavLink tag={Link} to={"/agentfindforcustomer"}>
                                 Find Agent
+                             </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to={"/appsharerviewfullagentgallery"}>
+                                View Agent Gallery
                              </NavLink>
                         </NavItem>
                         <p>______________________________</p>

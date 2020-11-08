@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner, Label, Input, Form, FormGroup } from "reactstrap";
+import { Container, Card, Button, Row, Col, Spinner, Label, Input, Form, FormGroup } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faInfo
@@ -84,43 +84,62 @@ const WithdrawListAdminAndModeratorScreen = (props) => {
     ];
 
     return (
+        <div className="container">
+            <br />
+            <br />
+            <br />
+            <br />
+            <div className="row">
+                <div className="col-2">
 
-        <Container>
-            {withdraws ? (
-                <ToolkitProvider
-                    bootstrap4
-                    keyField="id"
-                    data={withdraws}
-                    columns={columns}
-                    defaultSorted={defaultSorted}
-                    search
-                >
-                    {(props) => (
-                        <div>
-                            <Row>
-                                <Col>
-                                    <div className="float-right">
-                                        <SearchBar {...props.searchProps} placeholder="Search .." />
+                </div>
+                <div className="col-8">
+                    <Card style={{ width: "876px", height: "40px", justifyContent: "center", alignItems: "center", color: "#fff", borderColor: "#5cb85c", background: "#000" }}>
+                        All Cash Out List
+                    </Card>
+                    <Card style={{ width: "876px", padding: "20px", borderColor: "#000" }}>
+                        <Container>
+                            {withdraws ? (
+                                <ToolkitProvider
+                                    bootstrap4
+                                    keyField="id"
+                                    data={withdraws}
+                                    columns={columns}
+                                    defaultSorted={defaultSorted}
+                                    search
+                                >
+                                    {(props) => (
+                                        <div>
+                                            <Row>
+                                                <Col>
+                                                    <div className="float-right">
+                                                        <SearchBar {...props.searchProps} placeholder="Search .." />
+                                                    </div>
+                                                </Col>
+                                            </Row>
+                                            <BootstrapTable
+                                                {...props.baseProps}
+                                                pagination={paginationFactory()}
+                                            />
+                                        </div>
+                                    )}
+                                </ToolkitProvider>
+                            ) : (
+                                    <div className="text-center">
+                                        {props.errorCategoriesList ? (
+                                            <h4>{props.errorCategoriesList}</h4>
+                                        ) : (
+                                                <Spinner color="dark" />
+                                            )}
                                     </div>
-                                </Col>
-                            </Row>
-                            <BootstrapTable
-                                {...props.baseProps}
-                                pagination={paginationFactory()}
-                            />
-                        </div>
-                    )}
-                </ToolkitProvider>
-            ) : (
-                    <div className="text-center">
-                        {props.errorCategoriesList ? (
-                            <h4>{props.errorCategoriesList}</h4>
-                        ) : (
-                                <Spinner color="dark" />
-                            )}
-                    </div>
-                )}
-        </Container>
+                                )}
+                        </Container>
+                    </Card>
+                </div>
+                <div className="col-2">
+                </div>
+            </div>
+        </div>
     );
 };
 

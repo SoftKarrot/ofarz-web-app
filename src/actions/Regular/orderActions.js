@@ -27,29 +27,24 @@ import {
 } from "../../constants/Regular/orderConstants";
 
 
-const createOrder = (currentUserId, amount, products ) => async (dispatch, getState) => {
+const createOrder = (currentUserId, amount, products) => async (dispatch, getState) => {
     const { cart: { cartItems } } = getState();
     try {
 
-        dispatch({ type: ORDER_CREATE_REQUEST, payload: { currentUserId, amount, products  } });
-        const { data } = await axios.post("/api/order/checkout", { currentUserId, amount, products  });
+        dispatch({ type: ORDER_CREATE_REQUEST, payload: { currentUserId, amount, products } });
+        const { data } = await axios.post("/api/order/checkout", { currentUserId, amount, products });
         Cookie.remove("cartItems", JSON.stringify(cartItems));
-        //Cookie.remove("cartItems");
         dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
-
     } catch (error) {
         dispatch({ type: ORDER_CREATE_FAIL, payload: error.message });
     }
 }
 
-const listMyOrders = () => async (dispatch, getState) => {
+const listMyOrders = (id) => async (dispatch, getState) => {
+
     try {
-        dispatch({ type: MY_ORDER_LIST_REQUEST });
-        const { userSignin: { userInfo } } = getState();
-        const { data } = await axios.get("/api/orders/mine", {
-            headers:
-                { Authorization: 'Bearer ' + userInfo.token }
-        });
+        dispatch({ type: MY_ORDER_LIST_REQUEST, payload: id });
+        const { data } = await axios.get("/api/order/orderListAgent/" + id);
         dispatch({ type: MY_ORDER_LIST_SUCCESS, payload: data })
     } catch (error) {
         dispatch({ type: MY_ORDER_LIST_FAIL, payload: error.message });
@@ -71,14 +66,10 @@ const listOrders = () => async (dispatch, getState) => {
     }
 }
 
-const detailsOrder = (orderId) => async (dispatch, getState) => {
+const detailsOrder = (id) => async (dispatch, getState) => {
     try {
-        dispatch({ type: ORDER_DETAILS_REQUEST, payload: orderId });
-        const { userSignin: { userInfo } } = getState();
-        const { data } = await axios.get("/api/orders/" + orderId, {
-            headers:
-                { Authorization: 'Bearer ' + userInfo.token }
-        });
+        dispatch({ type: ORDER_DETAILS_REQUEST, payload: id });
+        const { data } = await axios.get("/api/order/orderDetails/" + id);
         dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data })
     } catch (error) {
         dispatch({ type: ORDER_DETAILS_FAIL, payload: error.message });

@@ -1,26 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner, Label, Input, Form, FormGroup } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faInfo
-} from "@fortawesome/free-solid-svg-icons";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import { Link } from "react-router-dom";
-
+import React, { useEffect } from 'react';
+import { Card } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux';
-import { listPaymentsAppSharer } from '../../../../../actions/Fund/paymentActions';
-import { listWithdrawAppSharerToAgent, listWithdrawAppSharerToOfarz, listWithdrawCeoToAgent } from '../../../../../actions/Fund/withdrawActions';
-
-const { SearchBar } = Search;
-
-const defaultSorted = [
-    {
-        dataField: "id",
-        order: "asc",
-    },
-];
+import { listWithdrawAppSharerToOfarz } from '../../../../../actions/Fund/withdrawActions';
 
 
 const WithdrawListAppSharerToOfarzForAppSharerScreen = (props) => {
@@ -42,60 +23,66 @@ const WithdrawListAppSharerToOfarzForAppSharerScreen = (props) => {
 
 
 
-    const columns = [
-        {
-            dataField: "userName",
-            text: "Payer Name",
-            sort: true,
-        },
-        {
-            dataField: "userPhoneNumber",
-            text: "Payer Phone Number",
-            sort: true,
-        },
-        {
-            dataField: "ofarzPhoneNumber",
-            text: "Ofarz Phone Number",
-            sort: true,
-        },
-        {
-            dataField: "amount",
-            text: "Amount",
-            sort: true,
-        }
-    ];
+
 
     return (
 
-        <Container>
+        <div className="container" style={{ width: "876px", justifyContent: "center", alignItems: "center", textAlign: "center", marginTop: "60px" }}>
+            <br />
+            <br />
+            <br />
+            <br />
             {withdraws ? (
-                <ToolkitProvider
-                    bootstrap4
-                    keyField="id"
-                    data={withdraws}
-                    columns={columns}
-                    defaultSorted={defaultSorted}
-                    search
-                >
-                    {(props) => (
-                        <div>
-                            <BootstrapTable
-                                {...props.baseProps}
-                                pagination={paginationFactory()}
-                            />
-                        </div>
-                    )}
-                </ToolkitProvider>
-            ) : (
-                    <div className="text-center">
-                        {props.errorCategoriesList ? (
-                            <h4>{props.errorCategoriesList}</h4>
-                        ) : (
-                                <Spinner color="dark" />
-                            )}
+
+
+                <div className="row">
+                    <div className="col-2">
+
                     </div>
-                )}
-        </Container>
+                    <div className="col-8">
+                        {withdraws.map((withdraw) => (
+                            <Card>
+                                <div>
+                                    <Card key={withdraw.id} style={{
+                                        color: "#fff",
+                                        backgroundColor: "#fff",
+                                        borderColor: "#5cb85c"
+                                    }} >
+                                        <Card.Body style={{ alignItems: "center", justifyContent: "center" }}>
+                                            <div className="row">
+                                                <div className="col-4">
+                                                    <Card style={{ padding: "10px", borderColor: "#5cb85c", height: "100px", justifyContent: "center" }}>
+                                                        <h5 style={{ color: "#5cb85c" }}>Agent PhoneNumber:-{withdraw.agentPhnNumber}</h5>
+                                                    </Card>
+                                                </div>
+                                                <div className="col-4">
+                                                    <Card style={{ padding: "10px", borderColor: "#5cb85c", height: "100px", justifyContent: "center" }}>
+                                                        <h5 style={{ color: "#5cb85c" }}>CashOut Time:-{withdraw.paymentTime}</h5>
+                                                    </Card>
+                                                </div>
+                                                <div className="col-4">
+                                                    <Card style={{ padding: "10px", borderColor: "#5cb85c", height: "100px", justifyContent: "center" }}>
+                                                        <h5 style={{ color: "#5cb85c" }}>Amount:-{withdraw.amount}</h5>
+                                                    </Card>
+                                                </div>
+                                            </div>
+                                        </Card.Body>
+                                    </Card>
+                                    <br />
+                                    <br />
+                                </div>
+                            </Card>
+                        ))}
+                    </div>
+                    <div className="col-2">
+                    </div>
+                </div>
+            ) : (
+                    <h1>You dont hv any paymnt yet</h1>
+                )
+            }
+        </div >
+
     );
 };
 

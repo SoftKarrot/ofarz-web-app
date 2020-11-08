@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 function FindAgnetForAppSharer(props) {
     
     const [agentCode, setAgentCode] = useState('');
+    
     const agentLists = useSelector((state) => state.agentFind)
     const { agent } = agentLists;
 

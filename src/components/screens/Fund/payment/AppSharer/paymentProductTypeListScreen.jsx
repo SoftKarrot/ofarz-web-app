@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducttypes } from '../../../../../actions/Regular/productTypeActions';
-import { Button, Card } from 'reactstrap';
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
-
 function PaymentProductTypeScreen(props) {
 
     const productTypeList = useSelector((state) => state.productTypeList);
@@ -25,29 +24,53 @@ function PaymentProductTypeScreen(props) {
             ) : error ? (
                 <div>{error}</div>
             ) : (
-                        <ul>
-                            <li>
-                                Product Type
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <Link to={`/paymentofferproduct`}>
-                                        <Card>
-                                            <h4>Offer</h4>
-                                        </Card>
-                                    </Link>
+                        <div className="container">
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
+                            <div className="row">
+                                <div className="col-2">
+
                                 </div>
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <Link to={`/paymentpromotionalproduct`}>
-                                        <Card>
-                                            <h4>Promotional</h4>
-                                        </Card>
-                                    </Link>
+                                <div className="col-8">
+                                    <div className="row">
+                                        <div className="col-6">
+                                            <Card style={{ color: "#fff", backgroundColor: "#fff", borderColor: "#5cb85c" }} >
+                                                <Card.Body>
+                                                        <Link to={'/paymentofferproduct'} style={{
+                                                            textAlign: 'center', justifyContent: "center",
+                                                        }}>
+                                                        <Card style={{ height: "60px", backgroundColor: "#5cb85c", justifyContent: "center", color: "#fff" }}>Offer</Card>
+                                                        </Link>
+                                                 
+                                                </Card.Body>
+                                            </Card>
+                                        </div>
+                                        <div className="col-6">
+                                            <Card style={{ color: "#fff", backgroundColor: "#fff", borderColor: "#5cb85c" }} >
+                                                <Card.Body>
+                                                        <Link to={'/paymentpromotionalproduct/'} style={{
+                                                            textAlign: 'center', justifyContent: "center",
+                                                        }}>
+                                                        <Card style={{ height: "60px", backgroundColor: "#5cb85c", justifyContent: "center", color: "#fff" }}>Promotional</Card>
+                                                        </Link>                      
+                                                </Card.Body>
+                                            </Card>
+                                        </div>
+
+
+
+                                    </div>
+
                                 </div>
-                            </li>
-                        </ul>
+                                <div className="col-2">
+
+                                </div>
+
+                            </div>
+                        </div>
                     )}
         </>
     );

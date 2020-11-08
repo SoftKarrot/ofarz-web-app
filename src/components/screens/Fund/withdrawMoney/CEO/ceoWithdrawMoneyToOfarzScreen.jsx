@@ -5,7 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Spinner } from 'reactstrap';
 import { fundCeo, fundKarrot } from '../../../../../actions/Fund/fundActions';
 import { withdrawCeoToOfarz, withdrawKarrotToAgnet, withdrawKarrotToOfarz } from '../../../../../actions/Fund/withdrawActions';
-
+import { Card } from 'react-bootstrap'
+import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
 function WithdrawMoneyCEOToOfarz(props) {
 
@@ -16,8 +17,8 @@ function WithdrawMoneyCEOToOfarz(props) {
     const { userInfo } = userSignIn;
 
 
-    const fundsCeo = useSelector((state) => state.fundCeo)
-    const { funds } = fundsCeo;
+    const fundCEOs = useSelector((state) => state.fundCEO)
+    const { fund } = fundCEOs;
 
 
     const dispatch = useDispatch();
@@ -37,88 +38,108 @@ function WithdrawMoneyCEOToOfarz(props) {
         dispatch(withdrawCeoToOfarz(amount, ofarzPhnNumber, ceoId));
 
     }
-    const columns = [
-        {
-            dataField: "mainAccount",
-            text: "MainAccount",
-            sort: true,
-            headerAlign: 'center',
-            style: { backgroundColor: 'white' },
-            alignItems: 'center'
+    return (
+        <>
+            <div className="container">
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div className="row">
+                    <div className="col-3">
 
-        },
-    ]
-    return <div className="row">
-        <div className="col-3">
-
-        </div>
-        <div className="col-5">
-            {funds ? (
-                <ToolkitProvider
-                    keyField="id"
-                    data={funds}
-                    columns={columns}
-
-                >
-                    {(props) => (
-                        <div>
-                            <BootstrapTable
-                                {...props.baseProps}
-                            />
-                        </div>
-                    )}
-                </ToolkitProvider>
-            ) : (
-                    <div className="text-center">
-                        {props.errorCategoriesList ? (
-                            <h4>{props.errorCategoriesList}</h4>
-                        ) : (
-                                <Spinner color="dark" />
-                            )}
                     </div>
-                )}
+                    <div className="col-6">
+                        <Card style={{ padding: "10px", borderColor: "#5cb85c" }}>
+                            <div className="row">
+                                <div className="col-2">
 
+                                </div>
+                                <div className="col-8">
+                                    <Card style={{ height: "40px", justifyContent: "center", alignItems: "center", color: "#fff", backgroundColor: "#5cb85c" }}>
+                                        Cash Out To Ofarz
+                                    </Card>
+                                    <br />
+                                    <br />
+                                    <Card style={{ height: "40px", justifyContent: "center", alignItems: "center", color: "#fff", backgroundColor: "#5cb85c" }}>
+                                        Main Account Balance: {fund.mainAccount}
+                                    </Card>
+                                    <br />
+                                    <br />
+                                    <Form
+                                        onSubmit={submitHandler}
+                                    >
+                                        <div
+                                            style={{ alignItems: "center", justifyContent: "center", textAlign: "center" }}
+                                        >
+                                            <FormGroup >
+                                                <Label
+                                                    for="name"
+                                                    style={{ color: "#5cb85c" }}
+                                                >
+                                                    Amount
+                                                </Label>
+                                                <Input
+                                                    style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                                    type="text"
+                                                    name="name"
+                                                    color="06E2FF"
+                                                    placeholder="Enter Amount"
+                                                    size="lg"
+                                                    value={amount}
+                                                    onChange={(e) => setAmount(e.target.value)}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup >
+                                                <Label
+                                                    for="password"
+                                                    style={{ color: "#5cb85c" }}
+                                                >
+                                                    Ofarz PhoneNumber
+                                                </Label>
+                                                <Input
+                                                    style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                                    type="text"
+                                                    name="name"
+                                                    color="06E2FF"
+                                                    placeholder="Enter Ofarz Phone Number"
+                                                    size="lg"
+                                                    value={ofarzPhnNumber}
+                                                    onChange={(e) => setOfarzPhnNumber(e.target.value)}
+                                                />
+                                            </FormGroup>
+                                        </div>
+                                        {fund.mainAccount >= amount ? (
+                                            <Button
+                                                style={{
+                                                    color: "#06E2FF",
+                                                }}
+                                                outline color="success" size="lg" block type="submit">
+                                                Cash Out
+                                            </Button>
+                                        ) : (
+                                                <Card style={{ height: "40px", justifyContent: "center", alignItems: "center", color: "#fff", backgroundColor: "#d9534f" }}>
+                                                    You Do Not Have Enough Money
+                                                </Card>
+                                            )}
 
-            {userInfo.item3.mainAccount > 0 ?
-                (
-                    <form onSubmit={submitHandler} >
-                        <ul className="form-container">
-                            <li>
-                                <p>You Can Withdraw {userInfo.item3.mainAccount} Taka</p>
-                            </li>
-                            <li>
-                                <label htmlFor="amount">
-                                    Amount
-                            </label>
-                                <input
-                                    type="number"
-                                    name="amount"
-                                    id="amount"
-                                    onChange={(e) => setAmount(e.target.value)}>
-                                </input>
-                            </li>
-                            <li>
-                                <label htmlFor="ofarzPhnNumber">
-                                    Ofarz Phone Number
-                    </label>
-                                <input
-                                    type="text"
-                                    id="ofarzPhnNumber"
-                                    name="ofarzPhnNumber"
-                                    onChange={(e) => setOfarzPhnNumber(e.target.value)}>
-                                </input>
-                            </li>
-                            <li>
-                                <button type="submit" className="button primary">Withdraw</button>
-                            </li>
-                        </ul>
-                    </form>) : (
-                    <h1>You Do Not Have Sufficient Balance</h1>
-                )}
-        </div>
-        <div className="col-3">
+                                    </Form>
+                                </div>
+                                <div className="col-2">
 
-        </div>
-    </div>
+                                </div>
+                            </div>
+                        </Card>
+                    </div>
+                    <div className="col-3">
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 }
 export default WithdrawMoneyCEOToOfarz;

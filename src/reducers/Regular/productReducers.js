@@ -1,10 +1,19 @@
 import {
+    PRODUCT_DELETE_AGENT_FAIL,
+    PRODUCT_DELETE_AGENT_REQUEST,
+    PRODUCT_DELETE_AGENT_SUCCESS,
     PRODUCT_DELETE_FAIL,
     PRODUCT_DELETE_REQUEST,
     PRODUCT_DELETE_SUCCESS,
 
     PRODUCT_DETAILS_FAIL,
     PRODUCT_DETAILS_SUCCESS,
+
+    PRODUCT_GALERY_FOR_AGENT_AND_CUSTOMER_FAIL,
+
+    PRODUCT_GALERY_FOR_AGENT_AND_CUSTOMER_REQUEST,
+
+    PRODUCT_GALERY_FOR_AGENT_AND_CUSTOMER_SUCCESS,
 
     PRODUCT_LIST_FAIL,
     PRODUCT_LIST_FOR_APPSHARER_AND_SHOPER_FAIL,
@@ -42,6 +51,22 @@ function productListReducer(state = { products: [] }, action) {
             return state;
     }
 }
+
+
+function productLisForAgentAndCustomerReducer(state = { products: [] }, action) {
+
+    switch (action.type) {
+        case PRODUCT_GALERY_FOR_AGENT_AND_CUSTOMER_REQUEST:
+            return { loading: true };
+        case PRODUCT_GALERY_FOR_AGENT_AND_CUSTOMER_SUCCESS:
+            return { loading: false, products: action.payload };
+        case PRODUCT_GALERY_FOR_AGENT_AND_CUSTOMER_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+
 
 function productListByProductTypeCategoryReducer(state = { products: [] }, action) {
 
@@ -99,6 +124,20 @@ function productDeleteReducer(state = { product: {} }, action) {
     }
 }
 
+function productDeleteAgentReducer(state = { product: {} }, action) {
+
+    switch (action.type) {
+        case PRODUCT_DELETE_AGENT_REQUEST:
+            return { loading: true };
+        case PRODUCT_DELETE_AGENT_SUCCESS:
+            return { loading: false, product: action.payload, success: true };
+        case PRODUCT_DELETE_AGENT_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+}
+
 
 function productSaveReducer(state = initialState, action) {
 
@@ -130,10 +169,12 @@ function productUpdateReducer(state = initialState, action) {
 
 export {
     productListReducer,
+    productLisForAgentAndCustomerReducer,
     productListByProductTypeCategoryReducer,
     productListForAppSharerAndShoperReducer,
     productDetailsReducer,
     productDeleteReducer,
     productUpdateReducer,
-    productSaveReducer
+    productSaveReducer,
+    productDeleteAgentReducer
 }

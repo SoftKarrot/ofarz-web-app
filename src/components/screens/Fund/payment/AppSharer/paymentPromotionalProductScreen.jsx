@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { listPaymentTypes } from '../../../../../actions/Fund/paymentTypeActions';
-import { Card } from 'reactstrap';
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 
 
@@ -26,39 +26,73 @@ function PaymentPromotionalProduct(props) {
             ) : error ? (
                 <div>{error}</div>
             ) : (
-                        <ul>
-                            <li>
-                                <p>Promotional</p>
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <Link to={`/submitpaymenttablecashpromotional`}>
-                                        <Card>
-                                            <h4>Table Cash (Promotional)</h4>
-                                        </Card>
-                                    </Link>
+
+
+                        <div className="container">
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
+                            <div className="row">
+                                <div className="col-2">
+
                                 </div>
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <Link to={`/submitpaymentmainaccountpromotional`}>
-                                        <Card>
-                                            <h4>Main Account (Promotional)</h4>
-                                        </Card>
-                                    </Link>
+                                <div className="col-8">
+                                    <div className="row">
+                                        <div className="col-4">
+                                            <Card style={{ color: "#fff", backgroundColor: "#fff", borderColor: "#5cb85c" }} >
+                                                <Card.Body>
+                                                    <Link to={'/submitpaymenttablecashpromotional'} style={{
+                                                        textAlign: 'center', justifyContent: "center",
+                                                    }}>
+                                                        <Card style={{ height: "60px", backgroundColor: "#5cb85c", justifyContent: "center", color: "#fff" }}>Table Cash (Promotional)</Card>
+                                                    </Link>
+
+                                                </Card.Body>
+                                            </Card>
+                                        </div>
+                                        <div className="col-4">
+                                            <Card style={{ color: "#fff", backgroundColor: "#fff", borderColor: "#5cb85c" }} >
+                                                <Card.Body>
+
+
+                                                    <Link to={'/submitpaymentmainaccountpromotional'} style={{
+                                                        textAlign: 'center', justifyContent: "center",
+                                                    }}>
+                                                        <Card style={{ height: "60px", backgroundColor: "#5cb85c", justifyContent: "center", color: "#fff" }}>Main Account (Promotional)</Card>
+                                                    </Link>
+
+                                                </Card.Body>
+                                            </Card>
+                                        </div>
+
+                                        <div className="col-4">
+                                            <Card style={{ color: "#fff", backgroundColor: "#fff", borderColor: "#5cb85c" }} >
+                                                <Card.Body>
+                                                    <Link to={'/submitpaymentbackshoppingpromotional'} style={{
+                                                        textAlign: 'center', justifyContent: "center",
+                                                    }}>
+                                                        <Card style={{ height: "60px", backgroundColor: "#5cb85c", justifyContent: "center", color: "#fff" }}>Back Shoping (Promotional)</Card>
+                                                    </Link>
+
+                                                </Card.Body>
+                                            </Card>
+                                        </div>
+
+
+
+                                    </div>
+
                                 </div>
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <Link to={`/submitpaymentbackshoppingpromotional`}>
-                                        <Card>
-                                            <h4>Back Shoping (Promotional)</h4>
-                                        </Card>
-                                    </Link>
+                                <div className="col-2">
+
                                 </div>
-                            </li>
-                        </ul>
-                    )}
+
+                            </div>
+                        </div>
+                    )
+            }
         </>
     );
 }

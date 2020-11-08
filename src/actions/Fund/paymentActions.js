@@ -372,26 +372,21 @@ const listPaymentsBackShoppingPromotionalAppSharer = (appSharerPhoneNumber) => a
 //#region Submit Payments App Sharer
 
 const submitPaymentTableCashOffer = (amount, agentPhnNumber, payerId) => async (dispatch, getState) => {
-    const { userSignIn: { userInfo } } = getState();
     try {
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_REQUEST, payload: { amount, agentPhnNumber, payerId } });
         const { data } = await axios.post('/api/appsharer/paymentSubmitTableCashOffer', { amount, agentPhnNumber, payerId })
-        Cookie.set('userInfo', JSON.stringify(data));
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_SUCCESS, payload: data });
     } catch (error) {
-        Cookie.set('userInfo', JSON.stringify(userInfo));
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_OFFER_FAIL, payload: error.message });
     }
 }
 
 const submitPaymentTableCashPromotional = (amount, agentPhnNumber, payerId) => async (dispatch, getState) => {
-    const { userSignIn: { userInfo } } = getState();
     try {
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_PROMOTIONAL_REQUEST, payload: { amount, agentPhnNumber, payerId } });
         const { data } = await axios.post('/api/appsharer/paymentSubmitTableCashPromotional', { amount, agentPhnNumber, payerId })
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_PROMOTIONAL_SUCCESS, payload: data });
     } catch (error) {
-        Cookie.set('userInfo', JSON.stringify(userInfo));
         dispatch({ type: PAYMENT_SUBMIT_TABLECASH_PROMOTIONAL_FAIL, payload: error.message });
     }
 }
@@ -403,7 +398,6 @@ const submitPaymentMainAccountOffer = (amount, agentPhnNumber, payerId) => async
         const { data } = await axios.post('/api/appsharer/paymentSubmitMainAccounntOffer', { amount, agentPhnNumber, payerId})
         dispatch({ type: PAYMENT_SUBMIT_MAINACCOUNT_OFFER_SUCCESS, payload: data });
     } catch (error) {
-
         dispatch({ type: PAYMENT_SUBMIT_MAINACCOUNT_OFFER_FAIL, payload: error.message });
     }
 }
@@ -414,7 +408,6 @@ const submitPaymentMainAccountPromotional = (payment) => async (dispatch) => {
         const { data } = await axios.post('/api/appsharer/paymentSubmitMainAccounntPromotional', payment)
         dispatch({ type: PAYMENT_SUBMIT_MAINACCOUNT_PROMOTIONAL_SUCCESS, payload: data });
     } catch (error) {
-
         dispatch({ type: PAYMENT_SUBMIT_MAINACCOUNT_PROMOTIONAL_FAIL, payload: error.message });
     }
 }
@@ -425,7 +418,6 @@ const submitPaymentBackShoppingOffer = (payment) => async (dispatch) => {
         const { data } = await axios.post('/api/appsharer/paymentSubmitBackShoppingOffer', payment)
         dispatch({ type: PAYMENT_SUBMIT_BACKSHOPPING_OFFER_SUCCESS, payload: data });
     } catch (error) {
-
         dispatch({ type: PAYMENT_SUBMIT_BACKSHOPPING_OFFER_FAIL, payload: error.message });
     }
 }
@@ -436,7 +428,6 @@ const submitPaymentBackShoppingPromotional = (payment) => async (dispatch) => {
         const { data } = await axios.post('/api/appsharer/paymentSubmitBackShoppingPromotional', payment)
         dispatch({ type: PAYMENT_SUBMIT_BACKSHOPPING_PROMOTIONAL_SUCCESS, payload: data });
     } catch (error) {
-
         dispatch({ type: PAYMENT_SUBMIT_BACKSHOPPING_PROMOTIONAL_FAIL, payload: error.message });
     }
 }

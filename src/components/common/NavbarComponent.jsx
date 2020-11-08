@@ -38,32 +38,38 @@ const NavbarComponent = ({ toggleSidebar, props }) => {
     }
     return (
         <Navbar
-            color="#06E2FF"
-            style={{ backgroundColor: "#0C373A", height:"60px" }}
+            color="#fff"
+            style={{ backgroundColor: "#1FC46C", height: "60px" }}
             light
             className="navbar"
             expand="md"
             fixed="top"
         >
             <Button color="dark" onClick={toggleSidebar}>
-                <FontAwesomeIcon icon={faAlignLeft} />
+                <FontAwesomeIcon color="#fff" icon={faAlignLeft} />
             </Button>
             <NavbarToggler onClick={toggleTopbar} />
             <Collapse isOpen={topbarIsOpen} navbar>
-                <Nav className="ml-auto" navbar>
-                    {userInfo ? (
-                        <Nav>
-                            <a href="/" style={{ color: "#06E2FF" }} >{userInfo.item1.phoneNumber}</a>
-                            <a href="/signin" style={{ color: "#06E2FF" }} onClick={handleLogout}>Log Out</a>
+
+                {userInfo ? (
+                    <Nav className="ml-auto" navbar>
+                        <NavItem>
+                            <NavLink style={{ color: "#fff" }} href="/appsharerprofiledetails"><h5>{userInfo.item1.phoneNumber}</h5></NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink style={{ color: "#fff" }} onClick={handleLogout}><h5>Log Out</h5></NavLink>
+                        </NavItem>
+                    </Nav>
+                ) : (
+                        <Nav className="ml-auto" navbar>
+                            <Nav>
+                                <a href="/signin" style={{ color: "#fff" }}><h5>SignIn</h5></a>
+                            </Nav>
                         </Nav>
-                    ) : (
-                        <Nav>
-                            <a href="/signin" style={{ color: "#06E2FF" }}>SignIn</a>
-                        </Nav>
-                        )}
-                </Nav>
+                    )}
+
             </Collapse>
-        </Navbar>
+        </Navbar >
     );
 
 };

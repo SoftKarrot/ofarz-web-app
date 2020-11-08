@@ -22,8 +22,10 @@ function ProductDetailsScreen(props) {
 
 
     const handleAddToCart = () => {
+        
         props.history.push('/cart/' + props.match.params.id + '?qty=' + qty);
     };
+
     return (<div className="container" style={{ width: "876px", justifyContent: "center", alignItems: "center", textAlign: "center", marginTop: "60px" }}
     >
         { product ? (
@@ -41,10 +43,10 @@ function ProductDetailsScreen(props) {
                                 <ListGroupItem style={{ color: "#000", backgroundColor: "#fff", textAlign: "center" }}><h4> {product.name}</h4></ListGroupItem>
                                 <ListGroupItem style={{ color: "#000", backgroundColor: "#fff", textAlign: "center" }}>Price: {product.price}</ListGroupItem>
                                 <ListGroupItem style={{ color: "#000", backgroundColor: "#fff", textAlign: "center" }}>Product Code: {product.productCode}</ListGroupItem>
-                                <ListGroupItem style={{ color: "#000", backgroundColor: "#fff", textAlign: "center" }}>ProductType: {product.productType.name}</ListGroupItem>
+                                {/* <ListGroupItem style={{ color: "#000", backgroundColor: "#fff", textAlign: "center" }}>ProductType: {product.productType.name}</ListGroupItem>
                                 <ListGroupItem style={{ color: "#000", backgroundColor: "#fff", textAlign: "center" }}>Category: {product.category.name}</ListGroupItem>
                                 <ListGroupItem style={{ color: "#000", backgroundColor: "#fff", textAlign: "center" }}>SubCategory: {product.subCategory.name}</ListGroupItem>
-                                <ListGroupItem style={{ color: "#000", backgroundColor: "#fff", textAlign: "center" }}>CountInStock: {product.countInStock}</ListGroupItem>
+                                <ListGroupItem style={{ color: "#000", backgroundColor: "#fff", textAlign: "center" }}>CountInStock: {product.countInStock}</ListGroupItem> */}
                                 <ListGroupItem style={{ color: "#000", backgroundColor: "#fff", textAlign: "center" }}>
                                     <Input
                                         style={{ color: "#000", backgroundColor: "#fff" }}

@@ -25,6 +25,16 @@ import {
     FUND_LIST_SUCCESS_KARROT,
     FUND_LIST_SUCCESS_OFARZ,
     FUND_LIST_SUCCESS_SHOPER,
+    FUND_SUCCESS_APPSHARER,
+    FUND_FAIL_APPSHARER,
+    FUND_SUCCESS_SHOPER,
+    FUND_FAIL_SHOPER,
+    FUND_SUCCESS_KARROT,
+    FUND_FAIL_KARROT,
+    FUND_SUCCESS_CEO,
+    FUND_FAIL_CEO,
+    FUND_SUCCESS_OFARZ,
+    FUND_FAIL_OFARZ,
 
 } from "../../constants/Fund/fundConstants";
 //#endregion
@@ -129,6 +139,67 @@ function fundAgentReducer(state = { fund: {} }, action) {
 }
 
 
+function fundAppSharerReducer(state = { fund: {} }, action) {
+
+    switch (action.type) {
+        case FUND_SUCCESS_APPSHARER:
+            return { loading: false, fund: action.payload };
+        case FUND_FAIL_APPSHARER:
+            return { loading: false, erfundror: action.payload }
+        default:
+            return state;
+    }
+}
+
+function fundShoperReducer(state = { fund: {} }, action) {
+
+    switch (action.type) {
+        case FUND_SUCCESS_SHOPER:
+            return { loading: false, fund: action.payload };
+        case FUND_FAIL_SHOPER:
+            return { loading: false, erfundror: action.payload }
+        default:
+            return state;
+    }
+}
+
+function fundKarrotReducer(state = { fund: {} }, action) {
+
+    switch (action.type) {
+        case FUND_SUCCESS_KARROT:
+            return { loading: false, fund: action.payload };
+        case FUND_FAIL_KARROT:
+            return { loading: false, erfundror: action.payload }
+        default:
+            return state;
+    }
+}
+
+function fundCEOReducer(state = { fund: {} }, action) {
+
+    switch (action.type) {
+        case FUND_SUCCESS_CEO:
+            return { loading: false, fund: action.payload };
+        case FUND_FAIL_CEO:
+            return { loading: false, erfundror: action.payload }
+        default:
+            return state;
+    }
+}
+
+function fundOfarzReducer(state = { fund: {} }, action) {
+
+    switch (action.type) {
+        case FUND_SUCCESS_OFARZ:
+            return { loading: false, fund: action.payload };
+        case FUND_FAIL_OFARZ:
+            return { loading: false, erfundror: action.payload }
+        default:
+            return state;
+    }
+}
+
+
 //#region Export
 export {
 
@@ -139,7 +210,12 @@ export {
     fundListCeoReducer,
     fundListOfarzReducer,
 
-    fundAgentReducer
+    fundAgentReducer,
+    fundAppSharerReducer,
+    fundShoperReducer,
+    fundKarrotReducer,
+    fundCEOReducer,
+    fundOfarzReducer
 
 }
 

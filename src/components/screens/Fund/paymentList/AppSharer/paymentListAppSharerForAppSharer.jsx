@@ -1,14 +1,8 @@
 import React, { useEffect } from 'react';
-import { Button } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faInfo
-} from "@fortawesome/free-solid-svg-icons";
-import { Search } from "react-bootstrap-table2-toolkit";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { listPaymentsAppSharer } from '../../../../../actions/Fund/paymentActions';
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
+import { Button } from 'reactstrap';
 
 const PaymentListAppSharerForAppSharerScreen = (props) => {
 
@@ -27,56 +21,87 @@ const PaymentListAppSharerForAppSharerScreen = (props) => {
         };
     }, []);
 
-
-
-   
-    //     {
-    //         dataField: "link",
-    //         text: "Action",
-    //         formatter: (rowContent, row) => {
-    //             return (
-    //                 <div>
-    //                     <Link to={"marketdetails/" + row.id}>
-    //                         <Button color="dark" className="mr-2">
-    //                             <FontAwesomeIcon icon={faInfo} /> Detail
-    //                         </Button>
-    //                     </Link>
-    //                 </div>
-    //             );
-    //         },
-    //     },
-
-
     return (
-        <div className="container">
+        <div className="container" style={{ width: "876px", justifyContent: "center", alignItems: "center", textAlign: "center", marginTop: "60px" }}>
             <br />
             <br />
             <br />
             <br />
             {payments ? (
-                <div>
-                    {payments.map((pay) => (
 
-                        <Card key={pay.id} style={{ color: "#fff", backgroundColor: "#0C373A" }} >
-                            <Card.Body>
-                                <p style={{ color: "#06E2FF" }}>________________________________________________</p>
-                                <ListGroup className="list-group-flush">
-                                    <ListGroupItem style={{ backgroundColor: "#0C373A" }}>
-                                        <div className="row">
-                                            <div className="col-6"></div>
-                                            <div className="col-6"></div>
-                                        </div>
-                                    </ListGroupItem>
-                                </ListGroup>
-                            </Card.Body>
-                        </Card>
-                    ))}
+
+                <div className="row">
+                    <div className="col-2">
+
+                    </div>
+                    <div className="col-8">
+                        {payments.map((payment) => (
+                            <Card>
+                                <div>
+                                    <Card key={payment.id} style={{
+                                        color: "#fff",
+                                        backgroundColor: "#fff",
+                                        borderColor: "#5cb85c"
+                                    }} >
+                                        <Card.Body style={{ alignItems: "center", justifyContent: "center" }}>
+                                            <div className="row">
+                                                <div className="col-6">
+                                                    <div className="row">
+                                                        <div className="col-12">
+                                                            <Card style={{ padding: "10px", borderColor: "#5cb85c" }}>
+                                                                <h5 style={{ color: "#5cb85c" }}>Agent PhoneNumber:-{payment.agentPhnNumber}</h5>
+                                                            </Card>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div className="row">
+                                                        <div className="col-12">
+                                                            <Card style={{ padding: "10px", borderColor: "#5cb85c" }}>
+                                                                <h5 style={{ color: "#5cb85c" }}>Payment Time:-{payment.paymentTime}</h5>
+                                                            </Card>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <div className="col-6">
+                                                    <div className="row">
+                                                        <div className="col-12">
+                                                            <Card style={{ padding: "10px", borderColor: "#5cb85c" }}>
+                                                                <h5 style={{ color: "#5cb85c" }}>Amount:-{payment.amount}</h5>
+                                                            </Card>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div className="row">
+                                                        <div className="col-12">
+                                                            <Card style={{ padding: "10px", borderColor: "#5cb85c" }}>
+                                                                <h5 style={{ color: "#5cb85c" }}>Payment Type:-{payment.paymentType.paymentTypeName}</h5>
+                                                            </Card>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </Card.Body>
+                                    </Card>
+                                    <br />
+                                    <br />
+                                </div>
+                            </Card>
+                        ))}
+                    </div>
+                    <div className="col-2">
+
+                    </div>
                 </div>
+
 
             ) : (
                     <h1>You dont hv any paymnt yet</h1>
-                )}
-        </div>
+                )
+            }
+        </div >
     );
 };
 

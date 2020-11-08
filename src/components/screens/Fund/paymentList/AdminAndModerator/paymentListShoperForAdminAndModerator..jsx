@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner, Label, Input, Form, FormGroup } from "reactstrap";
+import { Container, Button, Card, Row, Col, Spinner, Label, Input, Form, FormGroup } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faInfo,
@@ -53,82 +53,111 @@ const PaymentListShoperForAdminScreen = (props) => {
 
     const columns = [
         {
-            dataField: "id",
-            text: "Id",
+            dataField: "agentPhnNumber",
+            text: "AgentPhoneNumber",
             sort: true,
         },
         {
-            dataField: "link",
-            text: "Action",
-            formatter: (rowContent, row) => {
-                return (
-                    <div>
-                        <Link to={"marketdetails/" + row.id}>
-                            <Button color="dark" className="mr-2">
-                                <FontAwesomeIcon icon={faInfo} /> Detail
-                            </Button>
-                        </Link>
-                    </div>
-                );
-            },
+            dataField: "payerPhoneNumber",
+            text: "PayerPhoneNumber",
+            sort: true,
         },
+        {
+            dataField: "productType.name",
+            text: "Product Type",
+            sort: true,
+        },
+        {
+            dataField: "paymentType.paymentTypeName",
+            text: "Payment Type",
+            sort: true,
+        },
+        {
+            dataField: "amount",
+            text: "Amount",
+            sort: true,
+        }
     ];
 
     return (
+        <div className="container">
+            <br />
+            <br />
+            <br />
+            <br />
+            <div className="row">
+                <div className="col-2">
 
-        <Container>
-            {payments ? (
-                <ToolkitProvider
-                    bootstrap4
-                    keyField="id"
-                    data={payments}
-                    columns={columns}
-                    defaultSorted={defaultSorted}
-                    search
-                >
-                    {(props) => (
-                        <div>
-                            <Row>
-                                <Col>
-                                    <div className="float-right">
-                                        <Form onSubmit={submitHandler}>
-                                            <div className="col col-lg-6">
-                                                <FormGroup>
-                                                    <Label for="name">Name</Label>
-                                                    <Input type="text"
-                                                        name="name"
-                                                        id="name"
-                                                        placeholder="Enter Product Name"
-                                                        size="lg"
-                                                        value={shoperPhoneNumber}
-                                                        onChange={(e) => setShoperPhnNumber(e.target.value)}
-                                                    />
-                                                </FormGroup>
-                                            </div>
-                                            <Button variant="primary" type="submit">
-                                                Submit
-                                            </Button>
-                                        </Form>
+                </div>
+                <div className="col-8">
+                    <Card style={{ width: "876px", height: "40px", justifyContent: "center", alignItems: "center", color: "#fff", borderColor: "#5cb85c", background: "#000" }}>
+                        Agent Payment List
+                    </Card>
+                    <Card style={{ width: "876px", padding: "20px", borderColor: "#000" }}>
+                        <Container>
+                            {payments ? (
+                                <ToolkitProvider
+                                    bootstrap4
+                                    keyField="id"
+                                    data={payments}
+                                    columns={columns}
+                                    defaultSorted={defaultSorted}
+                                    search
+                                >
+                                    {(props) => (
+                                        <div>
+                                            <Row>
+                                                <Col>
+                                                    <Form onSubmit={submitHandler}>
+                                                        <div className="row">
+
+                                                            <div className="col-6">
+                                                                <FormGroup>
+                                                                    <Input
+                                                                        type="text"
+                                                                        name="countInStock"
+                                                                        id="countInStock"
+                                                                        placeholder="Enter Shoper Phone Number"
+                                                                        size="lg"
+                                                                        value={shoperPhoneNumber}
+                                                                        onChange={(e) => setShoperPhnNumber(e.target.value)}
+                                                                    />
+                                                                </FormGroup>
+                                                            </div>
+                                                            <div className="col-6">
+                                                                <Button style={{
+                                                                    color: "#000"
+                                                                }} outline color="dark" size="lg" block type="submit">
+                                                                    Search
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </Form>
+                                                </Col>
+                                            </Row>
+                                            <BootstrapTable
+                                                {...props.baseProps}
+                                                pagination={paginationFactory()}
+                                            />
+                                        </div>
+                                    )}
+                                </ToolkitProvider>
+                            ) : (
+                                    <div className="text-center">
+                                        {props.errorCategoriesList ? (
+                                            <h4>{props.errorCategoriesList}</h4>
+                                        ) : (
+                                                <Spinner color="dark" />
+                                            )}
                                     </div>
-                                </Col>
-                            </Row>
-                            <BootstrapTable
-                                {...props.baseProps}
-                                pagination={paginationFactory()}
-                            />
-                        </div>
-                    )}
-                </ToolkitProvider>
-            ) : (
-                    <div className="text-center">
-                        {props.errorCategoriesList ? (
-                            <h4>{props.errorCategoriesList}</h4>
-                        ) : (
-                                <Spinner color="dark" />
-                            )}
-                    </div>
-                )}
-        </Container>
+                                )}
+                        </Container>
+                    </Card>
+                </div>
+                <div className="col-2">
+                </div>
+            </div>
+        </div>
     );
 };
 

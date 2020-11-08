@@ -20,21 +20,19 @@ a:focus {
 .sidebar {
   min-width: 250px;
   max-width: 250px;
-  background: #186F73;
-  color: #41CFD7;
+  background: #1FC46C;
+  color: #fff;
   margin-left: -250px;
-  margin-top: 10px;
+  margin-top: 20px;
   transition: all 0.3s;
-  position: fixed;
-
-  
+  position: fixed;  
 }
 .sidebar.is-open {
   margin-left: 0;
   transition: 0.3s;
 }
 .sidebar-header {
-  background: #186F73;
+  background: #1FC46C;
 }
 .sidebar-header h3 {
   color: #fff;
@@ -47,10 +45,10 @@ a:focus {
 .menu-open {
   background: #000000;
 }
-.nav-item:hover {
-  color: #000000;
+/* .nav-item {
+  color: #1FC46C;
   background: #fff;
-}
+} */
 .items-menu {
   color: #fff;
   background: #000000;
@@ -77,11 +75,11 @@ li a.dropdown-toggle::after {
   width: 10px;
 }
 .side-menu::-webkit-scrollbar-thumb {
-  background: #000000;
+  background: #fff;
   border-radius: 2px;
 }
 .side-menu::-webkit-scrollbar-thumb:hover {
-  background: #000000;
+  background: #fff;
 }
 /* ---------------------------------------------------
     CONTENT STYLE
@@ -772,7 +770,7 @@ tbody > tr:nth-child(odd) {
   border-bottom-right-radius: 1.5rem;
 }
 
-.register .nav-tabs .nav-link:hover {
+.register .nav-tabs .nav-link {
   border: none;
 }
 

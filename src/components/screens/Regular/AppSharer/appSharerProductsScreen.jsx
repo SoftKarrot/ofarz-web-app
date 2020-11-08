@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProductsForAppSharerAndShoper } from '../../../../actions/Regular/productActions';
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Button } from 'reactstrap';
 
 function AppSharerProductsScreen(props) {
 
@@ -10,8 +12,8 @@ function AppSharerProductsScreen(props) {
     const category = props.match.params.categoryId ? props.match.params.categoryId : '';
     const subCategory = props.match.params.id ? props.match.params.id : '';
 
-    const productListByProductTypeCategory = useSelector((state) => state.productListByProductTypeCategory);
-    const { products, loading, error } = productListByProductTypeCategory;
+    const product = useSelector((state) => state.productListForAppSharerAndShoper);
+    const { products, loading, error } = product;
 
     const dispatch = useDispatch();
 
@@ -23,36 +25,58 @@ function AppSharerProductsScreen(props) {
     }, [agentCode, productType, category, subCategory]);
 
     return (
-        <>
-            {loading ? (
-                <div>Loading...</div>
-            ) : error ? (
-                <div>{error}</div>
-            ) : (
-                        <ul className="products">
-                            {products.map((product) => (
-                                <li key={product.id}>
-                                    <div className="product">
-                                        <Link to={'/productdetails/' + product.id}>
-                                            <img
-                                                className="product-image"
-                                                src={product.imageUrl}
-                                                alt="product"
-                                            />
-                                        </Link>
-                                        <div className="product-name">
-                                            <Link to={'/product/' + product.id}>{product.name}</Link>
-                                        </div>
-                                        <div className="product-brand">{product.category.name}</div>
-                                        <div className="product-brand">{product.productType.name}</div>
-                                        <div className="product-brand">{product.countInStock}</div>
-                                        <div className="product-price">${product.price}</div>
 
+        <>
+            <div className="container">
+                <br />
+                <br />
+                <br />
+                <br />
+                {products ? (
+                    <div className="row">
+                        {products.map((product) => (
+                            <div className="col-3">
+                                <Card style={{ color: "#000", backgroundColor: "#fff" }} >
+                                    <div className="row">
+                                        <Card.Img variant="top" height="200px" src={product.imageUrl} />
                                     </div>
-                                </li>
-                            ))}
-                        </ul>
+                                    <div className="row">
+                                        <Card.Body>
+                                            <p style={{ color: "#06E2FF" }}>_______________________________</p>
+                                            <ListGroup className="list-group-flush">
+                                                <ListGroupItem style={{ backgroundColor: "#fff", textAlign: "center" }}><h4> {product.name}</h4></ListGroupItem>
+                                                <ListGroupItem style={{ backgroundColor: "#fff", textAlign: "center" }}>Price:
+                                                    {product.productType.name == "Promotional" ? (
+                                                        <p>{(product.price * 100) / 90}</p>
+                                                    ) : (
+                                                            <p>{(product.price * 100) / 93}</p>
+                                                        )}
+                                                </ListGroupItem>
+                                            </ListGroup>
+                                        </Card.Body>
+                                    </div>
+                                    <div className="row">
+                                        <Card.Body>
+                                            <Link to={'/productdetails/' + product.id}>
+                                                <Button
+                                                    style={{ color: "#06E2FF" }}
+                                                    outline color="primary" size="lg" block type="submit">
+                                                    Details
+                                                </Button>
+                                            </Link>
+                                        </Card.Body>
+                                    </div>
+                                </Card>
+                                <br />
+                                <br />
+                            </div>
+                        ))}
+                    </div>
+
+                ) : (
+                        <h1>You dont hv any paymnt yet</h1>
                     )}
+            </div>
         </>
     );
 }

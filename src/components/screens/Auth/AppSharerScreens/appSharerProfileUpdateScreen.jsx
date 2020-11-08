@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { adminUpdate } from '../../../../actions/Auth/adminActions';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import { detailsCountry, listCountries } from '../../../../actions/Area/countryActions';
 import { detailsDivision, listDivisions } from '../../../../actions/Area/divisionActions';
@@ -9,6 +8,7 @@ import { detailsDistrict, listDistricts } from '../../../../actions/Area/distric
 import { detailsUpozila, listUpozilas } from '../../../../actions/Area/upozilaActions';
 import { detailsUnion, listUnions } from '../../../../actions/Area/unionOrWardActions';
 import { appSharerProfileDetails, appSharerUpdate } from '../../../../actions/Auth/appSharerActions';
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 
 
 function AppSharerProfileUpdateScreen(props) {
@@ -89,8 +89,10 @@ function AppSharerProfileUpdateScreen(props) {
         setFirstName(userInfo.item1.firstName)
         setLastName(userInfo.item1.lastName)
         setProfilePhoto(userInfo.item1.profilePhoto)
+        setNominee_Name(userInfo.item1.nominee_Name)
         setNominee_PhonNumber(userInfo.item1.nominee_PhonNumber)
-        setPostalCode(userInfo.item1.postalcode)
+        setNominee_Relation(userInfo.item1.nominee_Relation)
+        setPostalCode(userInfo.item1.postalCode)
 
         setCountry(userInfo.item1.countryId)
         setDivision(userInfo.item1.divisionId)
@@ -98,7 +100,7 @@ function AppSharerProfileUpdateScreen(props) {
         setUpozila(userInfo.item1.upozilaId)
         setUnion(userInfo.item1.unionOrWardId)
 
-        debugger
+
 
         return () => {
             //
@@ -167,320 +169,338 @@ function AppSharerProfileUpdateScreen(props) {
     }
 
     return (
-        <div className="content" style={{ backgroundColor: "#0C373A" }}>
+        <div className="container" style={{ justifyContent: "center", alignItems: "center", textAlign: "center", marginTop: "60px" }}>
+            <br />
+            <br />
+            <br />
+            <br />
             {countries && divisions && districts && upozilas && unions && (
-                <div className="container" style={{ width: 850, backgroundColor: "#0C373A" }}>
-                    <p style={{ color: "#06E2FF", textAlign: "center" }}>___________________________________________________________</p>
-                    <h1 style={{ color: "#06E2FF", textAlign: "center" }}>Update Profile</h1>
-                    <p style={{ color: "#06E2FF", textAlign: "center" }}>___________________________________________________________</p>
-                    <Form onSubmit={submitHandler}>
-                        <div className="row">
-                            <div className="col col-lg-6">
-                                <FormGroup>
-                                    <Label
-                                        for="name"
-                                        style={{ color: "#06E2FF" }}
-                                    >
-                                        First Name
-                                    </Label>
-                                    <Input
-                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
-                                        type="text"
-                                        name="name"
-                                        color="06E2FF"
-                                        placeholder="Enter First Name"
-                                        size="lg"
-                                        value={firstname}
-                                        onChange={(e) => setFirstName(e.target.value)}
-                                    />
-                                </FormGroup>
-                            </div>
-                            <div className="col col-lg-6">
-                                <FormGroup>
-                                    <Label
-                                        for="price"
-                                        style={{ color: "#06E2FF" }}
-                                    >
-                                        Last Name
-                                    </Label>
-                                    <Input
-                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
-                                        type="text"
-                                        name="lastName"
-                                        id="lastName"
-                                        placeholder="Enter Last Name"
-                                        size="lg"
-                                        value={lastname}
-                                        onChange={(e) => setLastName(e.target.value)}
-                                    />
-                                </FormGroup>
-                            </div>
-                        </div>
+                <div className="row">
+                    <div className="col-2">
 
-                        <div className="row">
-                            <div className="col col-lg-12">
-                                <FormGroup>
-                                    <Label
-                                        for="profilePhoto"
-                                        style={{ color: "#06E2FF" }}
-                                    >
-                                        Profile Photo
+                    </div>
+                    <Card style={{ color: "#fff", backgroundColor: "#fff", borderColor: "#5cb85c", padding:"20px" }}>
+                        <p style={{ color: "#5cb85c", textAlign: "center" }}>___________________________________________________________</p>
+                        <h1 style={{ color: "#5cb85c", textAlign: "center" }}>Update Profile</h1>
+                        <p style={{ color: "#5cb85c", textAlign: "center" }}>___________________________________________________________</p>
+                        <Form onSubmit={submitHandler}>
+                            <div className="row">
+                                <div className="col col-lg-6">
+                                    <FormGroup>
+                                        <Label
+                                            for="name"
+                                            style={{ color: "#5cb85c" }}
+                                        >
+                                            First Name
                                     </Label>
-
-                                    <Input
-                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
-                                        type="text"
-                                        name="profilePhoto"
-                                        id="profilePhoto"
-                                        placeholder="Profile Photo"
-                                        size="lg"
-                                        value={profilePhoto}
-                                        onChange={(e) => setProfilePhoto(e.target.value)}
-                                    />
-                                    <Input
-                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
-                                        type="file"
-                                        label="Yo, pick a file!"
-                                        onChange={uploadFileHandler}
-                                    />
-                                </FormGroup>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col col-lg-4">
-                                <FormGroup>
-                                    <Label
-                                        for="name"
-                                        style={{ color: "#06E2FF" }}
-                                    >
-                                        Nominee Phone Number
+                                        <Input
+                                            style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                            type="text"
+                                            name="name"
+                                            color="5cb85c"
+                                            placeholder="Enter First Name"
+                                            size="lg"
+                                            value={firstname}
+                                            onChange={(e) => setFirstName(e.target.value)}
+                                        />
+                                    </FormGroup>
+                                </div>
+                                <div className="col col-lg-6">
+                                    <FormGroup>
+                                        <Label
+                                            for="price"
+                                            style={{ color: "#5cb85c" }}
+                                        >
+                                            Last Name
                                     </Label>
-                                    <Input
-                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
-                                        type="text"
-                                        name="nominee_PhonNumber"
-                                        color="06E2FF"
-                                        placeholder="Enter Nominee_PhonNumber"
-                                        size="lg"
-                                        value={nominee_PhonNumber}
-                                        onChange={(e) => setNominee_PhonNumber(e.target.value)}
-                                    />
-                                </FormGroup>
+                                        <Input
+                                            style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                            type="text"
+                                            name="lastName"
+                                            id="lastName"
+                                            placeholder="Enter Last Name"
+                                            size="lg"
+                                            value={lastname}
+                                            onChange={(e) => setLastName(e.target.value)}
+                                        />
+                                    </FormGroup>
+                                </div>
                             </div>
 
-                            <div className="col col-lg-4">
-                                <FormGroup>
-                                    <Label
-                                        for="name"
-                                        style={{ color: "#06E2FF" }}
-                                    >
-                                        Nominee Name
+                            <div className="row">
+                                <div className="col col-lg-12">
+                                    <FormGroup>
+                                        <Label
+                                            for="profilePhoto"
+                                            style={{ color: "#5cb85c" }}
+                                        >
+                                            Profile Photo
                                     </Label>
-                                    <Input
-                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
-                                        type="text"
-                                        name="nominee_PhonNumber"
-                                        color="06E2FF"
-                                        placeholder="Enter Nominee_PhonNumber"
-                                        size="lg"
-                                        value={nominee_Name}
-                                        onChange={(e) => setNominee_Name(e.target.value)}
-                                    />
-                                </FormGroup>
+
+                                        <Input
+                                            style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                            type="text"
+                                            name="profilePhoto"
+                                            id="profilePhoto"
+                                            placeholder="Profile Photo"
+                                            size="lg"
+                                            value={profilePhoto}
+                                            onChange={(e) => setProfilePhoto(e.target.value)}
+                                        />
+                                        <Input
+                                            style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                            type="file"
+                                            label="Yo, pick a file!"
+                                            onChange={uploadFileHandler}
+                                        />
+                                    </FormGroup>
+                                </div>
                             </div>
 
-                            <div className="col col-lg-4">
-                                <FormGroup>
-                                    <Label
-                                        for="name"
-                                        style={{ color: "#06E2FF" }}
-                                    >
-                                        Nominee Relation
+                            <div className="row">
+                                <div className="col col-lg-4">
+                                    <FormGroup>
+                                        <Label
+                                            for="name"
+                                            style={{ color: "#5cb85c" }}
+                                        >
+                                            Nominee Phone Number
                                     </Label>
-                                    <Input
-                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
-                                        type="text"
-                                        name="nominee_PhonNumber"
-                                        color="06E2FF"
-                                        placeholder="Enter Nominee_PhonNumber"
-                                        size="lg"
-                                        value={nominee_Relation}
-                                        onChange={(e) => setNominee_Relation(e.target.value)}
-                                    />
-                                </FormGroup>
+                                        <Input
+                                            style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                            type="text"
+                                            name="nominee_PhonNumber"
+                                            color="5cb85c"
+                                            placeholder="Enter Nominee_PhonNumber"
+                                            size="lg"
+                                            value={nominee_PhonNumber}
+                                            onChange={(e) => setNominee_PhonNumber(e.target.value)}
+                                        />
+                                    </FormGroup>
+                                </div>
+
+                                <div className="col col-lg-4">
+                                    <FormGroup>
+                                        <Label
+                                            for="name"
+                                            style={{ color: "#5cb85c" }}
+                                        >
+                                            Nominee Name
+                                    </Label>
+                                        <Input
+                                            style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                            type="text"
+                                            name="nominee_PhonNumber"
+                                            color="5cb85c"
+                                            placeholder="Enter Nominee_PhonNumber"
+                                            size="lg"
+                                            value={nominee_Name}
+                                            onChange={(e) => setNominee_Name(e.target.value)}
+                                        />
+                                    </FormGroup>
+                                </div>
+
+                                <div className="col col-lg-4">
+                                    <FormGroup>
+                                        <Label
+                                            for="name"
+                                            style={{ color: "#5cb85c" }}
+                                        >
+                                            Nominee Relation
+                                    </Label>
+                                        <Input
+                                            style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                            type="text"
+                                            name="nominee_PhonNumber"
+                                            color="5cb85c"
+                                            placeholder="Enter Nominee_PhonNumber"
+                                            size="lg"
+                                            value={nominee_Relation}
+                                            onChange={(e) => setNominee_Relation(e.target.value)}
+                                        />
+                                    </FormGroup>
+                                </div>
+
+
+                            </div>
+
+                            <div className="row">
+                                <div className="col col-lg-4">
+                                    <FormGroup>
+                                        <Label
+                                            for="exampleSelect"
+                                            style={{ color: "#5cb85c" }}
+                                        >
+                                            Country
+                                    </Label>
+                                        <Input
+                                            style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                            type="select"
+                                            name="select"
+                                            id="exampleSelect"
+                                            size="lg"
+                                            onChange={saveCountryHandler}
+                                        >
+                                            <option>{country.name}</option>
+                                            {countries.map((country) => (
+                                                <option value={country.id}>
+                                                    {country.name}
+                                                </option>
+                                            ))}
+                                        </Input>
+                                    </FormGroup>
+                                </div>
+                                <div className="col col-lg-4">
+                                    <FormGroup>
+                                        <Label
+                                            for="exampleSelect"
+                                            style={{ color: "#5cb85c" }}
+                                        >
+                                            Division
+                                    </Label>
+                                        <Input
+                                            style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                            type="select"
+                                            name="select"
+                                            id="exampleSelect"
+                                            defaultValue={division.name}
+                                            size="lg"
+                                            onChange={saveDivisionHandler}
+                                        >
+                                            <option>{division.name}</option>
+                                            {divisions.map((division) => (
+                                                <option value={division.id}>
+                                                    {division.name}
+                                                </option>
+                                            ))}
+                                        </Input>
+                                    </FormGroup>
+                                </div>
+                                <div className="col col-lg-4">
+                                    <FormGroup>
+                                        <Label
+                                            for="exampleSelect"
+                                            style={{ color: "#5cb85c" }}
+                                        >
+                                            District
+                                    </Label>
+                                        <Input
+                                            style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                            type="select"
+                                            name="select"
+                                            id="exampleSelect"
+                                            size="lg"
+                                            onChange={saveDistrictHandler}
+                                        >
+                                            <option>{district.name}</option>
+                                            {districts.map((district) => (
+                                                <option value={district.id}>
+                                                    {district.name}
+                                                </option>
+                                            ))}
+                                        </Input>
+                                    </FormGroup>
+                                </div>
                             </div>
 
 
-                        </div>
+                            <div className="row">
+                                <div className="col col-lg-4">
+                                    <FormGroup>
+                                        <Label
+                                            for="exampleSelect"
+                                            style={{ color: "#5cb85c" }}
+                                        >
+                                            Upozila
+                                    </Label>
+                                        <Input
+                                            style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                            type="select"
+                                            name="select"
+                                            id="exampleSelect"
+                                            size="lg"
+                                            onChange={saveUpozilaHandler}
+                                        >
+                                            <option>{upozila.name}</option>
+                                            {upozilas.map((upozila) => (
+                                                <option value={upozila.id}>
+                                                    {upozila.name}
+                                                </option>
+                                            ))}
+                                        </Input>
+                                    </FormGroup>
+                                </div>
 
-                        <div className="row">
-                            <div className="col col-lg-4">
-                                <FormGroup>
-                                    <Label
-                                        for="exampleSelect"
-                                        style={{ color: "#06E2FF" }}
-                                    >
-                                        Country
+                                <div className="col col-lg-4">
+                                    <FormGroup>
+                                        <Label
+                                            for="exampleSelect"
+                                            style={{ color: "#5cb85c" }}
+                                        >
+                                            UnionOrWard
                                     </Label>
-                                    <Input
-                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
-                                        type="select"
-                                        name="select"
-                                        id="exampleSelect"
-                                        size="lg"
-                                        onChange={saveCountryHandler}
-                                    >
-                                        <option>{country.name}</option>
-                                        {countries.map((country) => (
-                                            <option value={country.id}>
-                                                {country.name}
-                                            </option>
-                                        ))}
-                                    </Input>
-                                </FormGroup>
-                            </div>
-                            <div className="col col-lg-4">
-                                <FormGroup>
-                                    <Label
-                                        for="exampleSelect"
-                                        style={{ color: "#06E2FF" }}
-                                    >
-                                        Division
-                                    </Label>
-                                    <Input
-                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
-                                        type="select"
-                                        name="select"
-                                        id="exampleSelect"
-                                        defaultValue={division.name}
-                                        size="lg"
-                                        onChange={saveDivisionHandler}
-                                    >
-                                        <option></option>
-                                        {divisions.map((division) => (
-                                            <option value={division.id}>
-                                                {division.name}
-                                            </option>
-                                        ))}
-                                    </Input>
-                                </FormGroup>
-                            </div>
-                            <div className="col col-lg-4">
-                                <FormGroup>
-                                    <Label
-                                        for="exampleSelect"
-                                        style={{ color: "#06E2FF" }}
-                                    >
-                                        District
-                                    </Label>
-                                    <Input
-                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
-                                        type="select"
-                                        name="select"
-                                        id="exampleSelect"
-                                        size="lg"
-                                        onChange={saveDistrictHandler}
-                                    >
-                                        <option>{district.name}</option>
-                                        {districts.map((district) => (
-                                            <option value={district.id}>
-                                                {district.name}
-                                            </option>
-                                        ))}
-                                    </Input>
-                                </FormGroup>
-                            </div>
-                        </div>
+                                        <Input
+                                            style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                            type="select"
+                                            name="select"
+                                            id="exampleSelect"
+                                            size="lg"
+                                            onChange={saveUnionHandler}
+                                        >
+                                            <option>{union.name}</option>
+                                            {unions.map((union) => (
+                                                <option value={union.id}>
+                                                    {union.name}
+                                                </option>
+                                            ))}
+                                        </Input>
+                                    </FormGroup>
+                                </div>
 
-
-                        <div className="row">
-                            <div className="col col-lg-4">
-                                <FormGroup>
-                                    <Label
-                                        for="exampleSelect"
-                                        style={{ color: "#06E2FF" }}
-                                    >
-                                        Upozila
+                                <div className="col col-lg-4">
+                                    <FormGroup>
+                                        <Label
+                                            for="name"
+                                            style={{ color: "#5cb85c" }}
+                                        >
+                                            Postal Code
                                     </Label>
-                                    <Input
-                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
-                                        type="select"
-                                        name="select"
-                                        id="exampleSelect"
-                                        size="lg"
-                                        onChange={saveUpozilaHandler}
-                                    >
-                                        <option>{upozila.name}</option>
-                                        {upozilas.map((upozila) => (
-                                            <option value={upozila.id}>
-                                                {upozila.name}
-                                            </option>
-                                        ))}
-                                    </Input>
-                                </FormGroup>
+                                        <Input
+                                            style={{ color: "#5cb85c", backgroundColor: "#fff" }}
+                                            type="text"
+                                            name="postalcode"
+                                            color="5cb85c"
+                                            placeholder="Enter Postal Code"
+                                            size="lg"
+                                            value={postalcode}
+                                            onChange={(e) => setPostalCode(e.target.value)}
+                                        />
+                                    </FormGroup>
+                                </div>
                             </div>
 
-                            <div className="col col-lg-4">
-                                <FormGroup>
-                                    <Label
-                                        for="exampleSelect"
-                                        style={{ color: "#06E2FF" }}
-                                    >
-                                        UnionOrWard
-                                    </Label>
-                                    <Input
-                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
-                                        type="select"
-                                        name="select"
-                                        id="exampleSelect"
-                                        size="lg"
-                                        onChange={saveUnionHandler}
-                                    >
-                                        <option>{union.name}</option>
-                                        {unions.map((union) => (
-                                            <option value={union.id}>
-                                                {union.name}
-                                            </option>
-                                        ))}
-                                    </Input>
-                                </FormGroup>
-                            </div>
-
-                            <div className="col col-lg-4">
-                                <FormGroup>
-                                    <Label
-                                        for="name"
-                                        style={{ color: "#06E2FF" }}
-                                    >
-                                        Postal Code
-                                    </Label>
-                                    <Input
-                                        style={{ color: "#06E2FF", backgroundColor: "#0C373A" }}
-                                        type="text"
-                                        name="postalcode"
-                                        color="06E2FF"
-                                        placeholder="Enter Postal Code"
-                                        size="lg"
-                                        value={postalcode}
-                                        onChange={(e) => setPostalCode(e.target.value)}
-                                    />
-                                </FormGroup>
-                            </div>
-                        </div>
-
-                        <Button style={{
-                            color: "#06E2FF"
-                        }} outline color="primary" size="lg" block type="submit">
-                            Update
+                            <Button style={{
+                                color: "#5cb85c"
+                            }} outline color="success" size="lg" block type="submit">
+                                Update
                        </Button>
 
-                    </Form>
+                        </Form>
+                    </Card>
+                    <div className="col-8">
+                      
 
+
+
+                    </div>
+                    <div className="col-2">
+
+                    </div>
                 </div>
-
             )
             }
+            <br />
+            <br />
         </div >
     );
 }

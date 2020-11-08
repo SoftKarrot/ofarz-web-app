@@ -1,23 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import BootstrapTable from "react-bootstrap-table-next";
-import { Container, Button, Row, Col, Spinner, Label, Input, Form, FormGroup } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faInfo
-} from "@fortawesome/free-solid-svg-icons";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import paginationFactory from "react-bootstrap-table2-paginator";
-
+import React, { useEffect } from 'react';
+import { Card } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux';
 import { fundAgent } from '../../../../../actions/Fund/fundActions';
-
-const defaultSorted = [
-    {
-        dataField: "id",
-        order: "asc",
-    },
-];
-
 
 const FundAgentForAgentscreen = (props) => {
 
@@ -25,8 +9,8 @@ const FundAgentForAgentscreen = (props) => {
     const { userInfo } = userSignIn;
 
 
-    const fund = useSelector((state) => state.fundListAgent)
-    const { funds } = fund;
+    const fundd = useSelector((state) => state.fundAgent)
+    const { fund } = fundd;
 
 
     const dispatch = useDispatch();
@@ -40,48 +24,83 @@ const FundAgentForAgentscreen = (props) => {
 
 
 
-    const columns = [
-        {
-            dataField: "mainAccount",
-            text: "MainAccount",
-            sort: true,
-            headerAlign: 'center',
-            style: { backgroundColor: 'white' },
-            alignItems: 'center'
-
-        },
-    ]
     return (
 
-        <Container>
-            {funds ? (
-                <ToolkitProvider
-                    bootstrap4
-                    keyField="id"
-                    data={funds}
-                    columns={columns}
-                    defaultSorted={defaultSorted}
-                    search
-                >
-                    {(props) => (
-                        <div>
-                            <BootstrapTable
-                                {...props.baseProps}
-                                pagination={paginationFactory()}
-                            />
-                        </div>
-                    )}
-                </ToolkitProvider>
-            ) : (
-                    <div className="text-center">
-                        {props.errorCategoriesList ? (
-                            <h4>{props.errorCategoriesList}</h4>
-                        ) : (
-                                <Spinner color="dark" />
-                            )}
-                    </div>
-                )}
-        </Container>
+        <div className="container" style={{ justifyContent: "center", alignItems: "center" }}>
+            <br />
+            <br />
+            <br />
+            <br />
+            <div className="row">
+
+                <div className="col-2">
+
+                </div>
+                <div className="col-8">
+                    {fund ? (
+                        <Card style={{ borderColor: "#5cb85c"}}>
+                            <div className="row">
+                                <div className="col-12">
+                                    <Card style={{ height: "40px", justifyContent: "center", alignItems: "center", color: "#fff", backgroundColor: "#5cb85c" }}>
+                                        Fund:- {userInfo.item1.phoneNumber}
+                                    </Card>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-3">
+                                    <Card style={{ height: "40px", justifyContent: "center", alignItems: "center", color: "#5cb85c", borderColor: "#5cb85c" }}>
+                                        Shoper Transection
+                                </Card>
+                                </div>
+                                <div className="col-3">
+                                    <Card style={{ height: "40px", justifyContent: "center", alignItems: "center", color: "#5cb85c", borderColor: "#5cb85c" }}>
+                                        Direct Cash Transection
+                                    </Card>
+                                </div>
+                                <div className="col-3">
+                                    <Card style={{ height: "40px", justifyContent: "center", alignItems: "center", color: "#5cb85c", borderColor: "#5cb85c" }}>
+                                        Main Account
+                                    </Card>
+                                </div>
+                                <div className="col-3">
+                                    <Card style={{ height: "40px", justifyContent: "center", alignItems: "center", color: "#5cb85c", borderColor: "#5cb85c" }}>
+                                        Total Transection
+                                    </Card>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-3">
+                                    <Card style={{ height: "40px", justifyContent: "center", alignItems: "center", color: "#5cb85c", borderColor: "#5cb85c" }}>
+                                        {fund.shoperTransection}
+                                    </Card>
+                                </div>
+                                <div className="col-3">
+                                    <Card style={{ height: "40px", justifyContent: "center", alignItems: "center", color: "#5cb85c", borderColor: "#5cb85c" }}>
+                                        {fund.sellViaDirectCash}
+                                    </Card>
+                                </div>
+                                <div className="col-3">
+                                    <Card style={{ height: "40px", justifyContent: "center", alignItems: "center", color: "#5cb85c", borderColor: "#5cb85c" }}>
+                                        {fund.mainAccount}
+                                    </Card>
+                                </div>
+                                <div className="col-3">
+                                    <Card style={{ height: "40px", justifyContent: "center", alignItems: "center", color: "#5cb85c", borderColor: "#5cb85c" }}>
+                                        {fund.totalTransection}
+                                    </Card>
+                                </div>
+                            </div>
+                        </Card>
+                    ) : (
+                            <h1></h1>
+                        )
+                    }
+                </div>
+                <div className="col-2">
+
+                </div>
+            </div>
+        </div >
     );
 };
 

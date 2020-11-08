@@ -42,42 +42,57 @@ function PaymentTypeEditScreen(props) {
 
     return (
         <div className="container">
-            {paymentType && (
-                <Form onSubmit={submitHandler}>
-                    <div className="row">
-                        <div className="col col-lg-6">
-                            <FormGroup>
-                                <Label for="paymentTypeName">Name</Label>
-                                <Input type="text"
-                                    name="paymentTypeName"
-                                    id="paymentTypeName"
-                                    size="lg"
-                                    value={paymentTypeName}
-                                    onChange={(e) => setName(e.target.value)}
-                                />
-                            </FormGroup>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col col-lg-6">
-                            <FormGroup>
-                                <Label for="paymentTypeDescription">Discription</Label>
-                                <Input type="text"
-                                    name="paymentTypeDescription"
-                                    id="paymentTypeDescription"
-                                    size="lg"
-                                    value={paymentTypeDescription}
-                                    onChange={(e) => setDescription(e.target.value)}
-                                />
-                            </FormGroup>
-                        </div>
-                    </div>
-                    <Button variant="primary" type="submit">
-                        Submit
-                </Button>
-                </Form>
-            )
-            }
+            <br />
+            <br />
+            <br />
+            <br />
+            <div className="row">
+                <div className="col-2">
+
+                </div>
+                <div className="col-8">
+                    {paymentType && (
+                        <Form onSubmit={submitHandler}>
+                            <div className="row">
+                                <div className="col col-lg-12">
+                                    <FormGroup>
+                                        <Label for="paymentTypeName">Name</Label>
+                                        <Input type="text"
+                                            name="paymentTypeName"
+                                            id="paymentTypeName"
+                                            size="lg"
+                                            value={paymentTypeName}
+                                            onChange={(e) => setName(e.target.value)}
+                                        />
+                                    </FormGroup>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col col-lg-12">
+                                    <FormGroup>
+                                        <Label for="paymentTypeDescription">Discription</Label>
+                                        <Input type="text"
+                                            name="paymentTypeDescription"
+                                            id="paymentTypeDescription"
+                                            size="lg"
+                                            value={paymentTypeDescription}
+                                            onChange={(e) => setDescription(e.target.value)}
+                                        />
+                                    </FormGroup>
+                                </div>
+                            </div>
+                            <Button variant="black" type="submit">
+                                Submit
+                            </Button>
+                        </Form>
+                    )
+                    }
+                </div>
+                <div className="col-2">
+
+                </div>
+            </div>
+
         </div>
     );
 }

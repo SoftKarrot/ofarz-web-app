@@ -25,6 +25,10 @@ const PaymentTypeDetails = (props) => {
 
     return (
         <div className="container">
+            <br />
+            <br />
+            <br />
+            <br />
             <div className="row">
                 <div className="col col-lg-3">
                 </div>
